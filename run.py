@@ -22,16 +22,59 @@ SHEET = GSPREAD_CLIENT.open('expense_tracker')
 expenses = SHEET.worksheet("expenses")
 data = expenses.get_all_values()
 
+
+# Add Expenses Menu
+
+def validate_expense_amount():
+    """
+    Validates user's expense amount input.
+    """
+
+
+
+
+def validate_expense_category():
+    """
+    Validate user's expense category input.
+    """
+    print("Please enter a category (1-6):")
+
+    while True:
+        print()
+        print("1. Housing")
+        print("2. Food")
+        print("3. Transportation")
+        print("4. Entertainment")
+        print("5. Healthcare")
+        print("6. Misc")
+        print()
+
+        try:
+            user_choice = input("> ")
+            if user_choice in ["1", "2", "3", "4", "5", "6"]:
+                print()
+                print(f"You've entered {user_choice}")
+                break
+
+            else:
+                raise ValueError(
+                    f"Please select one of the options (1-6)."
+                )
+
+        except ValueError as e:
+            print()
+            print(f"Invalid Input: {e}")
+
+
 def validate_expense_description():
     """
-    Validates user's description input.
+    Validates user's expense description input.
     """
     while True:
         expense_description = input("Expense Description: ")
 
         try:
             if expense_description != "":
-                print("Valid description")
                 break
 
             else:
@@ -49,7 +92,7 @@ def validate_expense_description():
 # currently no limit on past dates 
 def validate_expense_date(date_input):
     """
-    Validates user's date input.
+    Validates user's expense date input.
     """
     while True:
         
@@ -75,8 +118,13 @@ def add_expenses():
     validate_expense_date(expense_date)
     print()
     validate_expense_description()
+    print()
+    validate_expense_category()
+    print()
+    validate_expense_amount()
 
 
+# View Expenses Menu
 
 def view_expenses():
     """
@@ -118,6 +166,9 @@ def view_expenses():
         except ValueError as e:
             print()
             print(f"Invalid Input: {e}\n")
+
+
+# Main Menu
 
 def main_menu():
     """
