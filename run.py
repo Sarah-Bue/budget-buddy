@@ -2,6 +2,9 @@
 import gspread
 from google.oauth2.service_account import Credentials
 
+# Libraries
+import datetime
+
 # Scope for Google IAM for API access
 # Guidance provided by Code Institute's course material
 SCOPE = [
@@ -18,6 +21,38 @@ GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('expense_tracker')
 expenses = SHEET.worksheet("expenses")
 data = expenses.get_all_values()   
+
+def validate_expense_date(date_input):
+    """
+    Validates user's date input.
+    """
+    while True:
+        print()
+        print("Validating date input... \n")
+        
+        try:
+            # Check if the date string can be converted to a valid date
+            datetime.datetime.strptime(date_input, "%d-%m-%Y")
+            print("Valid date format.")
+            return True
+            
+        except ValueError:
+            print("Invalid format. Please enter date as DD-MM-YYYY.\n")
+            date_input = input("Expense Date (DD-MM-YYYY): ")
+            
+
+
+def add_expenses():
+    """
+    Collects expense details from the user.
+    """
+    print()
+    print("*** Add Expenses Menu *** \n")
+    print("Please add expense details below:")
+    print()
+    expense_date = input("Expense Date (DD-MM-YYYY): ")
+    print()
+    validate_expense_date(expense_date)
 
 
 def view_expenses():
@@ -78,8 +113,8 @@ def main_menu():
             user_choice = input("> ")
             if user_choice == "1":
                 print()
-                #add_expenses()
                 print("Opening Add Expenses Menu...\n")
+                add_expenses()
                 break
                 
             elif user_choice == "2":
