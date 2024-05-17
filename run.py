@@ -20,27 +20,47 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('expense_tracker')
 expenses = SHEET.worksheet("expenses")
-data = expenses.get_all_values()   
+data = expenses.get_all_values()
 
+def validate_expense_description():
+    """
+    Validates user's description input.
+    """
+    while True:
+        expense_description = input("Expense Description: ")
+
+        try:
+            if expense_description != "":
+                print("Valid description")
+                break
+
+            else:
+                raise ValueError(
+                    f"Description cannot be empty."
+                )
+
+        except ValueError as e:
+            print()
+            print(f"Invalid Input: {e}\n")
+
+
+# valid date input to be updated: 
+# currently, future dates are accepted
+# currently no limit on past dates 
 def validate_expense_date(date_input):
     """
     Validates user's date input.
     """
     while True:
-        print()
-        print("Validating date input... \n")
         
         try:
-            # Check if the date string can be converted to a valid date
             datetime.datetime.strptime(date_input, "%d-%m-%Y")
-            print("Valid date format.")
             return True
             
         except ValueError:
             print("Invalid format. Please enter date as DD-MM-YYYY.\n")
             date_input = input("Expense Date (DD-MM-YYYY): ")
             
-
 
 def add_expenses():
     """
@@ -53,6 +73,9 @@ def add_expenses():
     expense_date = input("Expense Date (DD-MM-YYYY): ")
     print()
     validate_expense_date(expense_date)
+    print()
+    validate_expense_description()
+
 
 
 def view_expenses():
