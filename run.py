@@ -29,8 +29,25 @@ def validate_expense_amount():
     """
     Validates user's expense amount input.
     """
+    #print("Expense Amount:")
 
+    while True:
+        print("Expense Amount:")
 
+        try:
+            user_choice = float(input("> "))
+            if user_choice != "":
+                print("Well done")
+                break
+
+            else:
+                raise ValueError(
+                    f"Please try again."
+                )
+
+        except ValueError as e:
+            print()
+            print(f"Invalid Input: {e}\n")
 
 
 def validate_expense_category():
@@ -53,7 +70,6 @@ def validate_expense_category():
             user_choice = input("> ")
             if user_choice in ["1", "2", "3", "4", "5", "6"]:
                 print()
-                print(f"You've entered {user_choice}")
                 break
 
             else:
@@ -70,11 +86,15 @@ def validate_expense_description():
     """
     Validates user's expense description input.
     """
+    print("Please enter a description.")
+
     while True:
-        expense_description = input("Expense Description: ")
+        #expense_description = input("Expense Description: ")
 
         try:
-            if expense_description != "":
+            user_choice = input("> ")
+            #if expense_description != "":
+            if user_choice != "":
                 break
 
             else:
@@ -207,3 +227,4 @@ def main_menu():
 
 
 main_menu()
+#validate_expense_amount()
