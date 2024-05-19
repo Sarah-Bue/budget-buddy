@@ -32,12 +32,12 @@ def validate_expense_amount():
     #print("Expense Amount:")
 
     while True:
-        print("Expense Amount:")
+        print("Please enter an amount:")
 
         try:
-            user_choice = float(input("> "))
-            if user_choice != "":
-                print("Well done")
+            global amount_input
+            amount_input = float(input("> "))
+            if amount_input != "":
                 break
 
             else:
@@ -47,29 +47,29 @@ def validate_expense_amount():
 
         except ValueError as e:
             print()
-            print(f"Invalid Input: {e}\n")
+            print(f"Invalid input: {e}")
 
 
 def validate_expense_category():
     """
     Validate user's expense category input.
     """
-    print("Please enter a category (1-6):")
+    print("Please select a category (1-6).")
 
     while True:
-        print()
-        print("1. Housing")
-        print("2. Food")
-        print("3. Transportation")
-        print("4. Entertainment")
-        print("5. Healthcare")
-        print("6. Misc")
+        # print()
+        print("     1. Housing")
+        print("     2. Food")
+        print("     3. Transportation")
+        print("     4. Entertainment")
+        print("     5. Healthcare")
+        print("     6. Misc")
         print()
 
         try:
-            user_choice = input("> ")
-            if user_choice in ["1", "2", "3", "4", "5", "6"]:
-                print()
+            global category_input
+            category_input = input("> ")
+            if category_input in ["1", "2", "3", "4", "5", "6"]:
                 break
 
             else:
@@ -79,7 +79,7 @@ def validate_expense_category():
 
         except ValueError as e:
             print()
-            print(f"Invalid Input: {e}")
+            print(f"Invalid input: {e}")
 
 
 def validate_expense_description():
@@ -92,9 +92,10 @@ def validate_expense_description():
         #expense_description = input("Expense Description: ")
 
         try:
-            user_choice = input("> ")
+            global description_input
+            description_input = input("> ")
             #if expense_description != "":
-            if user_choice != "":
+            if description_input != "":
                 break
 
             else:
@@ -104,44 +105,61 @@ def validate_expense_description():
 
         except ValueError as e:
             print()
-            print(f"Invalid Input: {e}\n")
+            print(f"Invalid input: {e}")
 
 
 # valid date input to be updated: 
 # currently, future dates are accepted
-# currently no limit on past dates 
-def validate_expense_date(date_input):
+# currently no limit on past dates
+ 
+#def validate_expense_date(date_input):
+def validate_expense_date():
     """
     Validates user's expense date input.
     """
+    print("Please enter date as DD-MM-YYYY.")
+
     while True:
-        
+
         try:
+            global date_input
+            date_input = input("> ")
             datetime.datetime.strptime(date_input, "%d-%m-%Y")
             return True
             
         except ValueError:
-            print("Invalid format. Please enter date as DD-MM-YYYY.\n")
-            date_input = input("Expense Date (DD-MM-YYYY): ")
+            print()
+            print("Invalid format. Please enter date as DD-MM-YYYY.")
+            # date_input = input("> ")
             
 
 def add_expenses():
     """
     Collects expense details from the user.
     """
-    print()
+    #print()
     print("*** Add Expenses Menu *** \n")
     print("Please add expense details below:")
+    #print()
+    #expense_date = input("Expense Date (DD-MM-YYYY): ")
     print()
-    expense_date = input("Expense Date (DD-MM-YYYY): ")
-    print()
-    validate_expense_date(expense_date)
+    #validate_expense_date(expense_date)
+    validate_expense_date()
     print()
     validate_expense_description()
     print()
     validate_expense_category()
     print()
     validate_expense_amount()
+
+    print()
+    print(f"You have entered:")
+    print(f"     Expense Date: {date_input}")
+    print(f"     Expense Description: {description_input}")
+    print(f"     Expense Category: {category_input}")
+    print(f"     Expense Amount: {amount_input}")
+    print()
+
 
 
 # View Expenses Menu
@@ -185,7 +203,7 @@ def view_expenses():
 
         except ValueError as e:
             print()
-            print(f"Invalid Input: {e}\n")
+            print(f"Invalid input: {e}")
 
 
 # Main Menu
@@ -207,7 +225,7 @@ def main_menu():
             user_choice = input("> ")
             if user_choice == "1":
                 print()
-                print("Opening Add Expenses Menu...\n")
+                print("Opening Expenses Menu...\n")
                 add_expenses()
                 break
                 
@@ -223,8 +241,7 @@ def main_menu():
 
         except ValueError as e:
             print()
-            print(f"Invalid Input: {e}\n")
+            print(f"Invalid input: {e}")
 
 
 main_menu()
-#validate_expense_amount()
