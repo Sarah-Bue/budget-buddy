@@ -28,8 +28,8 @@ data = expenses.get_all_values()
 def validate_expense_amount():
     """
     Validates user's expense amount input.
+    While loop will repeatedly request data until it is valid.
     """
-    #print("Expense Amount:")
 
     while True:
         print("Please enter an amount:")
@@ -53,11 +53,11 @@ def validate_expense_amount():
 def validate_expense_category():
     """
     Validate user's expense category input.
+    While loop will repeatedly request data until it is valid.
     """
     print("Please select a category (1-6).")
 
     while True:
-        # print()
         print("     1. Housing")
         print("     2. Food")
         print("     3. Transportation")
@@ -85,16 +85,14 @@ def validate_expense_category():
 def validate_expense_description():
     """
     Validates user's expense description input.
+    While loop will repeatedly request data until it is valid.
     """
     print("Please enter a description.")
 
     while True:
-        #expense_description = input("Expense Description: ")
-
         try:
             global description_input
             description_input = input("> ")
-            #if expense_description != "":
             if description_input != "":
                 break
 
@@ -111,16 +109,14 @@ def validate_expense_description():
 # valid date input to be updated: 
 # currently, future dates are accepted
 # currently no limit on past dates
- 
-#def validate_expense_date(date_input):
 def validate_expense_date():
     """
     Validates user's expense date input.
+    While loop will repeatedly request data until it is valid.
     """
     print("Please enter date as DD-MM-YYYY.")
 
     while True:
-
         try:
             global date_input
             date_input = input("> ")
@@ -130,20 +126,54 @@ def validate_expense_date():
         except ValueError:
             print()
             print("Invalid format. Please enter date as DD-MM-YYYY.")
-            # date_input = input("> ")
-            
+
+
+def confirm_input():
+    """
+    Allows user to confirm or update expense details.
+    While loop will repeatedly request data until it is valid.
+    """
+    print(f"You have entered:")
+    print(f"     Expense Date: {date_input}")
+    print(f"     Expense Description: {description_input}")
+    print(f"     Expense Category: {category_input}")
+    print(f"     Expense Amount: {amount_input}")
+    print()
+    print("Conrifm expense details (c) or re-enter (r)?")
+
+    while True:
+        try:
+            user_input = input("> ")
+            if user_input == "r" or user_input == "R":
+                add_expenses()
+
+            elif user_input == "c" or user_input =="C":
+                # return expense_data
+
+                print()
+                update_worksheet()
+                print()
+                break
+
+            else:
+                raise ValueError(
+                    f"Please type 'c' to confirm or 'r' to re-enter details."
+                )
+
+        except ValueError as e:
+            print()
+            print(f"Invalid input: {e}")
+    
 
 def add_expenses():
     """
     Collects expense details from the user.
+    After all data is collected and validated, a summary is shown to the user.
     """
-    #print()
     print("*** Add Expenses Menu *** \n")
-    print("Please add expense details below:")
-    #print()
-    #expense_date = input("Expense Date (DD-MM-YYYY): ")
+    print("Please add expense details below.")
+    print("To return to Main Menu, please enter 'exit'.")
     print()
-    #validate_expense_date(expense_date)
     validate_expense_date()
     print()
     validate_expense_description()
@@ -151,15 +181,18 @@ def add_expenses():
     validate_expense_category()
     print()
     validate_expense_amount()
-
     print()
-    print(f"You have entered:")
-    print(f"     Expense Date: {date_input}")
-    print(f"     Expense Description: {description_input}")
-    print(f"     Expense Category: {category_input}")
-    print(f"     Expense Amount: {amount_input}")
-    print()
+    confirm_input()
 
+def update_worksheet():
+    """
+    Updates the worksheet.
+    Appends a new row with the provided expense details.
+    """
+    print("Updating sales worksheet...\n")
+    # expenses_worksheet = SHEET.worksheet("expenses")
+    # expenses_worksheet.append_row(data)
+    print("Worksheet updated successfully.\n")
 
 
 # View Expenses Menu
@@ -179,18 +212,18 @@ def view_expenses():
         print()
 
         try:
-            user_choice = input("> ")
-            if user_choice == "1":
+            user_input = input("> ")
+            if user_input == "1":
                 print()
                 print("Showing expenses in order")
                 break
                 
-            elif user_choice == "2":
+            elif user_input == "2":
                 print()
                 print("Showing expenses by category")
                 break
 
-            elif user_choice == "3":
+            elif user_input == "3":
                 print()
                 print("Returning to main menu... \n")
                 main_menu()
@@ -222,14 +255,14 @@ def main_menu():
         print()
 
         try:
-            user_choice = input("> ")
-            if user_choice == "1":
+            user_input = input("> ")
+            if user_input == "1":
                 print()
                 print("Opening Expenses Menu...\n")
                 add_expenses()
                 break
                 
-            elif user_choice == "2":
+            elif user_input == "2":
                 print()
                 view_expenses()
                 break
@@ -243,5 +276,5 @@ def main_menu():
             print()
             print(f"Invalid input: {e}")
 
-
+# Run the main function
 main_menu()
