@@ -157,7 +157,7 @@ def confirm_input():
 
             else:
                 raise ValueError(
-                    f"Please type 'c' to confirm or 'r' to re-enter details."
+                    f"Please enter 'c' to confirm or 'r' to re-enter details."
                 )
 
         except ValueError as e:
@@ -193,6 +193,27 @@ def update_worksheet(expense):
     expenses_worksheet = SHEET.worksheet("expenses")
     expenses_worksheet.append_row(expense)
     print("Worksheet updated successfully.\n")
+    print("Add another expense (a) or return to main menu (m) ?")
+
+    while True:
+        try:
+            user_input = input("> ")
+            if user_input == "a" or user_input == "A":
+                add_expenses()
+
+            elif user_input == "m" or user_input =="M":
+                print("Loading Main Menu...")
+                main_menu()
+                break
+
+            else:
+                raise ValueError(
+                    f"Please enter 'a' to add another expense or 'm' to return to the main menu."
+                )
+
+        except ValueError as e:
+            print()
+            print(f"Invalid input: {e}")
 
 
 # View Expenses Menu
@@ -225,7 +246,7 @@ def view_expenses():
 
             elif user_input == "3":
                 print()
-                print("Returning to main menu... \n")
+                print("Loading Main Menu... \n")
                 main_menu()
                 break
 
@@ -258,12 +279,12 @@ def main_menu():
             user_input = input("> ")
             if user_input == "1":
                 print()
-                print("Opening Expenses Menu...\n")
+                print("Loading Expenses Menu...\n")
                 add_expenses()
                 break
                 
             elif user_input == "2":
-                print()
+                print("Loading View Menu...\n")
                 view_expenses()
                 break
 
