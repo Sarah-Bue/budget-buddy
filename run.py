@@ -107,13 +107,11 @@ def validate_expense_description():
             print(f"Invalid input: {e}")
 
 
-# valid date input to be updated: 
-# currently, future dates are accepted
-# currently no limit on past dates
 def validate_expense_date():
     """
     Validates user's expense date input.
     While loop will repeatedly request data until it is valid.
+    This function accepts dates from 01.01.2024 to the current date.
     """
     print("Please enter date as DD-MM-YYYY.")
 
@@ -121,9 +119,18 @@ def validate_expense_date():
         try:
             global date_input
             date_input = input("> ")
-            datetime.datetime.strptime(date_input, "%d-%m-%Y")
-            return True
-            
+            new_date = datetime.datetime.strptime(date_input, "%d-%m-%Y")
+
+            min_date = datetime.datetime(2024, 1, 1)
+            max_date = datetime.datetime.now()
+
+            if min_date <= new_date and new_date <= max_date:
+                return new_date
+
+            else:
+                print()
+                print("Please enter a date between 01-01-2024 and today.")
+
         except ValueError:
             print()
             print("Invalid format. Please enter date as DD-MM-YYYY.")
@@ -241,17 +248,14 @@ def update_worksheet(expense):
 #    Sorts expense inputs by date, from oldest to newest.
 #    """
 
-
+#currently shows expenses in the order they were entered rather than by date
 def view_in_order(expenses):
     """
-    Displays expenses by date, from oldest to newest.
+    Displays expenses in the order they were entered.
     """
-    print("Displaying expenses in order...")
     expenses_total = SHEET.worksheet("expenses").get_all_values()
     pprint(expenses_total)
 
-
-view_in_order(expenses)
 
 
 def view_expenses():
@@ -336,4 +340,4 @@ def main_menu():
             print(f"Invalid input: {e}")
 
 # Run the main function
-#main_menu()
+main_menu()
