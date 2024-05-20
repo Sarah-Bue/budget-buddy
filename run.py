@@ -6,6 +6,12 @@ from google.oauth2.service_account import Credentials
 import datetime
 from pprint import pprint
 
+# Import and initialize colorama for text formatting
+# Tutorial found here: https://linuxhint.com/colorama-python/
+import colorama
+from colorama import Fore, Back, Style
+colorama.init(autoreset=True)
+
 # Scope for Google IAM for API access
 # Guidance provided by Code Institute's course material
 SCOPE = [
@@ -51,7 +57,7 @@ def validate_expense_amount():
 
         except ValueError as e:
             print()
-            print(f"Invalid input: {e}")
+            print(Fore.RED + f"Invalid input: {e}")
 
 
 def validate_expense_category():
@@ -86,7 +92,7 @@ def validate_expense_category():
 
         except ValueError as e:
             print()
-            print(f"Invalid input: {e}")
+            print(Fore.RED + f"Invalid input: {e}")
 
 
 def validate_expense_description():
@@ -113,7 +119,7 @@ def validate_expense_description():
 
         except ValueError as e:
             print()
-            print(f"Invalid input: {e}")
+            print(Fore.RED + f"Invalid input: {e}")
 
 
 def validate_expense_date():
@@ -141,11 +147,11 @@ def validate_expense_date():
 
             else:
                 print()
-                print("Please enter a date between 01-01-2024 and today.")
+                print(Fore.RED + "Please enter a date between 01-01-2024 and today.")
 
         except ValueError:
             print()
-            print("Invalid format. Please enter date as DD-MM-YYYY.")
+            print(Fore.RED + "Invalid format. Please enter date as DD-MM-YYYY.")
 
 
 def confirm_input():
@@ -182,7 +188,7 @@ def confirm_input():
 
         except ValueError as e:
             print()
-            print(f"Invalid input: {e}")
+            print(Fore.RED + f"Invalid input: {e}")
     
 
 def add_expenses():
@@ -233,7 +239,7 @@ def update_worksheet(expense):
 
         except ValueError as e:
             print()
-            print(f"Invalid input: {e}")
+            print(Fore.RED + f"Invalid input: {e}")
 
 
 # View Expenses Menu
@@ -311,7 +317,7 @@ def view_expenses():
 
         except ValueError as e:
             print()
-            print(f"Invalid input: {e}")
+            print(Fore.RED + f"Invalid input: {e}")
 
 
 # Main Menu
@@ -349,7 +355,7 @@ def main_menu():
 
         except ValueError as e:
             print()
-            print(f"Invalid input: {e}")
+            print(Fore.RED + f"Invalid input: {e}")
 
 # Run the main function
 main_menu()
