@@ -148,10 +148,10 @@ def confirm_input():
                 add_expenses()
 
             elif user_input == "c" or user_input =="C":
-                # return expense_data
+                entered_expense = [date_input, description_input, category_input, amount_input]
 
                 print()
-                update_worksheet()
+                update_worksheet(entered_expense)
                 print()
                 break
 
@@ -184,14 +184,14 @@ def add_expenses():
     print()
     confirm_input()
 
-def update_worksheet():
+def update_worksheet(expense):
     """
     Updates the worksheet.
     Appends a new row with the provided expense details.
     """
     print("Updating sales worksheet...\n")
-    # expenses_worksheet = SHEET.worksheet("expenses")
-    # expenses_worksheet.append_row(data)
+    expenses_worksheet = SHEET.worksheet("expenses")
+    expenses_worksheet.append_row(expense)
     print("Worksheet updated successfully.\n")
 
 
