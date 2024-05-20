@@ -41,6 +41,9 @@ def validate_expense_amount():
             if amount_input != "":
                 break
 
+            elif amount_input == "exit":
+                main_menu()
+
             else:
                 raise ValueError(
                     f"Please try again."
@@ -73,6 +76,9 @@ def validate_expense_category():
             if category_input in ["1", "2", "3", "4", "5", "6"]:
                 break
 
+            elif category_input == "exit":
+                main_menu()
+
             else:
                 raise ValueError(
                     f"Please select one of the options (1-6)."
@@ -96,6 +102,9 @@ def validate_expense_description():
             description_input = input("> ")
             if description_input != "":
                 break
+
+            elif description_input == "exit":
+                main_menu()
 
             else:
                 raise ValueError(
@@ -126,6 +135,9 @@ def validate_expense_date():
 
             if min_date <= new_date and new_date <= max_date:
                 return new_date
+
+            elif date_input == "exit":
+                main_menu()
 
             else:
                 print()
