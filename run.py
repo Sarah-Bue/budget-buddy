@@ -4,6 +4,7 @@ from google.oauth2.service_account import Credentials
 
 # Libraries
 import datetime
+from pprint import pprint
 
 # Scope for Google IAM for API access
 # Guidance provided by Code Institute's course material
@@ -218,6 +219,41 @@ def update_worksheet(expense):
 
 # View Expenses Menu
 
+#def sort_by_category():
+#    """
+#    Sorts expenses by category, from highest to lowest spent category.
+#    """
+
+#def calculate_category_totals():
+#    """
+#    Calculates total expenses for each category.
+#    """
+
+#def view_by_category(expenses):
+#    print("Displaying expenses by category...")
+#    """
+#    Displays expenses by category, from highest to lowest spent category.
+#    """
+
+
+#def sort_by_date(data):
+#    """
+#    Sorts expense inputs by date, from oldest to newest.
+#    """
+
+
+def view_in_order(expenses):
+    """
+    Displays expenses by date, from oldest to newest.
+    """
+    print("Displaying expenses in order...")
+    expenses_total = SHEET.worksheet("expenses").get_all_values()
+    pprint(expenses_total)
+
+
+view_in_order(expenses)
+
+
 def view_expenses():
     """
     Runs the expense view menu.
@@ -236,17 +272,19 @@ def view_expenses():
             user_input = input("> ")
             if user_input == "1":
                 print()
-                print("Showing expenses in order")
+                print("Loading Expenses...\n")
+                view_in_order(expenses)
                 break
                 
             elif user_input == "2":
                 print()
-                print("Showing expenses by category")
+                print("Loading Expenses...\n")
+                view_by_category(expenses)
                 break
 
             elif user_input == "3":
                 print()
-                print("Loading Main Menu... \n")
+                print("Loading Main Menu...\n")
                 main_menu()
                 break
 
@@ -298,4 +336,4 @@ def main_menu():
             print(f"Invalid input: {e}")
 
 # Run the main function
-main_menu()
+#main_menu()
