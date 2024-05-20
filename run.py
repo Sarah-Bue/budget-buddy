@@ -275,7 +275,6 @@ def view_in_order(expenses):
     pprint(expenses_total)
 
 
-
 def view_expenses():
     """
     Runs the expense view menu.
@@ -357,5 +356,36 @@ def main_menu():
             print()
             print(Fore.RED + f"Invalid input: {e}")
 
+def program_start():
+    """
+    Displays logo to welcome the user.
+    """
+    print()
+    print(Fore.GREEN + Style.BRIGHT + '''
+    **********************************************************************
+                                                                        
+    888888ba                 dP                     dP   
+    88    `8b                88                     88   
+   a88aaaa8P' dP    dP .d888b88 .d8888b. .d8888b. d8888P 
+    88   `8b. 88    88 88'  `88 88'  `88 88ooood8   88   
+    88    .88 88.  .88 88.  .88 88.  .88 88.  ...   88   
+    88888888P `88888P' `88888P8 `8888P88 `88888P'   dP   
+                                    .88                 
+                                d8888P
+
+    888888ba                 dP       dP                 
+    88    `8b                88       88                 
+   a88aaaa8P' dP    dP .d888b88 .d888b88 dP    dP        
+    88   `8b. 88    88 88'  `88 88'  `88 88    88        
+    88    .88 88.  .88 88.  .88 88.  .88 88.  .88        
+    88888888P `88888P' `88888P8 `88888P8 `8888P88        
+                                            .88        
+                                        d8888P         
+                                                                        
+    **********************************************************************
+    ''')
+
+
 # Run the main function
-main_menu()
+#main_menu()
+#program_start()
