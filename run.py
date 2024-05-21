@@ -1,14 +1,13 @@
-# Settings and credentials to allow access to Google Sheets
+# Libraries
 import gspread
 from google.oauth2.service_account import Credentials
-
-# Libraries
 import datetime
 from pprint import pprint
-
-# Import and initialize colorama for text formatting
-# Tutorial found here: https://linuxhint.com/colorama-python/
+import os
 import colorama
+
+# Initialize colorama for text formatting
+# Tutorial found here: https://linuxhint.com/colorama-python/
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)
 
@@ -29,6 +28,46 @@ SHEET = GSPREAD_CLIENT.open('expense_tracker')
 expenses = SHEET.worksheet("expenses")
 data = expenses.get_all_values()
 
+# General
+
+# Tutorial and code found here: https://www.101computing.net/python-typing-text-effect/
+def clearScreen():
+    """
+    Function for clearing CLI for new code.
+    """
+    os.system("clear")
+
+
+def program_start():
+    """
+    Displays logo to welcome the user.
+    """
+    print()
+    print(Fore.GREEN + Style.BRIGHT + '''
+    **********************************************************************
+                                                                        
+    888888ba                 dP                     dP   
+    88    `8b                88                     88   
+   a88aaaa8P' dP    dP .d888b88 .d8888b. .d8888b. d8888P 
+    88   `8b. 88    88 88'  `88 88'  `88 88ooood8   88   
+    88    .88 88.  .88 88.  .88 88.  .88 88.  ...   88   
+    88888888P `88888P' `88888P8 `8888P88 `88888P'   dP   
+                                    .88                 
+                                d8888P
+
+    888888ba                 dP       dP                 
+    88    `8b                88       88                 
+   a88aaaa8P' dP    dP .d888b88 .d888b88 dP    dP        
+    88   `8b. 88    88 88'  `88 88'  `88 88    88        
+    88    .88 88.  .88 88.  .88 88.  .88 88.  .88        
+    88888888P `88888P' `88888P8 `88888P8 `8888P88        
+                                            .88        
+                                        d8888P         
+                                                                        
+    **********************************************************************
+    ''')
+    clearScreen()
+
 
 # Add Expenses Menu
 
@@ -48,6 +87,7 @@ def validate_expense_amount():
                 break
 
             elif amount_input == "exit":
+                clearScreen()
                 main_menu()
 
             else:
@@ -83,6 +123,7 @@ def validate_expense_category():
                 break
 
             elif category_input == "exit":
+                clearScreen()
                 main_menu()
 
             else:
@@ -110,6 +151,7 @@ def validate_expense_description():
                 break
 
             elif description_input == "exit":
+                clearScreen()
                 main_menu()
 
             else:
@@ -143,6 +185,7 @@ def validate_expense_date():
                 return new_date
 
             elif date_input == "exit":
+                clearScreen()
                 main_menu()
 
             else:
@@ -159,6 +202,8 @@ def confirm_input():
     Allows user to confirm or update expense details.
     While loop will repeatedly request data until it is valid.
     """
+    clearScreen()
+
     print(f"You have entered:")
     print(f"     Expense Date: {date_input}")
     print(f"     Expense Description: {description_input}")
@@ -171,6 +216,7 @@ def confirm_input():
         try:
             user_input = input("> ")
             if user_input == "r" or user_input == "R":
+                clearScreen()
                 add_expenses()
 
             elif user_input == "c" or user_input =="C":
@@ -225,10 +271,12 @@ def update_worksheet(expense):
         try:
             user_input = input("> ")
             if user_input == "a" or user_input == "A":
+                clearScreen()
                 add_expenses()
 
             elif user_input == "m" or user_input =="M":
                 print("Loading Main Menu...")
+                clearScreen()
                 main_menu()
                 break
 
@@ -294,18 +342,21 @@ def view_expenses():
             if user_input == "1":
                 print()
                 print("Loading Expenses...\n")
+                clearScreen()
                 view_in_order(expenses)
                 break
                 
             elif user_input == "2":
                 print()
                 print("Loading Expenses...\n")
+                clearScreen()
                 view_by_category(expenses)
                 break
 
             elif user_input == "3":
                 print()
                 print("Loading Main Menu...\n")
+                clearScreen()
                 main_menu()
                 break
 
@@ -339,11 +390,13 @@ def main_menu():
             if user_input == "1":
                 print()
                 print("Loading Expenses Menu...\n")
+                clearScreen()
                 add_expenses()
                 break
                 
             elif user_input == "2":
                 print("Loading View Menu...\n")
+                clearScreen()
                 view_expenses()
                 break
 
@@ -356,36 +409,8 @@ def main_menu():
             print()
             print(Fore.RED + f"Invalid input: {e}")
 
-def program_start():
-    """
-    Displays logo to welcome the user.
-    """
-    print()
-    print(Fore.GREEN + Style.BRIGHT + '''
-    **********************************************************************
-                                                                        
-    888888ba                 dP                     dP   
-    88    `8b                88                     88   
-   a88aaaa8P' dP    dP .d888b88 .d8888b. .d8888b. d8888P 
-    88   `8b. 88    88 88'  `88 88'  `88 88ooood8   88   
-    88    .88 88.  .88 88.  .88 88.  .88 88.  ...   88   
-    88888888P `88888P' `88888P8 `8888P88 `88888P'   dP   
-                                    .88                 
-                                d8888P
-
-    888888ba                 dP       dP                 
-    88    `8b                88       88                 
-   a88aaaa8P' dP    dP .d888b88 .d888b88 dP    dP        
-    88   `8b. 88    88 88'  `88 88'  `88 88    88        
-    88    .88 88.  .88 88.  .88 88.  .88 88.  .88        
-    88888888P `88888P' `88888P8 `88888P8 `8888P88        
-                                            .88        
-                                        d8888P         
-                                                                        
-    **********************************************************************
-    ''')
-
 
 # Run the main function
-#main_menu()
-#program_start()
+program_start()
+main_menu()
+
