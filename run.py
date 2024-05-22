@@ -24,10 +24,10 @@ SCOPE = [
 
 # Variables to access spreadsheet
 # Guidance provided by Code Institute's course material
-CREDS = Credentials.from_service_account_file('creds.json')
+CREDS = Credentials.from_service_account_file("creds.json")
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('expense_tracker')
+SHEET = GSPREAD_CLIENT.open("expense_tracker")
 expenses = SHEET.worksheet("expenses")
 data = expenses.get_all_values()
 
@@ -112,11 +112,6 @@ def validate_expense_amount():
             if amount_input != "":
                 break
 
-            elif amount_input == "exit":
-                time.sleep(1.5)
-                clearScreen()
-                main_menu()
-
             else:
                 raise ValueError(""
                     #"Please enter a number.\n"
@@ -134,7 +129,14 @@ def validate_expense_category():
     """
     # global so it can be accessed in other functions
     global expense_categories
-    expense_categories = ["Housing", "Food", "Transportation", "Entertainment", "Healthcare", "Misc"]
+    expense_categories = [
+        "Housing",
+        "Food",
+        "Transportation",
+        "Entertainment",
+        "Healthcare",
+        "Misc"
+    ]
 
     typingPrint("Please select a category (1-6).\n")
 
@@ -151,11 +153,6 @@ def validate_expense_category():
                 global category_input
                 category_input = expense_categories[user_input]
                 break
-
-            elif user_input == "exit":
-                time.sleep(1.5)
-                clearScreen()
-                main_menu()
 
             else:
                 raise ValueError(""
@@ -180,11 +177,6 @@ def validate_expense_description():
             description_input = input("> ")
             if description_input != "":
                 break
-
-            elif description_input == "exit":
-                time.sleep(1.5)
-                clearScreen()
-                main_menu()
 
             else:
                 raise ValueError(""
@@ -215,11 +207,6 @@ def validate_expense_date():
 
             if min_date <= new_date and new_date <= max_date:
                 return new_date
-
-            elif date_input == "exit":
-                time.sleep(1.5)
-                clearScreen()
-                main_menu()
 
             else:
                 print()
@@ -257,7 +244,12 @@ def confirm_input():
                 add_expenses()
 
             elif user_input.lower() == "c":
-                entered_expense = [date_input, description_input, category_input, amount_input]
+                entered_expense = [
+                    date_input,
+                    description_input,
+                    category_input,
+                    amount_input
+                ]
 
                 print()
                 update_worksheet(entered_expense)
@@ -271,7 +263,7 @@ def confirm_input():
 
         except ValueError as e:
             print()
-            typingPrint("Please enter 'c' to confirm or 'r' to re-enter details.\n", Fore.RED)
+            typingPrint("Please enter (c) to confirm or (r) to re-enter details.\n", Fore.RED)
     
 
 def add_expenses():
@@ -281,7 +273,6 @@ def add_expenses():
     """
     print(Fore.GREEN + "◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
     typingPrint("Please add expense details below.\n")
-    typingPrint("To return to Main Menu, please enter 'exit'.\n")
     print()
     print("══════════════════════════════════════════════════════")
     print()
@@ -328,12 +319,12 @@ def update_worksheet(expense):
 
             else:
                 raise ValueError(""
-                    #"Please enter 'a' to add another expense or 'm' to return to the main menu."
+                    #"Please enter (a) to add another expense or 'm' to return to the main menu."
                 )
 
         except ValueError as e:
             print()
-            typingPrint("Invalid input: Please enter 'a' to add another expense or 'm' to return to the main menu.\n", Fore.RED)
+            typingPrint("Invalid input: Please enter (a) to add another expense or (m) to return to the main menu.\n", Fore.RED)
 
 
 # View Expenses Menu Functions
@@ -385,7 +376,7 @@ def view_in_order(expenses):
     print("══════════════════════════════════════════════════════\n")
 
     print()
-    typingPrint("To return to the main menu, please enter 'm'.\n")
+    typingPrint("To return to the main menu, please enter (m).\n")
 
     while True:
         try:
@@ -405,7 +396,7 @@ def view_in_order(expenses):
 
         except ValueError as e:
             print()
-            typingPrint("Invalid input: Please enter 'm' to return to the main menu.\n", Fore.RED)
+            typingPrint("Invalid input: Please enter (m) to return to the main menu.\n", Fore.RED)
 
 
 def view_expenses():
@@ -473,6 +464,7 @@ def main_menu():
         print()
         print("    1. Add Expenses")
         print("    2. View Expenses")
+        print("    3. Exit")
         print()
 
         try:
@@ -491,6 +483,12 @@ def main_menu():
                 time.sleep(1.5)
                 clearScreen()
                 view_expenses()
+                break
+
+            elif user_input == "3":
+                print()
+                typingPrint("Exiting...\n")
+                time.sleep(1.5)
                 break
 
             else:
