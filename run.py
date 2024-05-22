@@ -133,31 +133,29 @@ def validate_expense_category():
     Validate user's expense category input.
     While loop will repeatedly request data until it is valid.
     """
+    expense_categories = ["Housing", "Food", "Transportation", "Entertainment", "Healthcare", "Misc"]
+
     typingPrint("Please select a category (1-6).\n")
 
     while True:
-        print("    1. Housing")
-        print("    2. Food")
-        print("    3. Transportation")
-        print("    4. Entertainment")
-        print("    5. Healthcare")
-        print("    6. Misc")
-        print()
-
+        for i, expense_category in enumerate(expense_categories):
+            print(f"    {i+1}. {expense_category}")
+        
         try:
-            global category_input
-            category_input = input("> ")
-            if category_input in ["1", "2", "3", "4", "5", "6"]:
+            user_input = int(input("> ")) -1
+            if user_input in range(6):
+                global category_input
+                category_input = expense_categories[user_input]
                 break
 
-            elif category_input == "exit":
+            elif user_input == "exit":
                 time.sleep(1.5)
                 clearScreen()
                 main_menu()
 
             else:
                 raise ValueError(
-                    f"Please select one of the options (1-6)."
+                    f"Please select one of the options (1-6).\n"
                 )
 
         except ValueError as e:
@@ -294,11 +292,14 @@ def update_worksheet(expense):
     Updates the worksheet.
     Appends a new row with the provided expense details.
     """
-    typingPrint("Updating sales worksheet...\n")
+    typingPrint("Updating worksheet...\n")
+    print()
     expenses_worksheet = SHEET.worksheet("expenses")
     expenses_worksheet.append_row(expense)
     typingPrint("Worksheet updated successfully.\n")
+    print()
     typingPrint("Add another expense (a) or return to main menu (m)?\n")
+    print()
 
     while True:
         try:
@@ -479,4 +480,5 @@ def main_menu():
 # Run the main function
 program_start()
 main_menu()
+
 
