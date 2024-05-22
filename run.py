@@ -31,7 +31,7 @@ SHEET = GSPREAD_CLIENT.open('expense_tracker')
 expenses = SHEET.worksheet("expenses")
 data = expenses.get_all_values()
 
-# General
+# General Functions
 
 # Tutorial and code found here: https://www.101computing.net/python-typing-text-effect/
 def clearScreen():
@@ -42,12 +42,12 @@ def clearScreen():
 
 
 # Tutorial and code found here: https://www.101computing.net/python-typing-text-effect/
-def typingPrint(text):
+def typingPrint(text, color = Fore.WHITE):
     """
     Replaces print() with typingPrint() to create typing effect.
     """
     for character in text:
-        sys.stdout.write(character)
+        sys.stdout.write(color + character)
         sys.stdout.flush()
         time.sleep(0.05)
   
@@ -69,7 +69,7 @@ def program_start():
     Displays logo to welcome the user.
     """
     print()
-    print(Fore.GREEN + Style.BRIGHT + '''
+    print(Fore.GREEN + '''
     ══════════════════════════════════════════════════════
                                                                         
     888888ba                 dP                     dP   
@@ -96,18 +96,17 @@ def program_start():
     clearScreen()
 
 
-# Add Expenses Menu
+# Add Expenses Menu Functions
 
 def validate_expense_amount():
     """
     Validates user's expense amount input.
     While loop will repeatedly request data until it is valid.
     """
-
+    typingPrint("Please enter an amount:\n")
     while True:
-        typingPrint("Please enter an amount:\n")
-
         try:
+            # global so it can be accessed in other functions
             global amount_input
             amount_input = float(input("> "))
             if amount_input != "":
@@ -119,13 +118,13 @@ def validate_expense_amount():
                 main_menu()
 
             else:
-                raise ValueError(
-                    f"Please try again."
+                raise ValueError(""
+                    #"Please enter a number.\n"
                 )
 
         except ValueError as e:
             print()
-            typingPrint(Fore.RED + f"Invalid input: {e}")
+            typingPrint("Invalid input: Please enter a number.\n", Fore.RED)
 
 
 def validate_expense_category():
@@ -133,15 +132,20 @@ def validate_expense_category():
     Validate user's expense category input.
     While loop will repeatedly request data until it is valid.
     """
+    # global so it can be accessed in other functions
+    global expense_categories
     expense_categories = ["Housing", "Food", "Transportation", "Entertainment", "Healthcare", "Misc"]
 
     typingPrint("Please select a category (1-6).\n")
 
     while True:
+        # Loop through each item in list and print it with corresponding number
+        # +1 to display index as 1-6 rather than 0-5
         for i, expense_category in enumerate(expense_categories):
             print(f"    {i+1}. {expense_category}")
         
         try:
+            # -1 to get "true" index number rather than displayed index number
             user_input = int(input("> ")) -1
             if user_input in range(6):
                 global category_input
@@ -154,13 +158,13 @@ def validate_expense_category():
                 main_menu()
 
             else:
-                raise ValueError(
-                    f"Please select one of the options (1-6).\n"
+                raise ValueError(""
+                    #"Please select one of the options (1-6).\n"
                 )
 
         except ValueError as e:
             print()
-            typingPrint(Fore.RED + f"Invalid input: {e}")
+            typingPrint("Invalid input: Please enter one of the options (1-6).\n", Fore.RED)
 
 
 def validate_expense_description():
@@ -183,13 +187,13 @@ def validate_expense_description():
                 main_menu()
 
             else:
-                raise ValueError(
-                    f"Description cannot be empty."
+                raise ValueError(""
+                    #"Description cannot be empty."
                 )
 
         except ValueError as e:
             print()
-            typingPrint(Fore.RED + f"Invalid input: {e}")
+            typingPrint("Invalid input: Description cannot be empty.\n", Fore.RED)
 
 
 def validate_expense_date():
@@ -219,11 +223,11 @@ def validate_expense_date():
 
             else:
                 print()
-                print(Fore.RED + "Please enter a date between 01-01-2024 and today.\n")
+                typingPrint("Invalid input: Please enter a date between 01-01-2024 and today.\n", Fore.RED)
 
         except ValueError:
             print()
-            typingPrint(Fore.RED + "Invalid format. Please enter date as DD-MM-YYYY.\n")
+            typingPrint("Invalid input: Please enter date as DD-MM-YYYY.\n", Fore.RED)
 
 
 def confirm_input():
@@ -234,8 +238,9 @@ def confirm_input():
     typingPrint("Summarizing expenses...\n")
     time.sleep(1.5)
     clearScreen()
-
-    print(f"You have entered:")
+    print()
+    print(f"Your expense details:")
+    print()
     print(f"     Expense Date: {date_input}")
     print(f"     Expense Description: {description_input}")
     print(f"     Expense Category: {category_input}")
@@ -246,12 +251,12 @@ def confirm_input():
     while True:
         try:
             user_input = input("> ")
-            if user_input == "r" or user_input == "R":
+            if user_input.lower() == "r":
                 time.sleep(1.5)
                 clearScreen()
                 add_expenses()
 
-            elif user_input == "c" or user_input =="C":
+            elif user_input.lower() == "c":
                 entered_expense = [date_input, description_input, category_input, amount_input]
 
                 print()
@@ -260,13 +265,13 @@ def confirm_input():
                 break
 
             else:
-                raise ValueError(
-                    f"Please enter 'c' to confirm or 'r' to re-enter details."
+                raise ValueError(""
+                    #"Please enter 'c' to confirm or 'r' to re-enter details."
                 )
 
         except ValueError as e:
             print()
-            typingPrint(Fore.RED + f"Invalid input: {e}")
+            typingPrint("Please enter 'c' to confirm or 'r' to re-enter details.\n", Fore.RED)
     
 
 def add_expenses():
@@ -290,6 +295,7 @@ def add_expenses():
     print()
     confirm_input()
 
+
 def update_worksheet(expense):
     """
     Updates the worksheet.
@@ -307,12 +313,13 @@ def update_worksheet(expense):
     while True:
         try:
             user_input = input("> ")
-            if user_input == "a" or user_input == "A":
+            if user_input.lower() == "a":
                 time.sleep(1.5)
                 clearScreen()
                 add_expenses()
 
-            elif user_input == "m" or user_input =="M":
+            elif user_input.lower() == "m":
+                print()
                 typingPrint("Loading Main Menu...\n")
                 time.sleep(1.5)
                 clearScreen()
@@ -320,16 +327,16 @@ def update_worksheet(expense):
                 break
 
             else:
-                raise ValueError(
-                    f"Please enter 'a' to add another expense or 'm' to return to the main menu."
+                raise ValueError(""
+                    #"Please enter 'a' to add another expense or 'm' to return to the main menu."
                 )
 
         except ValueError as e:
             print()
-            typingPrint(Fore.RED + f"Invalid input: {e}")
+            typingPrint("Invalid input: Please enter 'a' to add another expense or 'm' to return to the main menu.\n", Fore.RED)
 
 
-# View Expenses Menu
+# View Expenses Menu Functions
 
 #def sort_by_category():
 #    """
@@ -341,11 +348,21 @@ def update_worksheet(expense):
 #    Calculates total expenses for each category.
 #    """
 
+
 #def view_by_category(expenses):
 #    print("Displaying expenses by category...")
 #    """
 #    Displays expenses by category, from highest to lowest spent category.
 #    """
+
+def view_by_category(expenses):
+    """
+    Displays category totals.
+    """
+    expenses_sheet = SHEET.worksheet("expenses").get_all_values()
+    print("Displaying Category Totals")
+    print()
+
 
 
 #def sort_by_date(data):
@@ -355,26 +372,25 @@ def update_worksheet(expense):
 
 
 #currently shows expenses in the order they were entered rather than by date
+# Tutorial found here: https://pypi.org/project/tabulate/
 def view_in_order(expenses):
     """
     Displays expenses in the order they were entered.
     """
-    expenses_total = SHEET.worksheet("expenses").get_all_values()
+    expenses_sheet = SHEET.worksheet("expenses").get_all_values()
     print("Displaying Expenses")
     print()
-
     print("══════════════════════════════════════════════════════\n")
-    print(tabulate(expenses_total, headers=["Date", "Description", "Category", "Amount"]))
+    print(tabulate(expenses_sheet, headers=["Date", "Description", "Category", "Amount"]))
     print("══════════════════════════════════════════════════════\n")
 
     print()
     typingPrint("To return to the main menu, please enter 'm'.\n")
 
     while True:
-
         try:
             user_input = input("> ")
-            if user_input == "m" or user_input == "M":
+            if user_input.lower() == "m":
                 print()
                 typingPrint("Loading Main Menu...\n")
                 time.sleep(1.5)
@@ -383,13 +399,13 @@ def view_in_order(expenses):
                 break
 
             else:
-                raise ValueError(
-                    f"Please enter 'm' to return to the main menu.\n"
+                raise ValueError(""
+                    #"Please enter 'm' to return to the main menu.\n"
                 )
 
         except ValueError as e:
             print()
-            typingPrint(Fore.RED + f"Invalid input: {e}")
+            typingPrint("Invalid input: Please enter 'm' to return to the main menu.\n", Fore.RED)
 
 
 def view_expenses():
@@ -400,7 +416,7 @@ def view_expenses():
     while True:
         print()
         print(Fore.GREEN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
-        typingPrint("Please select one of the options:\n")
+        typingPrint("Please select one of the following options:\n")
         print()
         print("    1. View in Order")
         print("    2. View by Category")
@@ -435,15 +451,15 @@ def view_expenses():
 
             else:
                 raise ValueError(
-                    f"Please select one of the options (1-3)."
+                    #"Please select one of the options (1-3)."
                 )
 
         except ValueError as e:
             print()
-            typingPrint(Fore.RED + f"Invalid input: {e}")
+            typingPrint("Invalid input: Please select one of the options (1-3).\n", Fore.RED)
 
 
-# Main Menu
+# Main Menu Functions
 
 def main_menu():
     """
@@ -453,7 +469,7 @@ def main_menu():
     while True:
         print()
         print(Fore.GREEN + "◇─◇──◇── MAIN MENU ──◇──◇─◇\n")
-        typingPrint("Please select one of the options:\n")
+        typingPrint("Please select one of the following options:\n")
         print()
         print("    1. Add Expenses")
         print("    2. View Expenses")
@@ -478,17 +494,15 @@ def main_menu():
                 break
 
             else:
-                raise ValueError(
-                    f"Please select one of the options (1-2)."
+                raise ValueError(""
+                    #"Please select one of the options (1-2)."
                 )
 
         except ValueError as e:
             print()
-            typingPrint(Fore.RED + f"Invalid input: {e}")
-
+            typingPrint("Invalid input: Please select one of the options (1-2).\n", Fore.RED)
+            user_input = input("> ")
 
 # Run the main function
 program_start()
 main_menu()
-
-
