@@ -2,11 +2,11 @@
 import gspread
 from google.oauth2.service_account import Credentials
 import datetime
-from pprint import pprint
 import os
 import colorama
 import time
 import sys
+from tabulate import tabulate
 
 
 # Initialize colorama for text formatting
@@ -70,7 +70,7 @@ def program_start():
     """
     print()
     print(Fore.GREEN + Style.BRIGHT + '''
-    **********************************************************************
+    ══════════════════════════════════════════════════════
                                                                         
     888888ba                 dP                     dP   
     88    `8b                88                     88   
@@ -90,7 +90,7 @@ def program_start():
                                             .88        
                                         d8888P         
                                                                         
-    **********************************************************************
+    ══════════════════════════════════════════════════════
     ''')
     time.sleep(3)
     clearScreen()
@@ -219,11 +219,11 @@ def validate_expense_date():
 
             else:
                 print()
-                print(Fore.RED + "Please enter a date between 01-01-2024 and today.")
+                print(Fore.RED + "Please enter a date between 01-01-2024 and today.\n")
 
         except ValueError:
             print()
-            typingPrint(Fore.RED + "Invalid format. Please enter date as DD-MM-YYYY.")
+            typingPrint(Fore.RED + "Invalid format. Please enter date as DD-MM-YYYY.\n")
 
 
 def confirm_input():
@@ -231,6 +231,7 @@ def confirm_input():
     Allows user to confirm or update expense details.
     While loop will repeatedly request data until it is valid.
     """
+    typingPrint("Summarizing expenses...\n")
     time.sleep(1.5)
     clearScreen()
 
@@ -273,9 +274,11 @@ def add_expenses():
     Collects expense details from the user.
     After all data is collected and validated, a summary is shown to the user.
     """
-    print("*** Add Expenses Menu *** \n")
+    print(Fore.GREEN + "◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
     typingPrint("Please add expense details below.\n")
     typingPrint("To return to Main Menu, please enter 'exit'.\n")
+    print()
+    print("══════════════════════════════════════════════════════")
     print()
     validate_expense_date()
     print()
@@ -350,13 +353,20 @@ def update_worksheet(expense):
 #    Sorts expense inputs by date, from oldest to newest.
 #    """
 
+
 #currently shows expenses in the order they were entered rather than by date
 def view_in_order(expenses):
     """
     Displays expenses in the order they were entered.
     """
     expenses_total = SHEET.worksheet("expenses").get_all_values()
-    pprint(expenses_total)
+    print("Displaying Expenses")
+    print()
+
+    print("══════════════════════════════════════════════════════\n")
+    print(tabulate(expenses_total, headers=["Date", "Description", "Category", "Amount"]))
+    print("══════════════════════════════════════════════════════\n")
+
     print()
     typingPrint("To return to the main menu, please enter 'm'.\n")
 
@@ -389,7 +399,7 @@ def view_expenses():
     """
     while True:
         print()
-        print("*** View Expenses Menu *** \n")
+        print(Fore.GREEN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
         typingPrint("Please select one of the options:\n")
         print()
         print("    1. View in Order")
@@ -442,7 +452,7 @@ def main_menu():
     """
     while True:
         print()
-        print("*** Main Menu *** \n")
+        print(Fore.GREEN + "◇─◇──◇── MAIN MENU ──◇──◇─◇\n")
         typingPrint("Please select one of the options:\n")
         print()
         print("    1. Add Expenses")
@@ -453,7 +463,7 @@ def main_menu():
             user_input = input("> ")
             if user_input == "1":
                 print()
-                typingPrint("Loading Expenses Menu...\n")
+                typingPrint("Loading...\n")
                 time.sleep(1.5)
                 clearScreen()
                 add_expenses()
@@ -461,7 +471,7 @@ def main_menu():
                 
             elif user_input == "2":
                 print()
-                typingPrint("Loading View Menu...\n")
+                typingPrint("Loading...\n")
                 time.sleep(1.5)
                 clearScreen()
                 view_expenses()
