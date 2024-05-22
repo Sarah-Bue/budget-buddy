@@ -301,7 +301,7 @@ def update_worksheet(expense):
     expenses_worksheet.append_row(expense)
     typingPrint("Worksheet updated successfully.\n")
     print()
-    typingPrint("Add another expense (a) or return to main menu (m)?\n")
+    typingPrint("Add another expense (a) or return to Main Menu (m)?\n")
     print()
 
     while True:
@@ -327,7 +327,7 @@ def update_worksheet(expense):
             print()
             typingPrint("Invalid input: "
                         "Please enter (a) to add another expense "
-                        "or (m) to return to the main menu.\n", Fore.RED)
+                        "or (m) to return to Main Menu.\n", Fore.RED)
 
 
 # View Expenses Menu Functions
@@ -357,33 +357,32 @@ def view_by_category(expenses):
     print("Displaying Category Totals")
     print()
 
-
-# def sort_by_date(data):
-#    """
-#    Sorts expense inputs by date, from oldest to newest.
-#    """
-
-
-# currently shows expenses in the order they were entered rather than by date
-# Tutorial found here: https://pypi.org/project/tabulate/
-def view_in_order(expenses):
+def sort_by_date(data):
     """
-    Displays expenses in the order they were entered.
+    Sorts expenses by date, from oldest to newest.
     """
-    expenses_sheet = SHEET.worksheet("expenses").get_all_values()
-    print("Displaying Expenses")
+    sorted_data = sorted(data[1:], key=lambda x: datetime.datetime.strptime(x[0], "%d-%m-%Y"))
+
     print()
     print("══════════════════════════════════════════════════════\n")
-    print(tabulate(expenses_sheet, headers=[
-        "Date",
-        "Description",
-        "Category",
-        "Amount"
-        ]))
-    print("══════════════════════════════════════════════════════\n")
-
     print()
-    typingPrint("To return to the main menu, please enter (m).\n")
+    print(tabulate(sorted_data, headers=["Date", "Description", "Category", "Amount"]))
+    print()
+    print("══════════════════════════════════════════════════════\n")
+    print()
+
+
+def view_in_order():
+    """
+    Displays expenses sorted by date.
+    Allows user to return to main menu after viewing expenses.
+    """
+    print(Fore.GREEN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
+    print("Viewing Expenses by Date")
+
+    sort_by_date(data)
+
+    typingPrint("To return to Main Menu, please enter (m).\n")
 
     while True:
         try:
@@ -402,7 +401,7 @@ def view_in_order(expenses):
         except ValueError as e:
             print()
             typingPrint("Invalid input: Please enter (m) "
-                        "to return to the main menu.\n", Fore.RED)
+                        "to return to Main Menu.\n", Fore.RED)
 
 
 def view_expenses():
@@ -415,7 +414,7 @@ def view_expenses():
         print(Fore.GREEN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
         typingPrint("Please select one of the following options:\n")
         print()
-        print("    1. View in Order")
+        print("    1. View by Date")
         print("    2. View by Category")
         print("    3. Return to Main Menu")
         print()
@@ -427,7 +426,7 @@ def view_expenses():
                 typingPrint("Loading Expenses...\n")
                 time.sleep(1.5)
                 clearScreen()
-                view_in_order(expenses)
+                view_in_order()
                 break
 
             elif user_input == "2":
@@ -507,5 +506,5 @@ def main_menu():
 
 
 # Run the main function
-program_start()
+#program_start()
 main_menu()
