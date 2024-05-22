@@ -10,9 +10,10 @@ from tabulate import tabulate
 
 
 # Initialize colorama for text formatting
-# Tutorial found here: https://linuxhint.com/colorama-python/
+# Tutorial: https://linuxhint.com/colorama-python/
 from colorama import Fore, Back, Style
 colorama.init(autoreset=True)
+
 
 # Scope for Google IAM for API access
 # Guidance provided by Code Institute's course material
@@ -21,6 +22,7 @@ SCOPE = [
     "https://www.googleapis.com/auth/drive.file",
     "https://www.googleapis.com/auth/drive"
     ]
+
 
 # Variables to access spreadsheet
 # Guidance provided by Code Institute's course material
@@ -31,9 +33,10 @@ SHEET = GSPREAD_CLIENT.open("expense_tracker")
 expenses = SHEET.worksheet("expenses")
 data = expenses.get_all_values()
 
+
 # General Functions
 
-# Tutorial and code found here: https://www.101computing.net/python-typing-text-effect/
+# Tutorial and code: https://www.101computing.net/python-typing-text-effect/
 def clearScreen():
     """
     Function for clearing CLI for new code.
@@ -41,8 +44,8 @@ def clearScreen():
     os.system("clear")
 
 
-# Tutorial and code found here: https://www.101computing.net/python-typing-text-effect/
-def typingPrint(text, color = Fore.WHITE):
+# Code adapted from: https://www.101computing.net/python-typing-text-effect/
+def typingPrint(text, color=Fore.WHITE):
     """
     Replaces print() with typingPrint() to create typing effect.
     """
@@ -50,18 +53,20 @@ def typingPrint(text, color = Fore.WHITE):
         sys.stdout.write(color + character)
         sys.stdout.flush()
         time.sleep(0.05)
-  
-# Tutorial and code found here: https://www.101computing.net/python-typing-text-effect/
-def typingInput(text):
-    """
+
+
+# I don't think I'm using this let's see
+# Tutorial and code: https://www.101computing.net/python-typing-text-effect/
+""" def typingInput(text):
+
     Replaces input() with typingInput() to create typing effect.
-    """
+
     for character in text:
         sys.stdout.write(character)
         sys.stdout.flush()
         time.sleep(0.05)
-    value = input()  
-    return value
+    value = input()
+    return value """
 
 
 def program_start():
@@ -71,25 +76,25 @@ def program_start():
     print()
     print(Fore.GREEN + '''
     ══════════════════════════════════════════════════════
-                                                                        
-    888888ba                 dP                     dP   
-    88    `8b                88                     88   
-   a88aaaa8P' dP    dP .d888b88 .d8888b. .d8888b. d8888P 
-    88   `8b. 88    88 88'  `88 88'  `88 88ooood8   88   
-    88    .88 88.  .88 88.  .88 88.  .88 88.  ...   88   
-    88888888P `88888P' `88888P8 `8888P88 `88888P'   dP   
-                                    .88                 
-                                d8888P
 
-    888888ba                 dP       dP                 
-    88    `8b                88       88                 
-   a88aaaa8P' dP    dP .d888b88 .d888b88 dP    dP        
-    88   `8b. 88    88 88'  `88 88'  `88 88    88        
-    88    .88 88.  .88 88.  .88 88.  .88 88.  .88        
-    88888888P `88888P' `88888P8 `88888P8 `8888P88        
-                                            .88        
-                                        d8888P         
-                                                                        
+    888888ba                 dP                     dP
+    88    `8b                88                     88
+   a88aaaa8P' dP    dP .d888b88 .d8888b. .d8888b. d8888P
+    88   `8b. 88    88 88'  `88 88'  `88 88ooood8   88
+    88    .88 88.  .88 88.  .88 88.  .88 88.  ...   88
+    88888888P `88888P' `88888P8 `8888P88 `88888P'   dP
+                                    .88
+
+
+    888888ba                 dP       dP
+    88    `8b                88       88
+   a88aaaa8P' dP    dP .d888b88 .d888b88 dP    dP
+    88   `8b. 88    88 88'  `88 88'  `88 88    88
+    88    .88 88.  .88 88.  .88 88.  .88 88.  .88
+    88888888P `88888P' `88888P8 `88888P8 `8888P88
+                                            .88
+                                        d8888P
+
     ══════════════════════════════════════════════════════
     ''')
     time.sleep(3)
@@ -113,9 +118,7 @@ def validate_expense_amount():
                 break
 
             else:
-                raise ValueError(""
-                    #"Please enter a number.\n"
-                )
+                raise ValueError("")
 
         except ValueError as e:
             print()
@@ -145,23 +148,22 @@ def validate_expense_category():
         # +1 to display index as 1-6 rather than 0-5
         for i, expense_category in enumerate(expense_categories):
             print(f"    {i+1}. {expense_category}")
-        
+
         try:
             # -1 to get "true" index number rather than displayed index number
-            user_input = int(input("> ")) -1
+            user_input = int(input("> ")) - 1
             if user_input in range(6):
                 global category_input
                 category_input = expense_categories[user_input]
                 break
 
             else:
-                raise ValueError(""
-                    #"Please select one of the options (1-6).\n"
-                )
+                raise ValueError("")
 
         except ValueError as e:
             print()
-            typingPrint("Invalid input: Please enter one of the options (1-6).\n", Fore.RED)
+            typingPrint("Invalid input: "
+                        "Please enter one of the options (1-6).\n", Fore.RED)
 
 
 def validate_expense_description():
@@ -179,13 +181,12 @@ def validate_expense_description():
                 break
 
             else:
-                raise ValueError(""
-                    #"Description cannot be empty."
-                )
+                raise ValueError("")
 
         except ValueError as e:
             print()
-            typingPrint("Invalid input: Description cannot be empty.\n", Fore.RED)
+            typingPrint("Invalid input: "
+                        "Description cannot be empty.\n", Fore.RED)
 
 
 def validate_expense_date():
@@ -210,11 +211,14 @@ def validate_expense_date():
 
             else:
                 print()
-                typingPrint("Invalid input: Please enter a date between 01-01-2024 and today.\n", Fore.RED)
+                typingPrint("Invalid input: "
+                            "Date must be between 01-01-2024 and today."
+                            "\n", Fore.RED)
 
         except ValueError:
             print()
-            typingPrint("Invalid input: Please enter date as DD-MM-YYYY.\n", Fore.RED)
+            typingPrint("Invalid input: "
+                        "Please enter date as DD-MM-YYYY.\n", Fore.RED)
 
 
 def confirm_input():
@@ -257,14 +261,13 @@ def confirm_input():
                 break
 
             else:
-                raise ValueError(""
-                    #"Please enter 'c' to confirm or 'r' to re-enter details."
-                )
+                raise ValueError("")
 
         except ValueError as e:
             print()
-            typingPrint("Please enter (c) to confirm or (r) to re-enter details.\n", Fore.RED)
-    
+            typingPrint("Please enter (c) to confirm "
+                        "or (r) to re-enter details.\n", Fore.RED)
+
 
 def add_expenses():
     """
@@ -318,29 +321,29 @@ def update_worksheet(expense):
                 break
 
             else:
-                raise ValueError(""
-                    #"Please enter (a) to add another expense or 'm' to return to the main menu."
-                )
+                raise ValueError("")
 
         except ValueError as e:
             print()
-            typingPrint("Invalid input: Please enter (a) to add another expense or (m) to return to the main menu.\n", Fore.RED)
+            typingPrint("Invalid input: "
+                        "Please enter (a) to add another expense "
+                        "or (m) to return to the main menu.\n", Fore.RED)
 
 
 # View Expenses Menu Functions
 
-#def sort_by_category():
+# def sort_by_category():
 #    """
 #    Sorts expenses by category, from highest to lowest spent category.
 #    """
 
-#def calculate_category_totals():
+# def calculate_category_totals():
 #    """
 #    Calculates total expenses for each category.
 #    """
 
 
-#def view_by_category(expenses):
+# def view_by_category(expenses):
 #    print("Displaying expenses by category...")
 #    """
 #    Displays expenses by category, from highest to lowest spent category.
@@ -355,14 +358,13 @@ def view_by_category(expenses):
     print()
 
 
-
-#def sort_by_date(data):
+# def sort_by_date(data):
 #    """
 #    Sorts expense inputs by date, from oldest to newest.
 #    """
 
 
-#currently shows expenses in the order they were entered rather than by date
+# currently shows expenses in the order they were entered rather than by date
 # Tutorial found here: https://pypi.org/project/tabulate/
 def view_in_order(expenses):
     """
@@ -372,7 +374,12 @@ def view_in_order(expenses):
     print("Displaying Expenses")
     print()
     print("══════════════════════════════════════════════════════\n")
-    print(tabulate(expenses_sheet, headers=["Date", "Description", "Category", "Amount"]))
+    print(tabulate(expenses_sheet, headers=[
+        "Date",
+        "Description",
+        "Category",
+        "Amount"
+        ]))
     print("══════════════════════════════════════════════════════\n")
 
     print()
@@ -390,13 +397,12 @@ def view_in_order(expenses):
                 break
 
             else:
-                raise ValueError(""
-                    #"Please enter 'm' to return to the main menu.\n"
-                )
+                raise ValueError("")
 
         except ValueError as e:
             print()
-            typingPrint("Invalid input: Please enter (m) to return to the main menu.\n", Fore.RED)
+            typingPrint("Invalid input: Please enter (m) "
+                        "to return to the main menu.\n", Fore.RED)
 
 
 def view_expenses():
@@ -423,7 +429,7 @@ def view_expenses():
                 clearScreen()
                 view_in_order(expenses)
                 break
-                
+
             elif user_input == "2":
                 print()
                 typingPrint("Loading Expenses...\n")
@@ -441,13 +447,12 @@ def view_expenses():
                 break
 
             else:
-                raise ValueError(
-                    #"Please select one of the options (1-3)."
-                )
+                raise ValueError("")
 
         except ValueError as e:
             print()
-            typingPrint("Invalid input: Please select one of the options (1-3).\n", Fore.RED)
+            typingPrint("Invalid input: Please select one "
+                        "of the options (1-3).\n", Fore.RED)
 
 
 # Main Menu Functions
@@ -476,7 +481,7 @@ def main_menu():
                 clearScreen()
                 add_expenses()
                 break
-                
+
             elif user_input == "2":
                 print()
                 typingPrint("Loading...\n")
@@ -492,14 +497,14 @@ def main_menu():
                 break
 
             else:
-                raise ValueError(""
-                    #"Please select one of the options (1-2)."
-                )
+                raise ValueError("")
 
         except ValueError as e:
             print()
-            typingPrint("Invalid input: Please select one of the options (1-2).\n", Fore.RED)
+            typingPrint("Invalid input: Please select one "
+                        "of the options (1-2).\n", Fore.RED)
             user_input = input("> ")
+
 
 # Run the main function
 program_start()
