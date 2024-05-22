@@ -332,57 +332,42 @@ def update_worksheet(expense):
 
 # View Expenses Menu Functions
 
-# def sort_by_category():
-#    """
-#    Sorts expenses by category, from highest to lowest spent category.
-#    """
-
-# def calculate_category_totals():
-#    """
-#    Calculates total expenses for each category.
-#    """
-
-
-# def view_by_category(expenses):
-#    print("Displaying expenses by category...")
-#    """
-#    Displays expenses by category, from highest to lowest spent category.
-#    """
-
-def view_by_category(expenses):
+def view_by_category(data):
     """
-    Displays category totals.
+    Calculates total expenses for each category and displays in descending order.
     """
-    expenses_sheet = SHEET.worksheet("expenses").get_all_values()
-    print("Displaying Category Totals")
-    print()
+    category_totals = {}
 
-def sort_by_date(data):
-    """
-    Sorts expenses by date, from oldest to newest.
-    """
-    sorted_data = sorted(data[1:], key=lambda x: datetime.datetime.strptime(x[0], "%d-%m-%Y"))
+    # Loop through data starting from index 1
+    for entry in data[1:]:
+        category = entry[2]
+        amount = float(entry[3])
+        
+        # Update category totals if category is listed
+        # Create new category if category is not listed
+        if category in category_totals:
+            category_totals[category] += amount
+        else:
+            category_totals[category] = amount
+
+    # Sort category totals in descending order
+    # Adapted from: https://realpython.com/sort-python-dictionary/
+    sorted_category_totals = dict(sorted(category_totals.items(), key=lambda item: item[1], reverse=True))
 
     print()
-    print("══════════════════════════════════════════════════════\n")
-    print()
-    print(tabulate(sorted_data, headers=["Date", "Description", "Category", "Amount"]))
-    print()
-    print("══════════════════════════════════════════════════════\n")
-    print()
-
-
-def view_in_order():
-    """
-    Displays expenses sorted by date.
-    Allows user to return to main menu after viewing expenses.
-    """
     print(Fore.GREEN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
-    print("Viewing Expenses by Date")
-
-    sort_by_date(data)
+    print("Viewing Expenses by Category")
+    print()
+    print("══════════════════════════════════════════════════════\n")
+    print() 
+    print(tabulate(sorted_category_totals.items(), headers=["Category", "Total Expenses"]))
+    print()
+    print("══════════════════════════════════════════════════════\n")
+    print()
 
     typingPrint("To return to Main Menu, please enter (m).\n")
+    typingPrint("To switch to Date View, please enter (s).\n")
+
 
     while True:
         try:
@@ -393,6 +378,79 @@ def view_in_order():
                 time.sleep(1.5)
                 clearScreen()
                 main_menu()
+                break
+
+            elif user_input.lower() == "s":
+                print()
+                typingPrint("Loading Date View...\n")
+                time.sleep(1.5)
+                clearScreen()
+                view_by_date()
+                break
+
+            else:
+                raise ValueError("")
+
+        except ValueError as e:
+            print()
+            typingPrint("Invalid input: Please enter (m) "
+                        "to return to Main Menu.\n", Fore.RED)
+
+
+def sort_by_date(data):
+    """
+    Sorts expenses by date, from oldest to newest.
+    """
+    # Adapted from: https://docs.python.org/3/library/datetime.html
+    sorted_data = sorted(data[1:], key=lambda
+                         x: datetime.datetime.strptime(x[0], "%d-%m-%Y"))
+
+    print()
+    print("══════════════════════════════════════════════════════\n")
+    print()
+    print(tabulate(sorted_data,
+                   headers=[
+                        "Date",
+                        "Description",
+                        "Category",
+                        "Amount"
+                    ]))
+    print()
+    print("══════════════════════════════════════════════════════\n")
+    print()
+
+
+def view_by_date():
+    """
+    Displays expenses sorted by date.
+    Allows user to return to main menu after viewing expenses.
+    """
+    print(Fore.GREEN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
+    print("Viewing Expenses by Date")
+
+    sort_by_date(data)
+
+    typingPrint("To return to Main Menu, please enter (m).\n")
+    typingPrint("To switch to Category View, please enter (s).\n")
+
+
+    while True:
+        try:
+            user_input = input("> ")
+            if user_input.lower() == "m":
+                print()
+                typingPrint("Loading Main Menu...\n")
+                time.sleep(1.5)
+                clearScreen()
+                main_menu()
+                break
+
+            elif user_input.lower() == "s":
+                print()
+                typingPrint("Loading Category View...\n")
+                time.sleep(1.5)
+                clearScreen()
+                view_by_category(data)
                 break
 
             else:
@@ -423,18 +481,18 @@ def view_expenses():
             user_input = input("> ")
             if user_input == "1":
                 print()
-                typingPrint("Loading Expenses...\n")
+                typingPrint("Loading Date View...\n")
                 time.sleep(1.5)
                 clearScreen()
-                view_in_order()
+                view_by_date()
                 break
 
             elif user_input == "2":
                 print()
-                typingPrint("Loading Expenses...\n")
+                typingPrint("Loading Category View...\n")
                 time.sleep(1.5)
                 clearScreen()
-                view_by_category(expenses)
+                view_by_category(expenses.get_all_values())
                 break
 
             elif user_input == "3":
@@ -506,5 +564,5 @@ def main_menu():
 
 
 # Run the main function
-#program_start()
+# program_start()
 main_menu()
