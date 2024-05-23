@@ -1,17 +1,18 @@
 # Libraries
-import gspread
-from google.oauth2.service_account import Credentials
 import datetime
 import os
-import colorama
-import time
 import sys
-from tabulate import tabulate
+import time
 
+import colorama
+import gspread
+
+from colorama import Back, Fore, Style
+from google.oauth2.service_account import Credentials
+from tabulate import tabulate
 
 # Initialize colorama for text formatting
 # Tutorial: https://linuxhint.com/colorama-python/
-from colorama import Fore, Back, Style
 colorama.init(autoreset=True)
 
 
@@ -111,7 +112,7 @@ def validate_expense_amount():
     typingPrint("Please enter an amount:\n")
     while True:
         try:
-            # global so it can be accessed in other functions
+            # global so variable can be accessed in other functions
             global amount_input
             amount_input = float(input("> "))
             if amount_input != "":
@@ -130,7 +131,7 @@ def validate_expense_category():
     Validate user's expense category input.
     While loop will repeatedly request data until it is valid.
     """
-    # global so it can be accessed in other functions
+    # global so variable can be accessed in other functions
     global expense_categories
     expense_categories = [
         "Housing",
@@ -153,6 +154,7 @@ def validate_expense_category():
             # -1 to get "true" index number rather than displayed index number
             user_input = int(input("> ")) - 1
             if user_input in range(6):
+                # global so variable can be accessed in other functions
                 global category_input
                 category_input = expense_categories[user_input]
                 break
@@ -175,6 +177,7 @@ def validate_expense_description():
 
     while True:
         try:
+            # global so variable can be accessed in other functions
             global description_input
             description_input = input("> ")
             if description_input != "":
@@ -229,13 +232,16 @@ def confirm_input():
     typingPrint("Summarizing expenses...\n")
     time.sleep(1.5)
     clearScreen()
+    print("══════════════════════════════════════════════════════")
     print()
     print(f"Your expense details:")
     print()
     print(f"     Expense Date: {date_input}")
     print(f"     Expense Description: {description_input}")
     print(f"     Expense Category: {category_input}")
-    print(f"     Expense Amount: {amount_input}")
+    print(f"     Expense Amount: € {amount_input}")
+    print()
+    print("══════════════════════════════════════════════════════")
     print()
     typingPrint("Conrifm expense details (c) or re-enter (r)?\n")
 
@@ -332,17 +338,32 @@ def update_worksheet(expense):
 
 # View Expenses Menu Functions
 
+def calculate_total_expenses(data):
+    """
+    Calculates the sum of all expenses.
+    """
+    total_expenses = 0
+
+    # Loops through each entry
+    # Adds floats in 3rd index together
+    for entry in data[1:]:
+        total_expenses += float(entry[3])
+    return total_expenses    
+
+
 def view_by_category(data):
     """
-    Calculates total expenses for each category and displays in descending order.
+    Calculates total expenses for each category.
+    Displays categories in descending order.
     """
     category_totals = {}
 
     # Loop through data starting from index 1
+    # Categories at index 2, amounts at index 3
     for entry in data[1:]:
         category = entry[2]
         amount = float(entry[3])
-        
+
         # Update category totals if category is listed
         # Create new category if category is not listed
         if category in category_totals:
@@ -352,22 +373,27 @@ def view_by_category(data):
 
     # Sort category totals in descending order
     # Adapted from: https://realpython.com/sort-python-dictionary/
-    sorted_category_totals = dict(sorted(category_totals.items(), key=lambda item: item[1], reverse=True))
+    sorted_category_totals = dict(sorted(category_totals.items(),
+                                         key=lambda item: item[1],
+                                         reverse=True))
+
+    total_expenses = calculate_total_expenses(data)
 
     print()
     print(Fore.GREEN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
     print("Viewing Expenses by Category")
     print()
     print("══════════════════════════════════════════════════════\n")
-    print() 
-    print(tabulate(sorted_category_totals.items(), headers=["Category", "Total Expenses"]))
     print()
+    print(tabulate(sorted_category_totals.items(),
+                   headers=["Category", "Total Expenses"]))
+    print()
+    print(f"                               Total Expenses: € {total_expenses}")
     print("══════════════════════════════════════════════════════\n")
     print()
 
     typingPrint("To return to Main Menu, please enter (m).\n")
     typingPrint("To switch to Date View, please enter (s).\n")
-
 
     while True:
         try:
@@ -397,10 +423,19 @@ def view_by_category(data):
                         "to return to Main Menu.\n", Fore.RED)
 
 
-def sort_by_date(data):
+def view_by_date():
     """
-    Sorts expenses by date, from oldest to newest.
+    Displays expenses sorted by date.
+    Allows user to return to main menu after viewing expenses.
     """
+
+    total_expenses = calculate_total_expenses(data)
+
+    print(Fore.GREEN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
+    print("Viewing Expenses by Date")
+
+    #sort_by_date(data)
+
     # Adapted from: https://docs.python.org/3/library/datetime.html
     sorted_data = sorted(data[1:], key=lambda
                          x: datetime.datetime.strptime(x[0], "%d-%m-%Y"))
@@ -416,23 +451,12 @@ def sort_by_date(data):
                         "Amount"
                     ]))
     print()
+    print(f"                               Total Expenses: € {total_expenses}")
     print("══════════════════════════════════════════════════════\n")
     print()
 
-
-def view_by_date():
-    """
-    Displays expenses sorted by date.
-    Allows user to return to main menu after viewing expenses.
-    """
-    print(Fore.GREEN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
-    print("Viewing Expenses by Date")
-
-    sort_by_date(data)
-
     typingPrint("To return to Main Menu, please enter (m).\n")
     typingPrint("To switch to Category View, please enter (s).\n")
-
 
     while True:
         try:
@@ -564,5 +588,6 @@ def main_menu():
 
 
 # Run the main function
-# program_start()
-main_menu()
+#program_start()
+#main_menu()
+confirm_input()
