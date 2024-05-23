@@ -74,27 +74,27 @@ def program_start():
     """
     print()
     print(Fore.CYAN + '''
-    ══════════════════════════════════════════════════════
+                ══════════════════════════════════════════════════════
 
-    888888ba                 dP                     dP
-    88    `8b                88                     88
-   a88aaaa8P' dP    dP .d888b88 .d8888b. .d8888b. d8888P
-    88   `8b. 88    88 88'  `88 88'  `88 88ooood8   88
-    88    .88 88.  .88 88.  .88 88.  .88 88.  ...   88
-    88888888P `88888P' `88888P8 `8888P88 `88888P'   dP
-                                    .88
+                888888ba                 dP                     dP
+                88    `8b                88                     88
+            a88aaaa8P' dP    dP .d888b88 .d8888b. .d8888b. d8888P
+                88   `8b. 88    88 88'  `88 88'  `88 88ooood8   88
+                88    .88 88.  .88 88.  .88 88.  .88 88.  ...   88
+                88888888P `88888P' `88888P8 `8888P88 `88888P'   dP
+                                                .88
 
 
-    888888ba                 dP       dP
-    88    `8b                88       88
-   a88aaaa8P' dP    dP .d888b88 .d888b88 dP    dP
-    88   `8b. 88    88 88'  `88 88'  `88 88    88
-    88    .88 88.  .88 88.  .88 88.  .88 88.  .88
-    88888888P `88888P' `88888P8 `88888P8 `8888P88
-                                            .88
-                                        d8888P
+                888888ba                 dP       dP
+                88    `8b                88       88
+            a88aaaa8P' dP    dP .d888b88 .d888b88 dP    dP
+                88   `8b. 88    88 88'  `88 88'  `88 88    88
+                88    .88 88.  .88 88.  .88 88.  .88 88.  .88
+                88888888P `88888P' `88888P8 `88888P8 `8888P88
+                                                        .88
+                                                    d8888P
 
-    ══════════════════════════════════════════════════════
+                ══════════════════════════════════════════════════════
     ''')
     time.sleep(3)
     clearScreen()
@@ -230,9 +230,10 @@ def confirm_input():
     time.sleep(1.5)
     clearScreen()
 
+    print()
     print(Fore.CYAN + "◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
 
-    print("══════════════════════════════════════════════════════")
+    print("         ══════════════════════════════════════════════════════")
     print()
     print("Your expense details:")
     print()
@@ -241,7 +242,7 @@ def confirm_input():
     print(f"     Expense Category: {category_input}")
     print(f"     Expense Amount: € {amount_input}")
     print()
-    print("══════════════════════════════════════════════════════")
+    print("         ══════════════════════════════════════════════════════")
     print()
     typingPrint("Conrifm expense details (c) or re-enter (r)?\n")
 
@@ -249,6 +250,7 @@ def confirm_input():
         try:
             user_input = input("> ")
             if user_input.lower() == "r":
+                typingPrint("Clearing expense data...\n")
                 time.sleep(1.5)
                 clearScreen()
                 add_expenses()
@@ -281,10 +283,11 @@ def add_expenses():
     Collects expense details from the user.
     After all data is collected and validated, a summary is shown to the user.
     """
+    print()
     print(Fore.CYAN + "◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
     typingPrint("Please add expense details below.\n")
     print()
-    print("══════════════════════════════════════════════════════")
+    print("         ══════════════════════════════════════════════════════")
     print()
     validate_expense_date()
     print()
@@ -386,7 +389,7 @@ def view_by_category(data):
     print(Fore.CYAN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
     print("Viewing Expenses by Category")
     print()
-    print("══════════════════════════════════════════════════════\n")
+    print("         ══════════════════════════════════════════════════════")
     print()
     print(tabulate(sorted_category_totals.items(),
                    headers=[
@@ -394,8 +397,8 @@ def view_by_category(data):
                         "Total Expenses"
                     ]))
     print()
-    print(f"                               Total Expenses: € {total_expenses}")
-    print("══════════════════════════════════════════════════════\n")
+    print(f"                          Total Expenses: € {total_expenses}")
+    print("         ══════════════════════════════════════════════════════\n")
     print()
 
     typingPrint("To return to Main Menu, please enter (m).\n")
@@ -427,7 +430,8 @@ def view_by_category(data):
             print()
             typingPrint(
                 "Invalid input: Please enter (m) "
-                "to return to Main Menu.\n", Fore.RED)
+                "to return to Main Menu "
+                "or (s) to switch to Date View."\n", Fore.RED)
 
 
 def view_by_date():
@@ -446,7 +450,7 @@ def view_by_date():
         data[1:], key=lambda x: datetime.datetime.strptime(x[0], "%d-%m-%Y"))
 
     print()
-    print("══════════════════════════════════════════════════════\n")
+    print("         ══════════════════════════════════════════════════════")
     print()
     print(tabulate(sorted_data,
                    headers=[
@@ -456,8 +460,8 @@ def view_by_date():
                         "Amount"
                     ]))
     print()
-    print(f"                               Total Expenses: € {total_expenses}")
-    print("══════════════════════════════════════════════════════\n")
+    print(f"                          Total Expenses: € {total_expenses}")
+    print("         ══════════════════════════════════════════════════════\n")
     print()
 
     typingPrint("To return to Main Menu, please enter (m).\n")
@@ -489,7 +493,8 @@ def view_by_date():
             print()
             typingPrint(
                 "Invalid input: Please enter (m) "
-                "to return to Main Menu.\n", Fore.RED)
+                "to return to Main Menu "
+                "or (s) to switch to Category View."\n", Fore.RED)
 
 
 def view_expenses():
