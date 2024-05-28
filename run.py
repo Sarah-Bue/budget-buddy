@@ -447,7 +447,9 @@ def view_by_category(data):
     print()
 
     typingPrint("To return to Main Menu, please enter (m).\n")
-    typingPrint("To switch to Date View, please enter (s).\n")
+    typingPrint("To switch to Date View, please enter (d).\n")
+    typingPrint("To switch to Month View, please enter (v).\n")
+
 
     # Loop repeats until valid inuput is received
     while True:
@@ -465,12 +467,23 @@ def view_by_category(data):
                 break
 
             # Switch to date view
-            elif user_input.lower() == "s":
+            # Uppercase and lowercase entry accepted
+            elif user_input.lower() == "d":
                 print()
                 typingPrint("Loading Date View...\n")
                 time.sleep(1.5)
                 clearScreen()
                 view_by_date()
+                break
+
+            # Switch to month view
+            # Uppercase and lowercase entry accepted
+            elif user_input.lower() == "v":
+                print()
+                typingPrint("Loading Month View...\n")
+                time.sleep(1.5)
+                clearScreen()
+                view_by_month(data)
                 break
             
             # Invalid input raises error
@@ -482,7 +495,8 @@ def view_by_category(data):
             typingPrint(
                 "Invalid input: Please enter (m) "
                 "to return to Main Menu "
-                "or (s) to switch to Date View.\n", Fore.RED)
+                "or (d) to switch to Date View "
+                "or (v) to switch to Month View.\n", Fore.RED)
 
 
 def view_by_date():
@@ -521,7 +535,9 @@ def view_by_date():
     print()
 
     typingPrint("To return to Main Menu, please enter (m).\n")
-    typingPrint("To switch to Category View, please enter (s).\n")
+    typingPrint("To switch to Category View, please enter (c).\n")
+    typingPrint("To switch to Month View, please enter (v).\n")
+
 
     # Loop repeats until valid inuput is received
     while True:
@@ -541,12 +557,22 @@ def view_by_date():
             
             # Switch to category view
             # Uppercase and lowercase entry accepted
-            elif user_input.lower() == "s":
+            elif user_input.lower() == "c":
                 print()
                 typingPrint("Loading Category View...\n")
                 time.sleep(1.5)
                 clearScreen()
                 view_by_category(data)
+                break
+
+            # Switch to month view
+            # Uppercase and lowercase entry accepted
+            elif user_input.lower() == "v":
+                print()
+                typingPrint("Loading Month View...\n")
+                time.sleep(1.5)
+                clearScreen()
+                view_by_month(data)
                 break
             
             # Invalid input raises error
@@ -558,7 +584,8 @@ def view_by_date():
             typingPrint(
                 "Invalid input: Please enter (m) "
                 "to return to Main Menu "
-                "or (s) to switch to Category View.\n", Fore.RED)
+                "or (c) to switch to Category View "
+                "or (v) to switch to Month View.\n", Fore.RED)
 
 
 def view_by_month(data):
@@ -566,6 +593,9 @@ def view_by_month(data):
     Breaks down expenses by month.
     Displays months, categories, and total expenses.
     """
+    # Call calculate_total_expenses function
+    total_expenses = calculate_total_expenses(data)
+
     # Adapted from: https://docs.python.org/3/tutorial/datastructures.html
     # Create dictionary to hold monthly expenses
     # All expenses start at 0
@@ -620,11 +650,58 @@ def view_by_month(data):
     # Table view of expenses by month
     print(tabulate(table, headers=headers))
     print()
+    print(f"                          Total Expenses: € {total_expenses}")
     print("         ══════════════════════════════════════════════════════")
     print()
     typingPrint("To return to Main Menu, please enter (m).\n")
     typingPrint("To switch to Date View, please enter (d).\n")
     typingPrint("To switch to Category View, please enter (c).\n")
+
+    # Loop repeats until valid inuput is received
+    while True:
+
+        # Try... except for exception / error handling
+        try:
+            user_input = input("> ")
+
+            # Return to main menu
+            # Uppercase and lowercase entry accepted
+            if user_input.lower() == "m":
+                print()
+                typingPrint("Loading Main Menu...\n")
+                time.sleep(1.5)
+                clearScreen()
+                main_menu()
+                break
+
+            # Switch to date view
+            # Uppercase and lowercase entry accepted
+            elif user_input.lower() == "d":
+                print()
+                typingPrint("Loading Date View ...\n")
+                time.sleep(1.5)
+                clearScreen()
+                view_expenses()
+                break
+
+            # Switch to categoty view
+            # Uppercase and lowercase entry accepted
+            elif user_input.lower() == "c":
+                print()
+                typingPrint("Loading Category View ...\n")
+                time.sleep(1.5)
+                clearScreen()
+                view_expenses()
+                break
+
+            # Invalid input raises error
+            else:
+                raise ValueError("")
+        except ValueError:
+            print()
+            typingPrint(
+                "Invalid input: Please enter (m) to return to Main Menu or (d) to switch to Date View or (c) to switch to Category View.\n",
+                Fore.RED)
 
 
 def view_expenses():
@@ -640,7 +717,8 @@ def view_expenses():
         print()
         print("    1. View by Date")
         print("    2. View by Category")
-        print("    3. Return to Main Menu")
+        print("    3. View by Month")
+        print("    4. Return to Main Menu")
         print()
 
         # Try... except for exception / error handling
@@ -665,8 +743,17 @@ def view_expenses():
                 view_by_category(expenses.get_all_values())
                 break
 
-            # Return to main menu
+            # View by month
             elif user_input == "3":
+                print()
+                typingPrint("Loading Month View...\n")
+                time.sleep(1.5)
+                clearScreen()
+                view_by_month(data)
+                break
+
+            # Return to main menu
+            elif user_input == "4":
                 print()
                 typingPrint("Loading Main Menu...\n")
                 time.sleep(1.5)
@@ -682,7 +769,7 @@ def view_expenses():
             print()
             typingPrint(
                 "Invalid input: Please select one "
-                "of the options (1-3).\n", Fore.RED)
+                "of the options (1-4).\n", Fore.RED)
 
 
 # Main Menu Functions
@@ -749,4 +836,3 @@ def main_menu():
 # program_start()
 # main_menu()
 
-view_by_month(data)
