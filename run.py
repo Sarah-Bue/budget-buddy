@@ -258,7 +258,7 @@ def confirm_input():
     clearScreen()
 
     print()
-    print(Fore.CYAN + "         ◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
+    print(Fore.CYAN + "                  ◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
 
     print("         ══════════════════════════════════════════════════════")
     print()
@@ -318,7 +318,7 @@ def add_expenses():
     After all data is collected and validated, a summary is shown to the user.
     """
     print()
-    print(Fore.CYAN + "         ◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
+    print(Fore.CYAN + "                  ◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
     typingPrint("Please add expense details below.\n")
     print()
     print("         ══════════════════════════════════════════════════════")
@@ -430,7 +430,7 @@ def view_by_category(data):
     total_expenses = calculate_total_expenses(data)
 
     print()
-    print(Fore.CYAN + "         ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
+    print(Fore.CYAN + "                  ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
     print("Viewing Expenses by Category")
     print()
     print("         ══════════════════════════════════════════════════════")
@@ -509,7 +509,7 @@ def view_by_date():
 
      # Table view of expenses
     print()
-    print(Fore.CYAN + "         ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
+    print(Fore.CYAN + "                  ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
     print("Viewing Expenses by Date")
 
     # Adapted from: https://docs.python.org/3/library/datetime.html
@@ -562,7 +562,7 @@ def view_by_date():
                 typingPrint("Loading Category View...\n")
                 time.sleep(1.5)
                 clearScreen()
-                view_by_category(data)
+                view_by_category(expenses.get_all_values())
                 break
 
             # Switch to month view
@@ -642,7 +642,7 @@ def view_by_month(data):
         table.append(row)
 
     print()
-    print(Fore.CYAN + "         ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
+    print(Fore.CYAN + "                  ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
     print("Viewing Expenses by Month")
     print()
     print("         ══════════════════════════════════════════════════════")
@@ -681,7 +681,7 @@ def view_by_month(data):
                 typingPrint("Loading Date View ...\n")
                 time.sleep(1.5)
                 clearScreen()
-                view_expenses()
+                view_by_date()
                 break
 
             # Switch to categoty view
@@ -691,7 +691,7 @@ def view_by_month(data):
                 typingPrint("Loading Category View ...\n")
                 time.sleep(1.5)
                 clearScreen()
-                view_expenses()
+                view_by_category(expenses.get_all_values())
                 break
 
             # Invalid input raises error
@@ -712,7 +712,7 @@ def view_expenses():
     # Loop repeats until valid inuput is received
     while True:
         print()
-        print(Fore.CYAN + "         ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
+        print(Fore.CYAN + "                  ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
         typingPrint("Please select one of the following options:\n")
         print()
         print("    1. View by Date")
@@ -783,7 +783,7 @@ def main_menu():
      # Loop repeats until valid inuput is received
     while True:
         print()
-        print(Fore.CYAN + "         ◇─◇──◇── MAIN MENU ──◇──◇─◇\n")
+        print(Fore.CYAN + "                  ◇─◇──◇── MAIN MENU ──◇──◇─◇\n")
         typingPrint("Please select one of the following options:\n")
         print()
         print("    1. Add Expenses")
@@ -834,5 +834,5 @@ def main_menu():
 
 # Run the main function
 # program_start()
-# main_menu()
+main_menu()
 
