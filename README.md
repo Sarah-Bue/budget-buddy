@@ -1,32 +1,114 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Budget Buddy
 
-Welcome,
+![Mock Up Image](/assets/readme-files/mockup.png)
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
 
-## Reminders
+## Table of Contents
+1. [User Experience (UX)](#user-experience-UX)
+    1. [Project Goals](#project-goals)
+    2. [User Stories](#user-stories)
+    3. [Color Scheme](#color-scheme)
+    4. [Data Model](#data-model)
+    5. [Flowchart](#flowchart)
+2. [Features](#features)
+    1. [Add Expenses](#add-expenses)
+    2. [View Expenses](#view-expenses)
+    3. [Future Features](#future-features)
+3. [Technologies Used](#technologies-used)
+    1. [Languages](#languages)
+    2. [Frameworks, Libraries and Programs](#frameworks-libraries-and-programs)
+4. [Testing](#testing)
+    1. [Testing User Stories](#testing-user-stories)
+    2. [Validation](#validation)
+    3. [Manual Testing](#manual-testing)
+    4. [Bugs](#bugs)
+5. [Deployment](#deployment)
+    1. [Connecting Google Sheet](#connecting-google-sheet)
+    2. [Heroku](#heroku)
+6. [Credits](#credit)
+    1. [Content](#content)
+    2. [Media](#media)
+    3. [Code](#code)
+7. [Acknowledgements](#acknowledgements)
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+## User Experience (UX)
 
-## Creating the Heroku app
+### Project Goals
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+### User Stories
 
-1. `heroku/python`
-2. `heroku/nodejs`
+### Color Scheme
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+### Data Model
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+### Flowchart
 
-Connect your GitHub repository and deploy as normal.
+[Back to top ⇧](#budget-buddy)
 
-## Constraints
+## Features
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+### Add Expenses
 
----
+#### Input Validation
 
-Happy coding!
+### View Expenses
+
+#### View by Date
+
+#### View by Category
+
+#### View by Month
+
+### Future Features
+
+[Back to top ⇧](#budget-buddy)
+
+## Technologies Used
+
+### Languages
+
+### Frameworks, Libraries, and Programs
+
+[Back to top ⇧](#budget-buddy)
+
+## Testing
+
+### Testing User Stories
+
+### Validation
+
+#### Code Validation
+
+#### User Input Validation
+
+### Feature Testing
+
+### Bugs
+
+[Back to top ⇧](#budget-buddy)
+
+## Deployment
+
+### Connecting Google Sheet
+
+### Heroku
+
+[Back to top ⇧](#budget-buddy)
+
+
+## Credits
+
+[Back to top ⇧](#budget-buddy)
+
+
+### Code
+
+### Media
+
+### Content
+
+[Back to top ⇧](#budget-buddy)
+
+## Acknowledgements
+
+[Back to top ⇧](#budget-buddy)
