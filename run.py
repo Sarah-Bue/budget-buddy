@@ -7,6 +7,7 @@ import time
 import colorama
 import gspread
 
+from collections import defaultdict
 from colorama import Back, Fore, Style
 from google.oauth2.service_account import Credentials
 from tabulate import tabulate
@@ -73,6 +74,7 @@ def program_start():
     """
     Displays logo to welcome the user.
     """
+    print()
     print()
     print(Fore.CYAN + '''
                 ══════════════════════════════════════════════════════
@@ -256,7 +258,7 @@ def confirm_input():
     clearScreen()
 
     print()
-    print(Fore.CYAN + "◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
+    print(Fore.CYAN + "         ◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
 
     print("         ══════════════════════════════════════════════════════")
     print()
@@ -316,7 +318,7 @@ def add_expenses():
     After all data is collected and validated, a summary is shown to the user.
     """
     print()
-    print(Fore.CYAN + "◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
+    print(Fore.CYAN + "         ◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
     typingPrint("Please add expense details below.\n")
     print()
     print("         ══════════════════════════════════════════════════════")
@@ -428,7 +430,7 @@ def view_by_category(data):
     total_expenses = calculate_total_expenses(data)
 
     print()
-    print(Fore.CYAN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
+    print(Fore.CYAN + "         ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
     print("Viewing Expenses by Category")
     print()
     print("         ══════════════════════════════════════════════════════")
@@ -492,7 +494,8 @@ def view_by_date():
     total_expenses = calculate_total_expenses(data)
 
      # Table view of expenses
-    print(Fore.CYAN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
+    print()
+    print(Fore.CYAN + "         ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
     print("Viewing Expenses by Date")
 
     # Adapted from: https://docs.python.org/3/library/datetime.html
@@ -558,6 +561,72 @@ def view_by_date():
                 "or (s) to switch to Category View.\n", Fore.RED)
 
 
+def view_by_month(data):
+    """
+    Breaks down expenses by month.
+    Displays months, categories, and total expenses.
+    """
+    # Adapted from: https://docs.python.org/3/tutorial/datastructures.html
+    # Create dictionary to hold monthly expenses
+    # All expenses start at 0
+    monthly_expenses = defaultdict(
+        lambda: {
+            "Housing": 0,
+            "Food": 0,
+            "Transportation": 0,
+            "Entertainment": 0,
+            "Healthcare": 0,
+            "Misc": 0,
+            "Total": 0
+        })
+    
+    # Loop through each entry and assign variables to columns
+    for entry in data[1:]: # skip the header row - can be 0 due to no header ?
+        # Date in 1st column, category in 3rd, amount in 4th column
+        date_str = entry[0]
+        category = entry[2]
+        amount = float(entry[3])
+
+        # Converts date string to datetime object
+        # Adapted from: https://docs.python.org/3/library/datetime.html
+        date_obj = datetime.datetime.strptime(date_str, "%d-%m-%Y")
+        # Extracts month and year from datetime object
+        month_year = date_obj.strftime("%B %Y")
+
+        # Adds expenses to dictionary
+        # Adds expenses to total expenses
+        monthly_expenses[month_year][category] += amount
+        monthly_expenses[month_year]["Total"] += amount
+
+    # Declare headers and empty table for tabulate    
+    headers = [
+        "Month", "House", "Food", "Transp", "Fun", "Health", "Misc", "Total"
+    ]
+    table = []
+
+    # Loop through each month and add to table
+    for month, expenses in sorted(monthly_expenses.items()):
+        # Create a list for each month
+        row = [month] + list(expenses.values())
+        # Add row to the table
+        table.append(row)
+
+    print()
+    print(Fore.CYAN + "         ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
+    print("Viewing Expenses by Month")
+    print()
+    print("         ══════════════════════════════════════════════════════")
+    print()
+    # Table view of expenses by month
+    print(tabulate(table, headers=headers))
+    print()
+    print("         ══════════════════════════════════════════════════════")
+    print()
+    typingPrint("To return to Main Menu, please enter (m).\n")
+    typingPrint("To switch to Date View, please enter (d).\n")
+    typingPrint("To switch to Category View, please enter (c).\n")
+
+
 def view_expenses():
     """
     Runs the expense view menu.
@@ -566,7 +635,7 @@ def view_expenses():
     # Loop repeats until valid inuput is received
     while True:
         print()
-        print(Fore.CYAN + "◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
+        print(Fore.CYAN + "         ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
         typingPrint("Please select one of the following options:\n")
         print()
         print("    1. View by Date")
@@ -627,7 +696,7 @@ def main_menu():
      # Loop repeats until valid inuput is received
     while True:
         print()
-        print(Fore.CYAN + "◇─◇──◇── MAIN MENU ──◇──◇─◇\n")
+        print(Fore.CYAN + "         ◇─◇──◇── MAIN MENU ──◇──◇─◇\n")
         typingPrint("Please select one of the following options:\n")
         print()
         print("    1. Add Expenses")
@@ -677,5 +746,7 @@ def main_menu():
 
 
 # Run the main function
-program_start()
-main_menu()
+# program_start()
+# main_menu()
+
+view_by_month(data)
