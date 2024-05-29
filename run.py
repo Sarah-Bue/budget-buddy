@@ -36,14 +36,12 @@ data = expenses.get_all_values()
 
 # General Functions
 
-
 # Code adapted from: https://www.101computing.net/python-typing-text-effect/
 def clearScreen():
     """
     Function for clearing CLI for new code.
     """
     os.system("clear")
-
 
 # Code adapted from: https://www.101computing.net/python-typing-text-effect/
 def typingPrint(text, color=Fore.WHITE):
@@ -56,42 +54,43 @@ def typingPrint(text, color=Fore.WHITE):
         time.sleep(0.05)
 
 
+def pause_and_clear():
+    """
+    Clears screen after a brief pause.
+    """
+    time.sleep(1.5)
+    clearScreen()
+
+
 # ASCII art generator: https://manytools.org/hacker-tools/ascii-banner/
-def program_start():
+def welcome_screen():
     """
-    Displays logo to welcome the user.
+    Displays logo and intro text.
     """
-    print()
+    # Logo
     print(Fore.CYAN + '''
-                ══════════════════════════════════════════════════════
-
-                888888ba                 dP                     dP
-                88    `8b                88                     88
-                a88aaaa8P' dP    dP .d888b88 .d8888b. .d8888b. d8888P
-                88   `8b. 88    88 88'  `88 88'  `88 88ooood8   88
-                88    .88 88.  .88 88.  .88 88.  .88 88.  ...   88
-                88888888P `88888P' `88888P8 `8888P88 `88888P'   dP
-                                                .88
-
-
-                888888ba                 dP       dP
-                88    `8b                88       88
-               a88aaaa8P' dP    dP .d888b88 .d888b88 dP    dP
-                88   `8b. 88    88 88'  `88 88'  `88 88    88
-                88    .88 88.  .88 88.  .88 88.  .88 88.  .88
-                88888888P `88888P' `88888P8 `88888P8 `8888P88
-                                                        .88
-                                                    d8888P
-
-                ══════════════════════════════════════════════════════
+            ══════════════════════════════════════════════════════
+     _               _                     _               _     _       
+    | |             | |            _      | |             | |   | |      
+    | | _  _   _  _ | | ____  ____| |_    | | _  _   _  _ | | _ | |_   _ 
+    | || \| | | |/ || |/ _  |/ _  )  _)   | || \| | | |/ || |/ || | | | |
+    | |_) ) |_| ( (_| ( ( | ( (/ /| |__   | |_) ) |_| ( (_| ( (_| | |_| |
+    |____/ \____|\____|\_|| |\____)\___)  |____/ \____|\____|\____|\__  |
+                      (_____|                                     (____/ 
+                        
+            ══════════════════════════════════════════════════════
     ''')
-    typingPrint("                  Loading, please wait...\n", Fore.YELLOW)
+
+    # Intro to explain program purpose
+    print("Welcome to Budget Buddy, the friend you didn't know you needed.\n")
+    print("The first step towards financial success is self-awareness.")
+    print("Budget Buddy allows you to easily add and review your expenses on the go.\n")
+    typingPrint("                       Loading, please wait...", Fore.YELLOW)
     time.sleep(3)
     clearScreen()
 
 
 # Add Expenses Menu Functions
-
 
 def validate_expense_amount():
     """
@@ -213,7 +212,7 @@ def validate_expense_date():
             # %d-%m-%Y = DD-MM-YYYY
             new_date = datetime.datetime.strptime(date_input, "%d-%m-%Y")
 
-            # Set date range to 01-01-2024 - today
+            # Set date range to 01-01-2024 - today(dynamic)
             min_date = datetime.datetime(2024, 1, 1)
             max_date = datetime.datetime.now()
 
@@ -240,9 +239,8 @@ def confirm_input():
     Allows user to confirm or update expense details.
     While loop will repeatedly request data until it is valid.
     """
-    typingPrint("                  Summarizing expenses...\n", Fore.YELLOW)
-    time.sleep(1.5)
-    clearScreen()
+    typingPrint("                       Summarizing expenses...\n", Fore.YELLOW)
+    pause_and_clear()
 
     print()
     print(Fore.CYAN + "                  ◇─◇──◇── ADD EXPENSES ──◇──◇─◇\n")
@@ -268,9 +266,8 @@ def confirm_input():
 
             # Re-enter details
             if user_input.lower() == "r":
-                typingPrint("                  Clearing expense data...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
+                typingPrint("                       Clearing expense data...\n", Fore.YELLOW)
+                pause_and_clear()
                 add_expenses()
 
             # Confirm details
@@ -326,7 +323,7 @@ def update_worksheet(expense):
     Updates the worksheet.
     Appends a new row with the provided expense details.
     """
-    typingPrint("                  Updating worksheet...\n", Fore.YELLOW)
+    typingPrint("                       Updating worksheet...\n", Fore.YELLOW)
     print()
     # Adds added expense to google sheet as a new row
     expenses_worksheet = SHEET.worksheet("expenses")
@@ -344,17 +341,13 @@ def update_worksheet(expense):
 
             # Add another expense
             if user_input.lower() == "a":
-                time.sleep(1.5)
-                clearScreen()
+                pause_and_clear()
                 add_expenses()
 
             # Return to main menu
             elif user_input.lower() == "m":
                 print()
-                typingPrint("                  Loading Main Menu...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
-                main_menu()
+                return_to_main()
                 break
             
             # Invalid input raises error
@@ -447,19 +440,15 @@ def view_by_category(data):
             # Return to main menu
             if user_input.lower() == "m":
                 print()
-                typingPrint("                  Loading Main Menu...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
-                main_menu()
+                return_to_main()
                 break
 
             # Switch to date view
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "d":
                 print()
-                typingPrint("                  Loading Date View...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
+                typingPrint("                       Loading Date View...\n", Fore.YELLOW)
+                pause_and_clear()
                 view_by_date()
                 break
 
@@ -467,9 +456,8 @@ def view_by_category(data):
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "v":
                 print()
-                typingPrint("                  Loading Month View...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
+                typingPrint("                       Loading Month View...\n", Fore.YELLOW)
+                pause_and_clear()
                 view_by_month(data)
                 break
             
@@ -536,19 +524,15 @@ def view_by_date():
             # Uppercase and lowercase entry accepted
             if user_input.lower() == "m":
                 print()
-                typingPrint("                  Loading Main Menu...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
-                main_menu()
+                return_to_main()
                 break
             
             # Switch to category view
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "c":
                 print()
-                typingPrint("                  Loading Category View...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
+                typingPrint("                       Loading Category View...\n", Fore.YELLOW)
+                pause_and_clear()
                 view_by_category(expenses.get_all_values())
                 break
 
@@ -556,9 +540,8 @@ def view_by_date():
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "v":
                 print()
-                typingPrint("                  Loading Month View...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
+                typingPrint("                       Loading Month View...\n", Fore.YELLOW)
+                pause_and_clear()
                 view_by_month(data)
                 break
             
@@ -655,19 +638,15 @@ def view_by_month(data):
             # Uppercase and lowercase entry accepted
             if user_input.lower() == "m":
                 print()
-                typingPrint("                  Loading Main Menu...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
-                main_menu()
+                return_to_main()
                 break
 
             # Switch to date view
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "d":
                 print()
-                typingPrint("                  Loading Date View ...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
+                typingPrint("                       Loading Date View ...\n", Fore.YELLOW)
+                pause_and_clear()
                 view_by_date()
                 break
 
@@ -675,9 +654,8 @@ def view_by_month(data):
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "c":
                 print()
-                typingPrint("                  Loading Category View ...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
+                typingPrint("                       Loading Category View ...\n", Fore.YELLOW)
+                pause_and_clear()
                 view_by_category(expenses.get_all_values())
                 break
 
@@ -715,37 +693,31 @@ def view_expenses():
             # View by date
             if user_input == "1":
                 print()
-                typingPrint("                  Loading Date View...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
+                typingPrint("                       Loading Date View...\n", Fore.YELLOW)
+                pause_and_clear()
                 view_by_date()
                 break
 
             # View by category
             elif user_input == "2":
                 print()
-                typingPrint("                  Loading Category View...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
+                typingPrint("                       Loading Category View...\n", Fore.YELLOW)
+                pause_and_clear()
                 view_by_category(expenses.get_all_values())
                 break
 
             # View by month
             elif user_input == "3":
                 print()
-                typingPrint("                  Loading Month View...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
+                typingPrint("                       Loading Month View...\n", Fore.YELLOW)
+                pause_and_clear()
                 view_by_month(data)
                 break
 
             # Return to main menu
             elif user_input == "4":
                 print()
-                typingPrint("                  Loading Main Menu...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
-                main_menu()
+                return_to_main()
                 break
 
             # Invalid input raises error
@@ -785,26 +757,24 @@ def main_menu():
             # Add Expenses
             if user_input == "1":
                 print()
-                typingPrint("                  Loading, please wait...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
+                typingPrint("                       Loading, please wait...\n", Fore.YELLOW)
+                pause_and_clear()
                 add_expenses()
                 break
             
             # View Expenses
             elif user_input == "2":
                 print()
-                typingPrint("                  Loading, please wait...\n", Fore.YELLOW)
-                time.sleep(1.5)
-                clearScreen()
+                typingPrint("                       Loading, please wait...\n", Fore.YELLOW)
+                pause_and_clear()
                 view_expenses()
                 break
 
             # Exit program
             elif user_input == "3":
                 print()
-                typingPrint("                  Exiting...\n", Fore.YELLOW)
-                time.sleep(1.5)
+                typingPrint("                       Exiting...\n", Fore.YELLOW)
+                pause_and_clear()
                 break
 
             # Invalid input raises error
@@ -819,58 +789,15 @@ def main_menu():
             user_input = input("> ")
 
 
+def return_to_main():
+    """
+    Clears the screen and returns to the main menu after a brief pause.
+    """
+    typingPrint("                       Loading Main Menu...\n", Fore.YELLOW)
+    pause_and_clear()
+    main_menu()
+
+
 # Run the main function
-#program_start()
-#main_menu()
-
-def greeting():
-    print(Fore.CYAN + '''
-                ══════════════════════════════════════════════════════
-                         _               _                  
-                        | |             | |            _    
-                        | | _  _   _  _ | | ____  ____| |_  
-                        | || \| | | |/ || |/ _  |/ _  )  _) 
-                        | |_) ) |_| ( (_| ( ( | ( (/ /| |__ 
-                        |____/ \____|\____|\_|| |\____)\___)
-                                          (_____|           
-                        _               _     _            
-                        | |             | |   | |           
-                        | | _  _   _  _ | | _ | |_   _      
-                        | || \| | | |/ || |/ || | | | |     
-                        | |_) ) |_| ( (_| ( (_| | |_| |     
-                        |____/ \____|\____|\____|\__  |     
-                                                (____/ 
-                ══════════════════════════════════════════════════════
-    ''')
-    # Intro to explain program purpose
-    print("Welcome to Budget Buddy, the friend you didn't know you needed.\n")
-    print("The first step towards financial success is self-awareness.")
-    print("And with the help of your own, personal Budget Buddy, you are well on your way!")
-    print("Budget Buddy allows you to easily add and review your expenses on the go.\n")
-    typingPrint("                  Loading, please wait...\n", Fore.YELLOW)
-    #time.sleep(3)
-    #clearScreen()
-
-def greeting_2():
-    print(Fore.CYAN + '''
-                ══════════════════════════════════════════════════════
-         _               _                     _               _     _       
-        | |             | |            _      | |             | |   | |      
-        | | _  _   _  _ | | ____  ____| |_    | | _  _   _  _ | | _ | |_   _ 
-        | || \| | | |/ || |/ _  |/ _  )  _)   | || \| | | |/ || |/ || | | | |
-        | |_) ) |_| ( (_| ( ( | ( (/ /| |__   | |_) ) |_| ( (_| ( (_| | |_| |
-        |____/ \____|\____|\_|| |\____)\___)  |____/ \____|\____|\____|\__  |
-                          (_____|                                     (____/ 
-                          
-                ══════════════════════════════════════════════════════
-    ''')
-    # Intro to explain program purpose
-    print("Welcome to Budget Buddy, the friend you didn't know you needed.\n")
-    print("The first step towards financial success is self-awareness.")
-    print("Budget Buddy allows you to easily add and review your expenses on the go.\n")
-    typingPrint("                  Loading, please wait...", Fore.YELLOW)
-    #time.sleep(3)
-    #clearScreen()
-
-
-greeting_2()
+welcome_screen()
+main_menu()
