@@ -118,7 +118,7 @@ def validate_expense_amount():
 
         except ValueError as e:
             print()
-            typingPrint("Invalid input: Please enter a number.\n", Fore.RED)
+            typingPrint("Invalid input: Please enter a number between 0 and 10000.\n", Fore.RED)
 
 
 def validate_expense_category():
@@ -181,7 +181,8 @@ def validate_expense_description():
             description_input = input("> ")
 
             # Input cannot be empty
-            if description_input != "":
+            # Input cannot be longer than 25 characters
+            if description_input != "" and len(description_input) < 50:
                 break
 
             # Invalid input raises error
@@ -191,7 +192,7 @@ def validate_expense_description():
         except ValueError as e:
             print()
             typingPrint("Invalid input: "
-                        "Description cannot be empty.\n", Fore.RED)
+                        "Please enter a description between 0 and 50 characters.\n", Fore.RED)
 
 
 def validate_expense_date():
