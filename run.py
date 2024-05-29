@@ -108,7 +108,8 @@ def validate_expense_amount():
             amount_input = float(input("> "))
 
             # Input cannot be empty
-            if amount_input != "":
+            # Input must be between 0 and 10000
+            if amount_input != "" and 0 <= amount_input <= 10000:
                 break
 
             # Invalid input raises error
@@ -791,7 +792,7 @@ def main_menu():
 
 def return_to_main():
     """
-    Clears the screen and returns to the main menu after a brief pause.
+    Clears the screen and returns to the main menu after a brief delay.
     """
     typingPrint("                       Loading Main Menu...\n", Fore.YELLOW)
     pause_and_clear()
