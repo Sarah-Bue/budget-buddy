@@ -625,23 +625,46 @@ Deployment to Heroku was completed using the following steps:
     - Select either *Automatic Deploys* or *Manual Deploys* and click *Deploy Branch*.
 6. Once deployment has been completed, click *View* to view the deployed project. 
  
-
 [Back to top ⇧](#budget-buddy)
-
 
 ## Credits
 
-[Back to top ⇧](#budget-buddy)
+### Content
 
-
-### Code
+All content was written by the developer.
 
 ### Media
 
-### Content
+- [Many Tools](https://manytools.org/hacker-tools/ascii-banner/) was used to create the logo that displays when the program starts.
+
+- [Emojicombos](https://emojicombos.com/deco-ascii-art) was used to create decorative menu headers.
+
+### Code
+
+- The clearScreen and typingPrint funtions were adapted from [101 Computing](https://www.101computing.net/python-typing-text-effect/).
+
+- The tutorial for Colorama was found on [Linux Hint](https://linuxhint.com/colorama-python/).
+
+- [Real Python](https://realpython.com/sort-python-dictionary/) was consulted for the creation and sorting of Dictionaries.
+
+- [Python Documentation](https://docs.python.org/) was consulted on multiple occations, including for specifics about Datetime, Sorting, and Data Structures.
+
+- [W3schools](https://www.w3schools.com/) and [Stack Overflow](https://stackoverflow.com/) were consulted regularly.
+
+- The steps to set up and connect a Google Sheet were provided by [Code Institute's](https://codeinstitute.net/ie/) *Love Sandwiches* project.
 
 [Back to top ⇧](#budget-buddy)
 
 ## Acknowledgements
+
+- Code Institute, its tutors, and the Slack community for their support and insights.
+
+- My fellow students, especially George and Sherry, for their feedback.
+
+- Marcel, my mentor, for his encouragement and guidance.
+
+- Nono for helping me to organize my thoughts and not get carried away.
+
+- My husband for being my biggest hypeman. 
 
 [Back to top ⇧](#budget-buddy)
