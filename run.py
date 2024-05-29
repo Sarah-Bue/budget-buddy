@@ -381,7 +381,7 @@ def calculate_total_expenses(data):
 
     # Loops through each entry
     # Adds floats in 3rd index (= 4th column) together
-    for entry in data[1:]:
+    for entry in data:
         total_expenses += float(entry[3])
     return total_expenses
 
@@ -394,9 +394,9 @@ def view_by_category(data):
     # Create empty dictionary to store totals per category
     category_totals = {}
 
-    # Loops through data starting from index 1
+    # Loops through data
     # Categories at index 2 (= column 3), amounts at index 3 (= column 4)
-    for entry in data[1:]:
+    for entry in data:
         category = entry[2]
         amount = float(entry[3])
 
@@ -503,7 +503,7 @@ def view_by_date():
     # Adapted from: https://docs.python.org/3/howto/sorting.html
     # Each element (x) in the list gets turned into datetime object
     sorted_data = sorted(
-        data[1:], key=lambda x: datetime.datetime.strptime(x[0], "%d-%m-%Y"))
+        data, key=lambda x: datetime.datetime.strptime(x[0], "%d-%m-%Y"))
 
     print()
     print("         ══════════════════════════════════════════════════════")
@@ -598,7 +598,7 @@ def view_by_month(data):
         })
     
     # Loop through each entry and assign variables to columns
-    for entry in data[1:]: # skip the header row - can be 0 due to no header ?
+    for entry in data
         # Date in 1st column, category in 3rd, amount in 4th column
         date_str = entry[0]
         category = entry[2]
@@ -824,30 +824,29 @@ def main_menu():
 #main_menu()
 
 def greeting():
-    print()
     print(Fore.CYAN + '''
-        ══════════════════════════════════════════════════════
-                 _               _                  
-                | |             | |            _    
-                | | _  _   _  _ | | ____  ____| |_  
-                | || \| | | |/ || |/ _  |/ _  )  _) 
-                | |_) ) |_| ( (_| ( ( | ( (/ /| |__ 
-                |____/ \____|\____|\_|| |\____)\___)
-                                (_____|           
-                _               _     _            
-                | |             | |   | |           
-                | | _  _   _  _ | | _ | |_   _      
-                | || \| | | |/ || |/ || | | | |     
-                | |_) ) |_| ( (_| ( (_| | |_| |     
-                |____/ \____|\____|\____|\__  |     
-                                        (____/ 
-        ══════════════════════════════════════════════════════
+                ══════════════════════════════════════════════════════
+                        _               _                  
+                        | |             | |            _    
+                        | | _  _   _  _ | | ____  ____| |_  
+                        | || \| | | |/ || |/ _  |/ _  )  _) 
+                        | |_) ) |_| ( (_| ( ( | ( (/ /| |__ 
+                        |____/ \____|\____|\_|| |\____)\___)
+                                            (_____|           
+                        _               _     _            
+                        | |             | |   | |           
+                        | | _  _   _  _ | | _ | |_   _      
+                        | || \| | | |/ || |/ || | | | |     
+                        | |_) ) |_| ( (_| ( (_| | |_| |     
+                        |____/ \____|\____|\____|\__  |     
+                                                (____/ 
+                ══════════════════════════════════════════════════════
     ''')
     # Intro to explain program purpose
     print("Welcome to Budget Buddy, the friend you didn't know you needed.\n")
     print("The first step towards financial success is self-awareness.")
     print("And with the help of your own, personal Budget Buddy, you are well on your way!")
-    print("Budget Buddy allows you to easily add and review your expenses on the go to understand where your money is going.\n")
+    print("Budget Buddy allows you to easily add and review your expenses on the go.\n")
     typingPrint("                  Loading, please wait...\n", Fore.YELLOW)
     #time.sleep(3)
     #clearScreen()
