@@ -76,6 +76,9 @@ The following colors were used:
 
 - Menu headers and the program logo display in cyan.
 
+- Loading messages display in yellow.
+
+
 All colors are displayed in the *normal* style on a *normal* background.
 
 <details>

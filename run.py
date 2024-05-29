@@ -56,25 +56,11 @@ def typingPrint(text, color=Fore.WHITE):
         time.sleep(0.05)
 
 
-# I don't think I'm using this let's see
-# Tutorial and code: https://www.101computing.net/python-typing-text-effect/
-""" def typingInput(text):
-
-    Replaces input() with typingInput() to create typing effect.
-
-    for character in text:
-        sys.stdout.write(character)
-        sys.stdout.flush()
-        time.sleep(0.05)
-    value = input()
-    return value """
-
 # ASCII art generator: https://manytools.org/hacker-tools/ascii-banner/
 def program_start():
     """
     Displays logo to welcome the user.
     """
-    print()
     print()
     print(Fore.CYAN + '''
                 ══════════════════════════════════════════════════════
@@ -99,6 +85,7 @@ def program_start():
 
                 ══════════════════════════════════════════════════════
     ''')
+    typingPrint("                  Loading, please wait...\n", Fore.YELLOW)
     time.sleep(3)
     clearScreen()
 
@@ -253,7 +240,7 @@ def confirm_input():
     Allows user to confirm or update expense details.
     While loop will repeatedly request data until it is valid.
     """
-    typingPrint("Summarizing expenses...\n")
+    typingPrint("                  Summarizing expenses...\n", Fore.YELLOW)
     time.sleep(1.5)
     clearScreen()
 
@@ -271,7 +258,7 @@ def confirm_input():
     print()
     print("         ══════════════════════════════════════════════════════")
     print()
-    typingPrint("Confirm expense details (c) or re-enter (r)?\n")
+    typingPrint("Conrifm expense details (c) or re-enter (r)?\n")
 
     # Loop repeats until valid inuput is received
     while True:
@@ -281,7 +268,7 @@ def confirm_input():
 
             # Re-enter details
             if user_input.lower() == "r":
-                typingPrint("Clearing expense data...\n")
+                typingPrint("                  Clearing expense data...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 add_expenses()
@@ -339,12 +326,12 @@ def update_worksheet(expense):
     Updates the worksheet.
     Appends a new row with the provided expense details.
     """
-    typingPrint("Updating worksheet...\n")
+    typingPrint("                  Updating worksheet...\n", Fore.YELLOW)
     print()
     # Adds added expense to google sheet as a new row
     expenses_worksheet = SHEET.worksheet("expenses")
     expenses_worksheet.append_row(expense)
-    typingPrint("Worksheet updated successfully.\n", Fore.GREEN)
+    typingPrint("                  Worksheet updated successfully.\n", Fore.GREEN)
     print()
     typingPrint("Add another expense (a) or return to Main Menu (m)?\n")
     print()
@@ -364,7 +351,7 @@ def update_worksheet(expense):
             # Return to main menu
             elif user_input.lower() == "m":
                 print()
-                typingPrint("Loading Main Menu...\n")
+                typingPrint("                  Loading Main Menu...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 main_menu()
@@ -460,7 +447,7 @@ def view_by_category(data):
             # Return to main menu
             if user_input.lower() == "m":
                 print()
-                typingPrint("Loading Main Menu...\n")
+                typingPrint("                  Loading Main Menu...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 main_menu()
@@ -470,7 +457,7 @@ def view_by_category(data):
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "d":
                 print()
-                typingPrint("Loading Date View...\n")
+                typingPrint("                  Loading Date View...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 view_by_date()
@@ -480,7 +467,7 @@ def view_by_category(data):
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "v":
                 print()
-                typingPrint("Loading Month View...\n")
+                typingPrint("                  Loading Month View...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 view_by_month(data)
@@ -549,7 +536,7 @@ def view_by_date():
             # Uppercase and lowercase entry accepted
             if user_input.lower() == "m":
                 print()
-                typingPrint("Loading Main Menu...\n")
+                typingPrint("                  Loading Main Menu...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 main_menu()
@@ -559,7 +546,7 @@ def view_by_date():
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "c":
                 print()
-                typingPrint("Loading Category View...\n")
+                typingPrint("                  Loading Category View...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 view_by_category(expenses.get_all_values())
@@ -569,7 +556,7 @@ def view_by_date():
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "v":
                 print()
-                typingPrint("Loading Month View...\n")
+                typingPrint("                  Loading Month View...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 view_by_month(data)
@@ -621,7 +608,7 @@ def view_by_month(data):
         # Adapted from: https://docs.python.org/3/library/datetime.html
         date_obj = datetime.datetime.strptime(date_str, "%d-%m-%Y")
         # Extracts month and year from datetime object
-        month_year = date_obj.strftime("%B %Y")
+        month_year = date_obj.strftime("%m / %Y")
 
         # Adds expenses to dictionary
         # Adds expenses to total expenses
@@ -630,7 +617,7 @@ def view_by_month(data):
 
     # Declare headers and empty table for tabulate    
     headers = [
-        "Month", "House", "Food", "Transp", "Fun", "Health", "Misc", "Total"
+        "Month", "House", "Food", "Transp", "Entert", "Health", "Misc", "Total"
     ]
     table = []
 
@@ -668,7 +655,7 @@ def view_by_month(data):
             # Uppercase and lowercase entry accepted
             if user_input.lower() == "m":
                 print()
-                typingPrint("Loading Main Menu...\n")
+                typingPrint("                  Loading Main Menu...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 main_menu()
@@ -678,7 +665,7 @@ def view_by_month(data):
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "d":
                 print()
-                typingPrint("Loading Date View ...\n")
+                typingPrint("                  Loading Date View ...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 view_by_date()
@@ -688,7 +675,7 @@ def view_by_month(data):
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "c":
                 print()
-                typingPrint("Loading Category View ...\n")
+                typingPrint("                  Loading Category View ...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 view_by_category(expenses.get_all_values())
@@ -728,7 +715,7 @@ def view_expenses():
             # View by date
             if user_input == "1":
                 print()
-                typingPrint("Loading Date View...\n")
+                typingPrint("                  Loading Date View...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 view_by_date()
@@ -737,7 +724,7 @@ def view_expenses():
             # View by category
             elif user_input == "2":
                 print()
-                typingPrint("Loading Category View...\n")
+                typingPrint("                  Loading Category View...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 view_by_category(expenses.get_all_values())
@@ -746,7 +733,7 @@ def view_expenses():
             # View by month
             elif user_input == "3":
                 print()
-                typingPrint("Loading Month View...\n")
+                typingPrint("                  Loading Month View...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 view_by_month(data)
@@ -755,7 +742,7 @@ def view_expenses():
             # Return to main menu
             elif user_input == "4":
                 print()
-                typingPrint("Loading Main Menu...\n")
+                typingPrint("                  Loading Main Menu...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 main_menu()
@@ -798,7 +785,7 @@ def main_menu():
             # Add Expenses
             if user_input == "1":
                 print()
-                typingPrint("Loading...\n")
+                typingPrint("                  Loading, please wait...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 add_expenses()
@@ -807,7 +794,7 @@ def main_menu():
             # View Expenses
             elif user_input == "2":
                 print()
-                typingPrint("Loading...\n")
+                typingPrint("                  Loading, please wait...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 clearScreen()
                 view_expenses()
@@ -816,7 +803,7 @@ def main_menu():
             # Exit program
             elif user_input == "3":
                 print()
-                typingPrint("Exiting...\n")
+                typingPrint("                  Exiting...\n", Fore.YELLOW)
                 time.sleep(1.5)
                 break
 
@@ -835,4 +822,3 @@ def main_menu():
 # Run the main function
 program_start()
 main_menu()
-
