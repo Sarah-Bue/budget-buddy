@@ -767,7 +767,7 @@ def main_menu():
     Runs the main menu of the program.
     Allows the user to navigate to one of two sub-menus.
     """
-     # Loop repeats until valid inuput is received
+    # Loop repeats until valid inuput is received
     while True:
         print()
         print(Fore.CYAN + "                  ◇─◇──◇── MAIN MENU ──◇──◇─◇\n")
@@ -820,5 +820,37 @@ def main_menu():
 
 
 # Run the main function
-program_start()
-main_menu()
+#program_start()
+#main_menu()
+
+def greeting():
+    print()
+    print(Fore.CYAN + '''
+        ══════════════════════════════════════════════════════
+                 _               _                  
+                | |             | |            _    
+                | | _  _   _  _ | | ____  ____| |_  
+                | || \| | | |/ || |/ _  |/ _  )  _) 
+                | |_) ) |_| ( (_| ( ( | ( (/ /| |__ 
+                |____/ \____|\____|\_|| |\____)\___)
+                                (_____|           
+                _               _     _            
+                | |             | |   | |           
+                | | _  _   _  _ | | _ | |_   _      
+                | || \| | | |/ || |/ || | | | |     
+                | |_) ) |_| ( (_| ( (_| | |_| |     
+                |____/ \____|\____|\____|\__  |     
+                                        (____/ 
+        ══════════════════════════════════════════════════════
+    ''')
+    # Intro to explain program purpose
+    print("Welcome to Budget Buddy, the friend you didn't know you needed.\n")
+    print("The first step towards financial success is self-awareness.")
+    print("And with the help of your own, personal Budget Buddy, you are well on your way!")
+    print("Budget Buddy allows you to easily add and review your expenses on the go to understand where your money is going.\n")
+    typingPrint("                  Loading, please wait...\n", Fore.YELLOW)
+    #time.sleep(3)
+    #clearScreen()
+
+
+greeting()

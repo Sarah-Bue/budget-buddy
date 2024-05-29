@@ -239,10 +239,16 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 - This would add a display of the remaining budget in each expense view, allowing users to plan their spending accordingly.
 - Color coding could be added to provide feedback on over- or underspending.
 
+### Editing and Deleting Inputs
+
+- This would give users the option to select one of their inputs and edit or remove it after it has been confirmed and saved to Google Sheets.
+- Another feature might be to allow users to clear all expenses, thus resetting the tracker to zero.
+
 #### Personalization
 
 - In a new menu, users will be asked to define their own income and expense categories, rather than pick from a predefined list.
 - Users will be able to set monthly and / or category budgets.
+- An intro screen might be added to ask users to input their name, which could then be used to address them throughout the program.
 
 #### GUI
 
@@ -254,6 +260,11 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 - Currently, Google Sheets is only used to store the expense details.
 - By adding simple functionality such as charts and tables to the sheet, users would be able to view their expense details in a more appealing and accessible format.
 - Google Sheets even allows for the possibility of interactive financial dashboards which would provide users with an engaging, easy to understand overview of their finances, based on their inputs into the expense and input tracker.
+
+### Display Amounts
+
+- One minor thing that could be added in the future is to display all amounts with two decimals, whether or not they were entered with decimals. 
+- This would create a more consistent look, especially in the *View by Month* option.
 
 [Back to top ⇧](#budget-buddy)
 
@@ -569,7 +580,7 @@ Note: No further device testing was performed since assuring responsivenes  of  
 
 |Feature | Bug | Fix |
 |---|---|---|
-| Typing Effect | Typing effects displaying incorrectly when combined with Colorama | Updated typingPrint function to combine (color + character) and declared default color (color=Fore.WHITE) |
+| Typing Effect | Typing effects displaying incorrectly when combined with Colorama | Updated typingPrint function to combine (color + character) and declared default color (color=Fore.WHITE). As a result, you can see a slight difference in the shade of white used by *typingPrint* outputs and regular *print* outputs. |
 
 
 After rigorous testing, there are no known bugs in the code.
