@@ -23,7 +23,7 @@ Visit the deployed application [here](https://budget-buddy-expense-tracker-f207b
     5. [Future Features](#future-features)
 3. [Technologies Used](#technologies-used)
     1. [Languages](#languages)
-    2. [Frameworks, Libraries and Programs](#frameworks-libraries-and-programs)
+    2. [Frameworks, Libraries and Packages](#frameworks-libraries-and-packages)
 4. [Testing](#testing)
     1. [Testing User Stories](#testing-user-stories)
     2. [Validation](#validation)
@@ -255,7 +255,49 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 
 ### Languages
 
-### Frameworks, Libraries, and Programs
+- [Python3](https://en.wikipedia.org/wiki/Python_(programming_language))
+
+Provided as part of Code Institute's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template): 
+- [HTML5](https://en.wikipedia.org/wiki/HTML5)
+- [Javascript](https://en.wikipedia.org/wiki/JavaScript)
+
+### Frameworks, Libraries, and Packages
+
+- [Colorama](https://pypi.org/project/colorama/) was used to add colour to the terminal.
+
+- [Datetime](https://docs.python.org/3/library/datetime.html) was used to validate date inputs.
+
+-[Defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict) was used to create a dictionary for expense categories and their corresponding totals.
+
+- [Emojicombos](https://emojicombos.com/deco-ascii-art) was used to create decorative menu headers.
+
+- [GitHub](https://github.com/) was used to store the project and for version control.
+
+- [GitPod](https://gitpod.io/) was used for writing code, committing, and then pushing to GitHub.
+
+- [GSpread](https://docs.gspread.org/en/v6.0.0/) was used to interact with the data in the linked sheet.
+
+- [Google OAuth](https://google-auth.readthedocs.io/en/master/reference/google.oauth2.service_account.html) was used to authenticate the program in order to access Google's APIs.
+
+- [Google Cloud](https://cloud.google.com/) was used to generate the APIs required to connect the data sheets with the Python code.
+
+- [Google Sheets](https://docs.google.com/spreadsheets/) was used to store user input data.
+
+- [Heroku](https://dashboard.heroku.com/login) was used to host and deploy the finished project.
+
+- [Lucidchart](https://www.lucidchart.com/pages/) was used to create the flowchart during project planning.
+
+- [Many Tools](https://manytools.org/hacker-tools/ascii-banner/) was used to create a logo for the program.
+
+- [PEP8 online check](http://pep8online.com/) was used to validate the Python code.
+
+- [Tabulate](https://pypi.org/project/tabulate/) was used to display the expense data in tables. 
+
+- [Time](https://docs.python.org/3/library/time.html) was used to create delays in the program when switching between menus or performing operations. 
+
+- [Sys](https://docs.python.org/3/library/sys.html) was used to create the typing effect on certain text outputs.
+
+- [Os](https://docs.python.org/3/library/os.html) was used to clear the screen when switching between menus or views. 
 
 [Back to top ⇧](#budget-buddy)
 
