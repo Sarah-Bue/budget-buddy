@@ -826,13 +826,13 @@ def main_menu():
 def greeting():
     print(Fore.CYAN + '''
                 ══════════════════════════════════════════════════════
-                        _               _                  
+                         _               _                  
                         | |             | |            _    
                         | | _  _   _  _ | | ____  ____| |_  
                         | || \| | | |/ || |/ _  |/ _  )  _) 
                         | |_) ) |_| ( (_| ( ( | ( (/ /| |__ 
                         |____/ \____|\____|\_|| |\____)\___)
-                                            (_____|           
+                                          (_____|           
                         _               _     _            
                         | |             | |   | |           
                         | | _  _   _  _ | | _ | |_   _      
@@ -851,5 +851,26 @@ def greeting():
     #time.sleep(3)
     #clearScreen()
 
+def greeting_2():
+    print(Fore.CYAN + '''
+                        ══════════════════════════════════════════════════════
+                 _               _                     _               _     _       
+                | |             | |            _      | |             | |   | |      
+                | | _  _   _  _ | | ____  ____| |_    | | _  _   _  _ | | _ | |_   _ 
+                | || \| | | |/ || |/ _  |/ _  )  _)   | || \| | | |/ || |/ || | | | |
+                | |_) ) |_| ( (_| ( ( | ( (/ /| |__   | |_) ) |_| ( (_| ( (_| | |_| |
+                |____/ \____|\____|\_|| |\____)\___)  |____/ \____|\____|\____|\__  |
+                                  (_____|                                     (____/ 
+                       ══════════════════════════════════════════════════════
+    ''')
+    # Intro to explain program purpose
+    print("Welcome to Budget Buddy, the friend you didn't know you needed.\n")
+    print("The first step towards financial success is self-awareness.")
+    print("And with the help of your own, personal Budget Buddy, you are well on your way!")
+    print("Budget Buddy allows you to easily add and review your expenses on the go.\n")
+    typingPrint("                  Loading, please wait...", Fore.YELLOW)
+    #time.sleep(3)
+    #clearScreen()
 
-greeting()
+
+greeting_2()
