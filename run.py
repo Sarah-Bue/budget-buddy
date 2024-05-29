@@ -833,6 +833,6 @@ def main_menu():
 
 
 # Run the main function
-# program_start()
+program_start()
 main_menu()
 
