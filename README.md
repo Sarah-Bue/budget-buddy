@@ -27,8 +27,10 @@ Visit the deployed application [here](https://budget-buddy-expense-tracker-f207b
 4. [Testing](#testing)
     1. [Testing User Stories](#testing-user-stories)
     2. [Validation](#validation)
-    3. [Manual Testing](#manual-testing)
-    4. [Bugs](#bugs)
+    3. [Feature Testing](#feature-testing)
+    4. [Device and Browser Testing](#device-and-browser-testing)
+    5. [Bugs](#bugs)
+    6. [Accessibility](#accessibility)
 5. [Deployment](#deployment)
     1. [Connecting Google Sheet](#connecting-google-sheet)
     2. [Heroku](#heroku)
@@ -56,6 +58,7 @@ Visit the deployed application [here](https://budget-buddy-expense-tracker-f207b
 - As a user, I want to be sure that my expense details are valid.
 - As a user, I want the program to be pleasant and engaging.
 - As a user, I want to receive feedback on my input.
+- As a user, I want to understand the purpose of the program.
 
 ### Design Choices
 
@@ -285,19 +288,21 @@ Provided as part of Code Institute's [Python Essentials template](https://github
 
 - [Heroku](https://dashboard.heroku.com/login) was used to host and deploy the finished project.
 
+- [Lighthouse](https://developer.chrome.com/docs/lighthouse/overview) was used to measure the quality of the page.
+
 - [Lucidchart](https://www.lucidchart.com/pages/) was used to create the flowchart during project planning.
 
 - [Many Tools](https://manytools.org/hacker-tools/ascii-banner/) was used to create a logo for the program.
 
+- [Os](https://docs.python.org/3/library/os.html) was used to clear the screen when switching between menus or views. 
+
 - [PEP8 online check](http://pep8online.com/) was used to validate the Python code.
+
+- [Sys](https://docs.python.org/3/library/sys.html) was used to create the typing effect on certain text outputs.
 
 - [Tabulate](https://pypi.org/project/tabulate/) was used to display the expense data in tables. 
 
 - [Time](https://docs.python.org/3/library/time.html) was used to create delays in the program when switching between menus or performing operations. 
-
-- [Sys](https://docs.python.org/3/library/sys.html) was used to create the typing effect on certain text outputs.
-
-- [Os](https://docs.python.org/3/library/os.html) was used to clear the screen when switching between menus or views. 
 
 [Back to top ⇧](#budget-buddy)
 
@@ -305,15 +310,277 @@ Provided as part of Code Institute's [Python Essentials template](https://github
 
 ### Testing User Stories
 
+As a user, I want to be able to track and categorize my expenses.
+- Budget Buddy allows users to track their expenses.
+- Budget Buddy prompts users to provide several details about an expense to categorize it accordingly.
+- Budget buddy allows users to choose from a predefined list of categories for their expenses to help maintain consistency across entries.
+
+
+As a user, I want to be able to store my expense details in a Google Sheet for further processing.
+- Budget Buddy is set up to store all user inputs in a Google Sheet.
+- Further processing of the data was beyond the scope of this project, but could easily implemented in the future.
+
+
+As a user, I want to be able to view my expenses in a convenient format.
+- Budget Buddy offers three different options for users to view their expenses.
+- Expenses can be viewed by date, from the earliest to the latest date that was entered.
+- Expenses can be viewed by category, providing a breakdown of all expenses according to their category.
+- Expenses can be viewed by month and across categories. This is the most comprehensive view, allowing users to compare each month's total as well as individual categories.
+- Each view also lists the total expenses at the bottom.
+- Users are able to easily switch between views without having to return to the menu.
+
+
+As a user, I want to be sure that my expense details are valid.
+- Budget Buddy provides input validation for each step of the process.
+- Error messages are printed in red to provide visual feedback as well as hints on how to complete the required input.
+- After entering an expense, users have the option to review and confirm the details or re-enter them if a mistake was made.
+
+
+As a user, I want the program to be pleasant and engaging.
+- ASCII art is used to create an aesthetic interface and imrpve the user experience.
+- Menus are kept concise and similar across different menus to improve readability and provide consistency.
+- With the exception of the expense views, especiall when a lot of data is being reviewed, no scrolling is necessary to engage with the program.
+- The screen is cleared when navigating between menus or views to provide a clear distinction and improve readability.
+- When switching screens, a short delay is implemented to allow users to transition between tasks or views.
+- Typing effects are used to create the illusion of a dynamic interaction. 
+- Input prompts use simple language and are kept concise to avoid confusion.
+
+
+As a user, I want to receive feedback on my input.
+- All user inputs are validated.
+- Budget Buddy provides users with feedback for incorrect inputs and prompts again until valid inpits are received.
+- Error messages are printed in red to draw attention.
+- After saving an expense to the linked Google Sheet, a success message is printed in green.
+- Each error message contains information on how to provide valid input.
+- Loading messages provide users with feedback of what is happening, such as what process is running in the background or which menu is being loaded.
+- Menu banners across the top of the terminal provide the user with guidance on which menu they are currently in.
+
+As a user, I want to understand the purpose of the program.
+- Budget Buddy starts with a title screen that displays the name and logo.
+- The purpose of the program is stated in the main menu.
+
+
 ### Validation
 
 #### Code Validation
+The code was validated using [Pep8 Linter](https://pep8ci.herokuapp.com/#). No errors were found in its final testing.
+
+<details>
+<summary> Pep8 Linter Validation </summary>
+<img src = "assets/readme-files/python-validation.png")>
+</details>
+  
+Note: No validation was performed on the *.html* and *.js* files that were provided as part of Code Institute's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template).
 
 #### User Input Validation
 
+User input validation was carried out throughout the project.   
+
+| Feature | Tested? | User Feedback Provided |
+|---|---|---|
+| Main Menu | Yes | Invalid input: Please select one of the options (1-3). |
+| View Expenses Menu | Yes | Invalid input: Please select one of the options (1-4). |
+| View Expenses by Date | Yes | Invalid input: Please enter (m) to return to Main Menu or (c) to switch to Category View or (v) to switch to Month View. |
+| View Expenses by Category | Yes | Invalid input: Please enter (m) to return to Main Menu or (d) to switch to Date View or (v) to switch to Month View. |
+| View Expenses by Month | Yes | Invalid input: Please enter (m) to return to Main Menu or (d) to switch to Date View or (c) to switch to Category nth View. |
+| Add Expenses Date | Yes | Invalid input: Please enter date as DD-MM-YYYY. |
+| Add Expenses Date | Yes | Invalid input: Date must be between 01-01-2024 and today. |
+| Add Expenses Description | Yes | Invalid input: Description cannot be empty. |
+| Add Expenses Category | Yes | Invalid input: Please select one of the options (1-6). |
+| Add Expenses Amount | Yes | Invalid input: Please enter a number. |
+| Confirm Expense Details | Yes | Invalid input: Please enter (c) to confirm or (r) to re-enter details. |
+| Add another Expense | Yes | Invalid input: Please enter (a) to add another expense or (m) to return to Main Menu. |
+
+
 ### Feature Testing
 
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Outcome</th>
+        <th>Example</th>
+        <th>Pass/Fail</th>
+    </tr>
+    <tr>
+        <td>Logo</td>
+        <td>When the program starts, a logo is displayed for a few seconds before the main menu loads.</td>
+        <td><img src=assets/readme-files/name-empty.png alt="ASCII logo"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td rowspan=3>Main Menu</td>
+        <td>Select Add Expenses</td>
+        <td><img src=assets/readme-files/add-expenses.png alt="Switch to Add Expenses"></td>
+        <td>Pass</td>
+    </tr>
+        <td>Select View Expenses</td>
+        <td><img src=assets/readme-files/view_expenses.png alt="Switch to View Expenses"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Select Exit</td>
+        <td><img src=assets/readme-files/exit.png alt="Exiting Program"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td rowspan=2>Expense Date</td>
+        <td>Validate date input</td>
+        <td><img src=assets/readme-files/invalid-date.png alt="Invalid date error message"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Date input outside date range </td>
+        <td><img src=assets/readme-files/date-range.png alt="Date range error message"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Expense Description</td>
+        <td>Validate description input</td>
+        <td><img src=assets/readme-files/invalid-description.png alt="Invalid description error message"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Expense Category</td>
+        <td>Validate category input</td>
+        <td><img src=assets/readme-files/invalid-category.png alt="Invalid category error message"></td>
+        <td>Pass</td>
+    </tr>
+        <tr>
+        <td>Expense Amount</td>
+        <td>Validate amount input</td>
+        <td><img src=assets/readme-files/invalid-amount.png alt="Invalid amount error message"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td rowspan=3>Confirm Input</td>
+        <td>Update Google Sheet</td>
+        <td><img src=assets/readme-files/update-sheet.png alt="Updat sheet message"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Re-enter expense details </td>
+        <td><img src=assets/readme-files/reenter-details.png alt="Clearing expense details message"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Validate user input </td>
+        <td><img src=assets/readme-files/invalid-confirm.png alt="Invalid user input message"></td>
+        <td>Pass</td>
+    </tr>
+     <tr>
+        <td rowspan=3>Add additional Expenses</td>
+        <td>Add additional expenses</td>
+        <td><img src=assets/readme-files/add-additional-expenses.png alt="Add additional expenses"></td>
+        <td>Pass</td>
+    </tr>
+        <td>Return to main menu</td>
+        <td><img src=assets/readme-files/return-main.png alt="Return to main menu"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Validate user input</td>
+        <td><img src=assets/readme-files/invalid-additional.png alt="Invalid input error message"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td rowspan=5>View Expenses Menu</td>
+        <td>View by date</td>
+        <td><img src=assets/readme-files/date-view_loading.png alt="Date view loading"></td>
+        <td>Pass</td>
+    </tr>
+        <td>View by category</td>
+        <td><img src=assets/readme-files/category_view_loading.png alt="Category view loading"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>View by month</td>
+        <td><img src=assets/readme-files/month_view_loading.png alt="Month view loading"></td>
+        <td>Pass</td>
+    </tr>
+        <tr>
+        <td>Return to main menu</td>
+        <td><img src=assets/readme-files/return-main.png alt="Return to main menu"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Validate user input</td>
+        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Date View</td>
+        <td>View by date</td>
+        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
+        <td>Pass</td>
+    </tr>
+        <tr>
+        <td>Category View</td>
+        <td>View by category</td>
+        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
+        <td>Pass</td>
+    </tr>
+        <tr>
+        <td>Month View</td>
+        <td>View by month</td>
+        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
+        <td>Pass</td>
+    </tr>
+        <tr>
+        <td rowspan=3>Switch View</td>
+        <td>Switch between expense views</td>
+        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Return to main menu</td>
+        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
+        <td>Pass</td>
+    <tr>
+        <td>Validate user input</td>
+        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
+        <td>Pass</td>
+    <tr> 
+</table>
+
+### Device and Browser Testing
+
+#### Browser Compatibility
+Browser | Outcome | Pass/Fail
+--- | --- | ---
+Google Chrome | No issues with appearance or functionality. | Pass
+Safari | Issues with appearance or functionality. | Fail
+Mozilla Firefox | No issues with appearance or functionality. | Pass
+Microsoft Edge | No issues with appearance or functionality. | Pass
+
+Note: The program starts on Safari but no user input is recognized. This seems to be a known issue of Code Institute's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template). 
+
+#### Device Compatibility
+Device | Outcome | Pass/Fail
+--- | --- | ---
+MacBook Pro 13" | No issues with appearance or functionality. | Pass
+Acer Predator Helios 300 | No issues with appearance or functionality. | Pass
+
+Note: No further device testing was performed since assuring responsivenes  of  Code Institute's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template) was beyond the scope of this project.
+
 ### Bugs
+
+|Feature | Bug | Fix |
+|---|---|---|
+| Typing Effect | Typing effects displaying incorrectly when combined with Colorama | Updated typingPrint function to combine (color + character) and declared default color (color=Fore.WHITE) |
+
+
+After rigorous testing, there are no known bugs in the code.
+
+
+### Accessibility
+
+[Lighthouse](https://developer.chrome.com/docs/lighthouse/overview) in [Chrome DevTools](https://developer.chrome.com/docs/devtools/) was used to measure the quality of the page, focussing on performance, accessibility, best practices, and SEO scores.
+
+<details>
+<summary>Lighthouse Report</summary>
+<img src = "assets/readme-files/lighthouse-report.png">
+</details>
+<br>
 
 [Back to top ⇧](#budget-buddy)
 

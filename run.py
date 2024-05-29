@@ -271,7 +271,7 @@ def confirm_input():
     print()
     print("         ══════════════════════════════════════════════════════")
     print()
-    typingPrint("Conrifm expense details (c) or re-enter (r)?\n")
+    typingPrint("Confirm expense details (c) or re-enter (r)?\n")
 
     # Loop repeats until valid inuput is received
     while True:
@@ -307,7 +307,7 @@ def confirm_input():
         except ValueError as e:
             print()
             typingPrint(
-                "Please enter (c) to confirm "
+                "Invalid input: Please enter (c) to confirm "
                 "or (r) to re-enter details.\n", Fore.RED)
 
 
@@ -828,7 +828,7 @@ def main_menu():
             print()
             typingPrint(
                 "Invalid input: Please select one "
-                "of the options (1-2).\n", Fore.RED)
+                "of the options (1-3).\n", Fore.RED)
             user_input = input("> ")
 
 
