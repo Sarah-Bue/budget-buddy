@@ -598,7 +598,7 @@ def view_by_month(data):
         })
     
     # Loop through each entry and assign variables to columns
-    for entry in data
+    for entry in data:
         # Date in 1st column, category in 3rd, amount in 4th column
         date_str = entry[0]
         category = entry[2]
