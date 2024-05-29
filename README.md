@@ -32,7 +32,7 @@ Visit the deployed application [here](https://budget-buddy-expense-tracker-f207b
     5. [Bugs](#bugs)
     6. [Accessibility](#accessibility)
 5. [Deployment](#deployment)
-    1. [Connecting Google Sheet](#connecting-google-sheet)
+    1. [Connecting Google Sheets](#connecting-google-sheets)
     2. [Heroku](#heroku)
 6. [Credits](#credit)
     1. [Content](#content)
@@ -586,9 +586,45 @@ After rigorous testing, there are no known bugs in the code.
 
 ## Deployment
 
-### Connecting Google Sheet
+The program was developed using [GitPod](https://www.gitpod.io/), which was then committed and pushed to [GitHub](https://github.com/) using the GitPod terminal.
+The finished project was deployed in [Heroku](https://dashboard.heroku.com/login) using the Code Institute Python Terminal for display purposes. 
+
+### Connecting Google Sheets
+
+- This project required the use of Google Drive API and Google Sheets API, both enabled via [Google Cloud Platform](https://cloud.google.com).
+- A credentials file was generated through the Google Drive API and added to the workspace.
+- To ensure that the sensitive information contained in the credentials would not be pushed to the repository, the credentials file was added to *gitignore*.
+- The client_email address contained within the credentials file was added to the Google Sheet as an editor to enable access.
+- Variables and scope to access the worksheet were defined at the top of the *run.py* file.
+- Using the terminal, GSpread and OAuth packages were installed.
+
 
 ### Heroku
+
+Deployment to Heroku was completed using the following steps:
+
+1. Update your *requirements.txt* file
+    - Run pip3 freeze > requirements.txt' in the terminal to add a list of dependencies to *requirements.txt*.
+    - Commit and push the changes to Github.
+2. Log in to Heroku and from the dashboard, click *Create New App*.
+    - Enter an app name and choose your region.
+    Click *Create App*.
+3. Go to *Settings* and update the *ConfigVars*.
+    - Click *Reveal ConfigVars* and add the following information:
+        - KEY = 'CREDS', VALUE = Copy and paste the entire contents of the creds.json file into this field.
+        - KEY = 'PORT', VALUE = '8000'.
+    - Click *Add* after entering each *ConfigVar*.
+4. Within *Settings*, update the *Buildpacks*.
+    - Click *Add Buildpack* and add the following buildpacks:
+        - Add *Python* and click *Add Buildpack*.
+        - Add *NodeJS* and click *Add Buildpack*.
+        - Make sure the Python buildpack is above the NodeJS buildpack.
+5. Go to *Deploy* and specify deployment details.
+    - Select *GitHub* as the *Deployment Method*.
+        - When prompted to *Connect to GitHub*, find your repository and click *Connect*.
+    - Select either *Automatic Deploys* or *Manual Deploys* and click *Deploy Branch*.
+6. Once deployment has been completed, click *View* to view the deployed project. 
+ 
 
 [Back to top ⇧](#budget-buddy)
 
