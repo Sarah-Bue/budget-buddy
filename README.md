@@ -1,12 +1,14 @@
 # Budget Buddy
 
-![Mock Up Image](/assets/readme-files/mockup.png)
+![Mock Up Image](/assets/readme-files/logo.png)
 
 Budget Buddy is a Python command line interface (CLI) application designed to help users manage their finances. Users can input their expenses and choose from a variety of views to break down their spending habits.
 
 The program automatically syncs all inputs to a Google Sheet to ensure storage of and access to the expense details even outside of Budget Buddy.
 
 Visit the deployed application [here](https://budget-buddy-expense-tracker-f207bb189dc1.herokuapp.com/).
+
+A view-only version of the Google Sheet can be viewed [here](https://docs.google.com/spreadsheets/d/1g339BtFtaXcuQ2p1z9NQBFLzceK3COF4Y4llOqBTajs/edit?pli=1#gid=0).
 
 ## Table of Contents
 1. [User Experience (UX)](#user-experience-ux)
@@ -19,7 +21,7 @@ Visit the deployed application [here](https://budget-buddy-expense-tracker-f207b
     1. [Program Start and Main Menu](#program-start-and-main-menu)
     2. [Add Expenses](#add-expenses)
     3. [View Expenses](#view-expenses)
-    4. [Input Validation](#input-validation)
+    4. [User Input Validation](#user-input-validation)
     5. [Future Features](#future-features)
 3. [Technologies Used](#technologies-used)
     1. [Languages](#languages)
@@ -107,6 +109,8 @@ All user inputs are stored in a [Google Sheet](https://www.google.com/sheets/abo
 <details>
 <summary> Google Sheet </summary>
 <img src = "assets/readme-files/google-sheet.png")>
+
+Note: A view-only version of the full sheet can be viewed [here](https://docs.google.com/spreadsheets/d/1g339BtFtaXcuQ2p1z9NQBFLzceK3COF4Y4llOqBTajs/edit?pli=1#gid=0).
 </details>
 
 ### Flowchart
@@ -139,11 +143,12 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 <summary>Logo</summary>
 <img src = "assets/readme-files/logo.png">
 </details>
+<br>
 
 <details>
 <summary>Main Menu</summary>
 <img src = "assets/readme-files/main-menu.png">
-</details>  
+</details>
 
 ### Add Expenses
 
@@ -157,7 +162,8 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 <details>
 <summary>Add Expense Details</summary>
 <img src = "assets/readme-files/add-expense-details.png">
-</details>  
+</details>
+<br>
 
 <details>
 <summary>Confirm Expense Details</summary>
@@ -184,6 +190,10 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 <details>
 <summary>Date View</summary>
 <img src = "assets/readme-files/date-view.png">
+
+Note: When longer lists are being displayed, users may have to scroll in order to see the whole list or the input field at the bottom.
+
+<img src = "assets/readme-files/date-view-long-input.png">
 </details>  
 
 #### View by Category
@@ -209,7 +219,7 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 <img src = "assets/readme-files/month-view.png">
 </details>  
 
-### Input Validation
+### User Input Validation
 
 - Input validation is performed every time users provide input.
 - Before each input, users are given information on what kind of input is needed.
@@ -218,12 +228,15 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 - This loop will repeat until the program receives valid input.
 - Where single letter inputs are required, both uppercase and lowercase letters will be accepted.
 - Inputs cannot be empty.
-- Dates are limited from 01-01-2024 to today and must be in DD-MM-YYYY format.
+- Date inputs are limited from 01-01-2024 to today and must be in DD-MM-YYYY format.
+- Description inputs are limited to 0-50 characters in length.
 - Amounts have to be entered as numbers.
+- No empty inputs are accepted.
 
 <details>
 <summary>Input Validation</summary>
-<img src = "assets/readme-files/input-validation.png">
+<img src = "assets/readme-files/add-expense-details-input-validation.png">
+<img src = "assets/readme-files/switch-menu-input-validation.png">
 </details>  
 
 ### Future Features
@@ -239,7 +252,7 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 - This would add a display of the remaining budget in each expense view, allowing users to plan their spending accordingly.
 - Color coding could be added to provide feedback on over- or underspending.
 
-### Editing and Deleting Inputs
+#### Editing and Deleting Inputs
 
 - This would give users the option to select one of their inputs and edit or remove it after it has been confirmed and saved to Google Sheets.
 - Another feature might be to allow users to clear all expenses, thus resetting the tracker to zero.
@@ -261,7 +274,7 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 - By adding simple functionality such as charts and tables to the sheet, users would be able to view their expense details in a more appealing and accessible format.
 - Google Sheets even allows for the possibility of interactive financial dashboards which would provide users with an engaging, easy-to-understand overview of their finances, based on their inputs into the expense and input tracker.
 
-### Display Amounts
+#### Display Amounts
 
 - One minor thing that could be added in the future is to display all amounts with two decimals, whether or not they were entered with decimals. 
 - This would create a more consistent look, especially in the *View by Month* option.
@@ -284,7 +297,7 @@ Provided as part of Code Institute's [Python Essentials template](https://github
 
 - [Datetime](https://docs.python.org/3/library/datetime.html) was used to validate date inputs.
 
--[Defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict) was used to create a dictionary for expense categories and their corresponding totals.
+- [Defaultdict](https://docs.python.org/3/library/collections.html#collections.defaultdict) was used to create a dictionary for expense categories and their corresponding totals.
 
 - [Emojicombos](https://emojicombos.com/deco-ascii-art) was used to create decorative menu headers.
 
@@ -383,30 +396,14 @@ The code was validated using [Pep8 Linter](https://pep8ci.herokuapp.com/#). No e
 <summary> Pep8 Linter Validation </summary>
 <img src = "assets/readme-files/python-validation.png")>
 </details>
-  
+<br>
+
 Note: No validation was performed on the *.html* and *.js* files that were provided as part of Code Institute's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template).
-
-#### User Input Validation
-
-User input validation was carried out throughout the project.   
-
-| Feature | Tested? | User Feedback Provided |
-|---|---|---|
-| Main Menu | Yes | Invalid input: Please select one of the options (1-3). |
-| View Expenses Menu | Yes | Invalid input: Please select one of the options (1-4). |
-| View Expenses by Date | Yes | Invalid input: Please enter (m) to return to Main Menu or (c) to switch to Category View or (v) to switch to Month View. |
-| View Expenses by Category | Yes | Invalid input: Please enter (m) to return to Main Menu or (d) to switch to Date View or (v) to switch to Month View. |
-| View Expenses by Month | Yes | Invalid input: Please enter (m) to return to Main Menu or (d) to switch to Date View or (c) to switch to Category nth View. |
-| Add Expenses Date | Yes | Invalid input: Please enter date as DD-MM-YYYY. |
-| Add Expenses Date | Yes | Invalid input: Date must be between 01-01-2024 and today. |
-| Add Expenses Description | Yes | Invalid input: Please enter a description between 0 and 50 characters. |
-| Add Expenses Category | Yes | Invalid input: Please select one of the options (1-6). |
-| Add Expenses Amount | Yes | Invalid input: Please enter a number between 0 and 10000. |
-| Confirm Expense Details | Yes | Invalid input: Please enter (c) to confirm or (r) to re-enter details. |
-| Add another Expense | Yes | Invalid input: Please enter (a) to add another expense or (m) to return to Main Menu. |
 
 
 ### Feature Testing
+
+#### Program Start and Main Menu
 
 <table>
     <tr>
@@ -416,24 +413,108 @@ User input validation was carried out throughout the project.
         <th>Pass/Fail</th>
     </tr>
     <tr>
-        <td>Logo</td>
-        <td>When the program starts, a logo is displayed for a few seconds before the main menu loads.</td>
-        <td><img src=assets/readme-files/name-empty.png alt="ASCII logo"></td>
+        <td>Startup Screen</td>
+        <td>Displays logo and intro text for 4 seconds on startup</td>
+        <td><img src=assets/readme-files/logo.png alt="ASCII logo and intro text"></td>
         <td>Pass</td>
     </tr>
     <tr>
-        <td rowspan=3>Main Menu</td>
-        <td>Select Add Expenses</td>
-        <td><img src=assets/readme-files/add-expenses.png alt="Switch to Add Expenses"></td>
+        <td>Navigation Banners</td>
+        <td>Banners across the top provide guidance on which menu users are in</td>
+        <td><img src=assets/readme-files/menu-banner.png alt="Menu banner"></td>
         <td>Pass</td>
     </tr>
+</table>
+
+#### Add Expenses
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Outcome</th>
+        <th>Example</th>
+        <th>Pass/Fail</th>
+    </tr>
+    <tr>
+        <td>Collecting User Inputs</td>
+        <td>Inputs collected individually</td>
+        <td><img src=assets/readme-files/add-expense-details.png alt="Collecting expense details"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Input Validation</td>
+        <td>Each input is validated separately</td>
+        <td><img src=assets/readme-files/add-expense-details-input-validation.png alt="Menu banner"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Expense Summary</td>
+        <td>Users are shown a summary of their expense and can confirm or re-enter</td>
+        <td><img src=assets/readme-files/confirm-expense-details.png alt="Confirm expense summary"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Save Expenses</td>
+        <td>Expenses are saved to Google Sheet and users can add additional expenses or return to Main Menu</td>
+        <td><img src=assets/readme-files/save-expense-to-sheet.png alt="Expenses saved to google sheet"></td>
+        <td>Pass</td>
+    </tr>
+</table>
+
+#### View Expenses
+
+#### User Input Validation
+
+User input validation was carried out throughout the project.   
+
+| Feature | Tested? | User Feedback Provided |
+|---|---|---|
+| Main Menu | Yes | Invalid input: Please select one of the options (1-3). |
+| View Expenses Menu | Yes | Invalid input: Please select one of the options (1-4). |
+| Switching away from Date View | Yes | Invalid input: Please enter (m) to return to Main Menu or (c) to switch to Category View or (v) to switch to Month View. |
+| Switching away from Category View | Yes | Invalid input: Please enter (m) to return to Main Menu or (d) to switch to Date View or (v) to switch to Month View. |
+| Switching away from Month View | Yes | Invalid input: Please enter (m) to return to Main Menu or (d) to switch to Date View or (c) to switch to Category nth View. |
+| Add Expenses Date | Yes | Invalid input: Please enter date as DD-MM-YYYY. |
+| Add Expenses Date | Yes | Invalid input: Date must be between 01-01-2024 and today. |
+| Add Expenses Description | Yes | Invalid input: Please enter a description between 0 and 50 characters. |
+| Add Expenses Category | Yes | Invalid input: Please select one of the options (1-6). |
+| Add Expenses Amount | Yes | Invalid input: Please enter a number between 0 and 10000. |
+| Confirm Expense Details | Yes | Invalid input: Please enter (c) to confirm or (r) to re-enter details. |
+| Add another Expense | Yes | Invalid input: Please enter (a) to add another expense or (m) to return to Main Menu. |
+ 
+
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Outcome</th>
+        <th>Example</th>
+        <th>Pass/Fail</th>
+    </tr>
+    <tr>
+        <td>Startup Screen</td>
+        <td>Display logo and intro text for 4 seconds on startup</td>
+        <td><img src=assets/readme-files/logo.png alt="ASCII logo and intro text"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td rowspan=4>Main Menu</td>
+        <td>Select Add Expenses</td>
+        <td><img src=assets/readme-files/loading-please-wait.png alt="Loading message from main menu"></td>
+        <td>Pass</td>
+    </tr>/
+    <tr>
         <td>Select View Expenses</td>
-        <td><img src=assets/readme-files/view_expenses.png alt="Switch to View Expenses"></td>
+        <td><img src=assets/readme-files/loading-please-wait.png alt="Loading message from main menu"></td>
         <td>Pass</td>
     </tr>
     <tr>
         <td>Select Exit</td>
-        <td><img src=assets/readme-files/exit.png alt="Exiting Program"></td>
+        <td><img src=assets/readme-files/exiting.png alt="Exiting program message"></td>
+        <td>Pass</td>
+    </tr>
+        <tr>
+        <td>Invalid Input</td>
+        <td><img src=assets/readme-files/main-menu-invalid.png alt="Invalid Input in Main Menu"></td>
         <td>Pass</td>
     </tr>
     <tr>
@@ -465,10 +546,17 @@ User input validation was carried out throughout the project.
         <td><img src=assets/readme-files/invalid-amount.png alt="Invalid amount error message"></td>
         <td>Pass</td>
     </tr>
+    </tr>
+        <tr>
+        <td>Summarizing Expense Details</td>
+        <td>Summarizing expense details message</td>
+        <td><img src=assets/readme-files/summarizing-expenses.png alt="Summarizing expense details message"></td>
+        <td>Pass</td>
+    </tr>
     <tr>
         <td rowspan=3>Confirm Input</td>
         <td>Update Google Sheet</td>
-        <td><img src=assets/readme-files/update-sheet.png alt="Updat sheet message"></td>
+        <td><img src=assets/readme-files/updating-worksheet.png alt="Google sheets updated message"></td>
         <td>Pass</td>
     </tr>
     <tr>
@@ -499,21 +587,21 @@ User input validation was carried out throughout the project.
     <tr>
         <td rowspan=5>View Expenses Menu</td>
         <td>View by date</td>
-        <td><img src=assets/readme-files/date-view_loading.png alt="Date view loading"></td>
+        <td><img src=assets/readme-files/loading-date-view.png alt="Loading date view message"></td>
         <td>Pass</td>
     </tr>
         <td>View by category</td>
-        <td><img src=assets/readme-files/category_view_loading.png alt="Category view loading"></td>
+        <td><img src=assets/readme-files/loading-category-view.png alt="Loading category view message"></td>
         <td>Pass</td>
     </tr>
     <tr>
         <td>View by month</td>
-        <td><img src=assets/readme-files/month_view_loading.png alt="Month view loading"></td>
+        <td><img src=assets/readme-files/loading-month-view.png alt="Loading month view message"></td>
         <td>Pass</td>
     </tr>
         <tr>
         <td>Return to main menu</td>
-        <td><img src=assets/readme-files/return-main.png alt="Return to main menu"></td>
+        <td><img src=assets/readme-files/loading-main-menu.png alt="Loading main menu message"></td>
         <td>Pass</td>
     </tr>
     <tr>

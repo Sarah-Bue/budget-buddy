@@ -821,4 +821,4 @@ def return_to_main():
 
 # Run the main function
 welcome_screen()
-# main_menu()
+main_menu()
