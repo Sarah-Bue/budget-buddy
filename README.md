@@ -463,6 +463,40 @@ Note: No validation was performed on the *.html* and *.js* files that were provi
 
 #### View Expenses
 
+<table>
+    <tr>
+        <th>Feature</th>
+        <th>Outcome</th>
+        <th>Example</th>
+        <th>Pass/Fail</th>
+    </tr>
+    <tr>
+        <td>View Expenses Menu</td>
+        <td>Lets user choose between options or return to Main Menu </td>
+        <td><img src=assets/readme-files/view-expenses-menu.png alt="View expenses menu"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>View by Date</td>
+        <td>Displays expenses by Date</td>
+        <td><img src=assets/readme-files/date-view.png alt="Date view of expenses"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Category View</td>
+        <td>Displays expenses by category</td>
+        <td><img src=assets/readme-files/category-view.png alt="Category view of expenses"></td>
+        <td>Pass</td>
+    </tr>
+    <tr>
+        <td>Month View</td>
+        <td>Displays expenses by month</td>
+        <td><img src=assets/readme-files/month-view.png alt="Month view of expenses"></td>
+        <td>Pass</td>
+    </tr>
+</table>
+
+
 #### User Input Validation
 
 User input validation was carried out throughout the project.   
@@ -482,167 +516,6 @@ User input validation was carried out throughout the project.
 | Confirm Expense Details | Yes | Invalid input: Please enter (c) to confirm or (r) to re-enter details. |
 | Add another Expense | Yes | Invalid input: Please enter (a) to add another expense or (m) to return to Main Menu. |
  
-
-<table>
-    <tr>
-        <th>Feature</th>
-        <th>Outcome</th>
-        <th>Example</th>
-        <th>Pass/Fail</th>
-    </tr>
-    <tr>
-        <td>Startup Screen</td>
-        <td>Display logo and intro text for 4 seconds on startup</td>
-        <td><img src=assets/readme-files/logo.png alt="ASCII logo and intro text"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td rowspan=4>Main Menu</td>
-        <td>Select Add Expenses</td>
-        <td><img src=assets/readme-files/loading-please-wait.png alt="Loading message from main menu"></td>
-        <td>Pass</td>
-    </tr>/
-    <tr>
-        <td>Select View Expenses</td>
-        <td><img src=assets/readme-files/loading-please-wait.png alt="Loading message from main menu"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>Select Exit</td>
-        <td><img src=assets/readme-files/exiting.png alt="Exiting program message"></td>
-        <td>Pass</td>
-    </tr>
-        <tr>
-        <td>Invalid Input</td>
-        <td><img src=assets/readme-files/main-menu-invalid.png alt="Invalid Input in Main Menu"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td rowspan=2>Expense Date</td>
-        <td>Validate date input</td>
-        <td><img src=assets/readme-files/invalid-date.png alt="Invalid date error message"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>Date input outside date range </td>
-        <td><img src=assets/readme-files/date-range.png alt="Date range error message"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>Expense Description</td>
-        <td>Validate description input</td>
-        <td><img src=assets/readme-files/invalid-description.png alt="Invalid description error message"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>Expense Category</td>
-        <td>Validate category input</td>
-        <td><img src=assets/readme-files/invalid-category.png alt="Invalid category error message"></td>
-        <td>Pass</td>
-    </tr>
-        <tr>
-        <td>Expense Amount</td>
-        <td>Validate amount input</td>
-        <td><img src=assets/readme-files/invalid-amount.png alt="Invalid amount error message"></td>
-        <td>Pass</td>
-    </tr>
-    </tr>
-        <tr>
-        <td>Summarizing Expense Details</td>
-        <td>Summarizing expense details message</td>
-        <td><img src=assets/readme-files/summarizing-expenses.png alt="Summarizing expense details message"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td rowspan=3>Confirm Input</td>
-        <td>Update Google Sheet</td>
-        <td><img src=assets/readme-files/updating-worksheet.png alt="Google sheets updated message"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>Re-enter expense details </td>
-        <td><img src=assets/readme-files/reenter-details.png alt="Clearing expense details message"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>Validate user input </td>
-        <td><img src=assets/readme-files/invalid-confirm.png alt="Invalid user input message"></td>
-        <td>Pass</td>
-    </tr>
-     <tr>
-        <td rowspan=3>Add additional Expenses</td>
-        <td>Add additional expenses</td>
-        <td><img src=assets/readme-files/add-additional-expenses.png alt="Add additional expenses"></td>
-        <td>Pass</td>
-    </tr>
-        <td>Return to main menu</td>
-        <td><img src=assets/readme-files/return-main.png alt="Return to main menu"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>Validate user input</td>
-        <td><img src=assets/readme-files/invalid-additional.png alt="Invalid input error message"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td rowspan=5>View Expenses Menu</td>
-        <td>View by date</td>
-        <td><img src=assets/readme-files/loading-date-view.png alt="Loading date view message"></td>
-        <td>Pass</td>
-    </tr>
-        <td>View by category</td>
-        <td><img src=assets/readme-files/loading-category-view.png alt="Loading category view message"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>View by month</td>
-        <td><img src=assets/readme-files/loading-month-view.png alt="Loading month view message"></td>
-        <td>Pass</td>
-    </tr>
-        <tr>
-        <td>Return to main menu</td>
-        <td><img src=assets/readme-files/loading-main-menu.png alt="Loading main menu message"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>Validate user input</td>
-        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>Date View</td>
-        <td>View by date</td>
-        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
-        <td>Pass</td>
-    </tr>
-        <tr>
-        <td>Category View</td>
-        <td>View by category</td>
-        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
-        <td>Pass</td>
-    </tr>
-        <tr>
-        <td>Month View</td>
-        <td>View by month</td>
-        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
-        <td>Pass</td>
-    </tr>
-        <tr>
-        <td rowspan=3>Switch View</td>
-        <td>Switch between expense views</td>
-        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
-        <td>Pass</td>
-    </tr>
-    <tr>
-        <td>Return to main menu</td>
-        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
-        <td>Pass</td>
-    <tr>
-        <td>Validate user input</td>
-        <td><img src=assets/readme-files/invalid-view.png alt="Invalid input error message"></td>
-        <td>Pass</td>
-    <tr> 
-</table>
 
 ### Device and Browser Testing
 
@@ -670,8 +543,9 @@ Note: No further device testing was performed since assuring responsiveness  of 
 |---|---|---|
 | Typing Effect | Typing effects displaying incorrectly when combined with Colorama | Updated typingPrint function to combine (color + character) and declared default color (color=Fore.WHITE). As a result, you can see a slight difference in the shade of white used by *typingPrint* outputs and regular *print* outputs. |
 | ASCII display | After updating the logo, the terminal would display a *SyntaxWarning: invalid escape sequence '\|'*. This did not cause any issues with running the program but it did show up on the Python Validator | Changed the string to a raw string by adding a *r* prefix. |
+| Typing Effects on User Inputs | When entering any input, even a valid one, while the text is still being typed out, an *invalid input* will appear and prompt for a new input.| Not fixed |
+| Clear Screen Function | When the screen is cleared, it is still possible to scroll up past the top of the "new screen" and see parts of previous screens. Unsure if this is due to the clearScreen function or the terminal / template. | Not fixed |
 
-After rigorous testing, there are no known bugs in the code.
 
 
 ### Accessibility
