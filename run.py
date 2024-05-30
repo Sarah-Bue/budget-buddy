@@ -43,6 +43,7 @@ def clearScreen():
     """
     os.system("clear")
 
+
 # Code adapted from: https://www.101computing.net/python-typing-text-effect/
 def typingPrint(text, color=Fore.WHITE):
     """
@@ -70,21 +71,22 @@ def welcome_screen():
     # Logo
     print(Fore.CYAN + r'''
             ══════════════════════════════════════════════════════
-     _               _                     _               _     _       
-    | |             | |            _      | |             | |   | |      
-    | | _  _   _  _ | | ____  ____| |_    | | _  _   _  _ | | _ | |_   _ 
+     _               _                     _               _     _
+    | |             | |            _      | |             | |   | |
+    | | _  _   _  _ | | ____  ____| |_    | | _  _   _  _ | | _ | |_   _
     | || \| | | |/ || |/ _  |/ _  )  _)   | || \| | | |/ || |/ || | | | |
     | |_) ) |_| ( (_| ( ( | ( (/ /| |__   | |_) ) |_| ( (_| ( (_| | |_| |
     |____/ \____|\____|\_|| |\____)\___)  |____/ \____|\____|\____|\__  |
-                      (_____|                                     (____/ 
-                        
+                      (_____|                                     (____/
+
             ══════════════════════════════════════════════════════
     ''')
 
     # Intro to explain program purpose
     print("Welcome to Budget Buddy, the friend you didn't know you needed.\n")
     print("The first step towards financial success is self-awareness.")
-    print("Budget Buddy allows you to easily add and review your expenses on the go.\n")
+    print("Budget Buddy allows you to easily add "
+          "and review your expenses on the go.\n")
     typingPrint("                       Loading, please wait...", Fore.YELLOW)
     time.sleep(4)
     clearScreen()
@@ -118,7 +120,8 @@ def validate_expense_amount():
 
         except ValueError as e:
             print()
-            typingPrint("Invalid input: Please enter a number between 0 and 10000.\n", Fore.RED)
+            typingPrint("Invalid input: Please enter a number "
+                        "between 0 and 10000.\n", Fore.RED)
 
 
 def validate_expense_category():
@@ -137,7 +140,7 @@ def validate_expense_category():
 
     # Loop repeats until valid inuput is received
     while True:
-        # Loop through each item in list and print it with corresponding index number
+        # Loop through each list item & print with corresponding index number
         # +1 to display index as 1-6 rather than 0-5
         for i, expense_category in enumerate(expense_categories):
             print(f"    {i+1}. {expense_category}")
@@ -153,7 +156,7 @@ def validate_expense_category():
                 global category_input
                 category_input = expense_categories[user_input]
                 break
-            
+
             # Invalid input raises error
             else:
                 raise ValueError("")
@@ -192,7 +195,8 @@ def validate_expense_description():
         except ValueError as e:
             print()
             typingPrint("Invalid input: "
-                        "Please enter a description between 0 and 50 characters.\n", Fore.RED)
+                        "Please enter a description between "
+                        "0 and 50 characters.\n", Fore.RED)
 
 
 def validate_expense_date():
@@ -203,7 +207,7 @@ def validate_expense_date():
     """
     typingPrint("Please enter date as DD-MM-YYYY.\n")
 
-     # Loop repeats until valid inuput is received
+    # Loop repeats until valid inuput is received
     while True:
         # Try... except for exception / error handling
         try:
@@ -241,7 +245,8 @@ def confirm_input():
     Allows user to confirm or update expense details.
     While loop will repeatedly request data until it is valid.
     """
-    typingPrint("                       Summarizing expenses...\n", Fore.YELLOW)
+    typingPrint("                       Summarizing expenses...\n",
+                Fore.YELLOW)
     pause_and_clear()
 
     print()
@@ -268,7 +273,8 @@ def confirm_input():
 
             # Re-enter details
             if user_input.lower() == "r":
-                typingPrint("                       Clearing expense data...\n", Fore.YELLOW)
+                typingPrint("                       Clearing expense data..."
+                            "\n", Fore.YELLOW)
                 pause_and_clear()
                 add_expenses()
 
@@ -330,12 +336,13 @@ def update_worksheet(expense):
     # Adds added expense to google sheet as a new row
     expenses_worksheet = SHEET.worksheet("expenses")
     expenses_worksheet.append_row(expense)
-    typingPrint("                  Worksheet updated successfully.\n", Fore.GREEN)
+    typingPrint("                  Worksheet updated successfully."
+                "\n", Fore.GREEN)
     print()
     typingPrint("Add another expense (a) or return to Main Menu (m)?\n")
     print()
 
-     # Loop repeats until valid inuput is received
+    # Loop repeats until valid inuput is received
     while True:
         # Try... except for exception / error handling
         try:
@@ -351,7 +358,7 @@ def update_worksheet(expense):
                 print()
                 return_to_main()
                 break
-            
+
             # Invalid input raises error
             else:
                 raise ValueError("")
@@ -432,7 +439,6 @@ def view_by_category(data):
     typingPrint("To switch to Date View, please enter (d).\n")
     typingPrint("To switch to Month View, please enter (v).\n")
 
-
     # Loop repeats until valid inuput is received
     while True:
         # Try... except for exception / error handling
@@ -449,7 +455,8 @@ def view_by_category(data):
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "d":
                 print()
-                typingPrint("                       Loading Date View...\n", Fore.YELLOW)
+                typingPrint("                       Loading Date View..."
+                            "\n", Fore.YELLOW)
                 pause_and_clear()
                 view_by_date()
                 break
@@ -458,11 +465,12 @@ def view_by_category(data):
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "v":
                 print()
-                typingPrint("                       Loading Month View...\n", Fore.YELLOW)
+                typingPrint("                       Loading Month View..."
+                            "\n", Fore.YELLOW)
                 pause_and_clear()
                 view_by_month(data)
                 break
-            
+
             # Invalid input raises error
             else:
                 raise ValueError("")
@@ -484,7 +492,7 @@ def view_by_date():
     # Call calculate_total_expenses function
     total_expenses = calculate_total_expenses(data)
 
-     # Table view of expenses
+    # Table view of expenses
     print()
     print(Fore.CYAN + "                  ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
     print("Viewing Expenses by Date")
@@ -515,7 +523,6 @@ def view_by_date():
     typingPrint("To switch to Category View, please enter (c).\n")
     typingPrint("To switch to Month View, please enter (v).\n")
 
-
     # Loop repeats until valid inuput is received
     while True:
         # Try... except for exception / error handling
@@ -528,12 +535,13 @@ def view_by_date():
                 print()
                 return_to_main()
                 break
-            
+
             # Switch to category view
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "c":
                 print()
-                typingPrint("                       Loading Category View...\n", Fore.YELLOW)
+                typingPrint("                       Loading Category View..."
+                            "\n", Fore.YELLOW)
                 pause_and_clear()
                 view_by_category(expenses.get_all_values())
                 break
@@ -542,11 +550,12 @@ def view_by_date():
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "v":
                 print()
-                typingPrint("                       Loading Month View...\n", Fore.YELLOW)
+                typingPrint("                       Loading Month View..."
+                            "\n", Fore.YELLOW)
                 pause_and_clear()
                 view_by_month(data)
                 break
-            
+
             # Invalid input raises error
             else:
                 raise ValueError("")
@@ -581,7 +590,7 @@ def view_by_month(data):
             "Misc": 0,
             "Total": 0
         })
-    
+
     # Loop through each entry and assign variables to columns
     for entry in data:
         # Date in 1st column, category in 3rd, amount in 4th column
@@ -600,7 +609,7 @@ def view_by_month(data):
         monthly_expenses[month_year][category] += amount
         monthly_expenses[month_year]["Total"] += amount
 
-    # Declare headers and empty table for tabulate    
+    # Declare headers and empty table for tabulate
     headers = [
         "Month", "House", "Food", "Transp", "Entert", "Health", "Misc", "Total"
     ]
@@ -647,7 +656,8 @@ def view_by_month(data):
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "d":
                 print()
-                typingPrint("                       Loading Date View ...\n", Fore.YELLOW)
+                typingPrint("                       Loading Date View ..."
+                            "\n", Fore.YELLOW)
                 pause_and_clear()
                 view_by_date()
                 break
@@ -656,7 +666,8 @@ def view_by_month(data):
             # Uppercase and lowercase entry accepted
             elif user_input.lower() == "c":
                 print()
-                typingPrint("                       Loading Category View ...\n", Fore.YELLOW)
+                typingPrint("                       Loading Category View ..."
+                            "\n", Fore.YELLOW)
                 pause_and_clear()
                 view_by_category(expenses.get_all_values())
                 break
@@ -667,7 +678,9 @@ def view_by_month(data):
         except ValueError:
             print()
             typingPrint(
-                "Invalid input: Please enter (m) to return to Main Menu or (d) to switch to Date View or (c) to switch to Category View.\n",
+                "Invalid input: Please enter (m) to return to Main Menu "
+                "or (d) to switch to Date View "
+                "or (c) to switch to Category View.\n",
                 Fore.RED)
 
 
@@ -679,7 +692,8 @@ def view_expenses():
     # Loop repeats until valid inuput is received
     while True:
         print()
-        print(Fore.CYAN + "                  ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇\n")
+        print(Fore.CYAN + "                  ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇"
+              "\n")
         typingPrint("Please select one of the following options:\n")
         print()
         print("    1. View by Date")
@@ -695,7 +709,8 @@ def view_expenses():
             # View by date
             if user_input == "1":
                 print()
-                typingPrint("                       Loading Date View...\n", Fore.YELLOW)
+                typingPrint("                       Loading Date View...\n",
+                            Fore.YELLOW)
                 pause_and_clear()
                 view_by_date()
                 break
@@ -703,7 +718,8 @@ def view_expenses():
             # View by category
             elif user_input == "2":
                 print()
-                typingPrint("                       Loading Category View...\n", Fore.YELLOW)
+                typingPrint("                       Loading Category View..."
+                            "\n", Fore.YELLOW)
                 pause_and_clear()
                 view_by_category(expenses.get_all_values())
                 break
@@ -711,7 +727,8 @@ def view_expenses():
             # View by month
             elif user_input == "3":
                 print()
-                typingPrint("                       Loading Month View...\n", Fore.YELLOW)
+                typingPrint("                       Loading Month View..."
+                            "\n", Fore.YELLOW)
                 pause_and_clear()
                 view_by_month(data)
                 break
@@ -759,15 +776,17 @@ def main_menu():
             # Add Expenses
             if user_input == "1":
                 print()
-                typingPrint("                       Loading, please wait...\n", Fore.YELLOW)
+                typingPrint("                       Loading, please wait..."
+                            "\n", Fore.YELLOW)
                 pause_and_clear()
                 add_expenses()
                 break
-            
+
             # View Expenses
             elif user_input == "2":
                 print()
-                typingPrint("                       Loading, please wait...\n", Fore.YELLOW)
+                typingPrint("                       Loading, please wait..."
+                            "\n", Fore.YELLOW)
                 pause_and_clear()
                 view_expenses()
                 break
