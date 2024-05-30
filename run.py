@@ -137,14 +137,13 @@ def validate_expense_category():
     ]
 
     typingPrint("Please select a category (1-6).\n")
+        # Loop through each list item & print with corresponding index number
+        # +1 to display index as 1-6 rather than 0-5
+    for i, expense_category in enumerate(expense_categories):
+        print(f"    {i+1}. {expense_category}")
 
     # Loop repeats until valid input is received
     while True:
-        # Loop through each list item & print with corresponding index number
-        # +1 to display index as 1-6 rather than 0-5
-        for i, expense_category in enumerate(expense_categories):
-            print(f"    {i+1}. {expense_category}")
-
         # Try... except for exception / error handling
         try:
             # -1 to get "true" index number rather than displayed index number
@@ -167,6 +166,8 @@ def validate_expense_category():
                 "Invalid input: "
                 "Please enter one of the options (1-6).\n", Fore.RED)
 
+
+validate_expense_category()
 
 def validate_expense_description():
     """
@@ -817,4 +818,3 @@ def return_to_main():
 # Run the main function
 #welcome_screen()
 #main_menu()
-validate_expense_date()
