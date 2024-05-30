@@ -68,7 +68,7 @@ def welcome_screen():
     Displays logo and intro text.
     """
     # Logo
-    print(Fore.CYAN + '''
+    print(Fore.CYAN + r'''
             ══════════════════════════════════════════════════════
      _               _                     _               _     _       
     | |             | |            _      | |             | |   | |      
@@ -86,7 +86,7 @@ def welcome_screen():
     print("The first step towards financial success is self-awareness.")
     print("Budget Buddy allows you to easily add and review your expenses on the go.\n")
     typingPrint("                       Loading, please wait...", Fore.YELLOW)
-    time.sleep(3)
+    time.sleep(4)
     clearScreen()
 
 
@@ -802,4 +802,4 @@ def return_to_main():
 
 # Run the main function
 welcome_screen()
-main_menu()
+# main_menu()

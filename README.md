@@ -64,19 +64,19 @@ Visit the deployed application [here](https://budget-buddy-expense-tracker-f207b
 
 #### Color Scheme
 
-Since this program is purely focussed on back-end programming, no additional styling or formatting was applied to the page that contains the terminal.
+Since this program is purely focused on back-end programming, no additional styling or formatting was applied to the page that contains the terminal.
 
 [Colorama](https://pypi.org/project/colorama/) was used to apply color to the terminal text to enhance the user experience.
 
 The following colors were used:
 
-- Error messages display in red.
+- Error messages are displayed in red.
 
 - A successful feedback message about updating the Google Sheet displays in green.
 
-- Menu headers and the program logo display in cyan.
+- Menu headers and the program logo are displayed in cyan.
 
-- Loading messages display in yellow.
+- Loading messages are displayed in yellow.
 
 
 All colors are displayed in the *normal* style on a *normal* background.
@@ -127,7 +127,7 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 
 - A loading screen message provides users with feedback when switching between menus or accessing the Google Sheet.
 - A typing effect was added to input requests, error messages, and menu overviews (but not the individual menu items) to simulate human interaction and enhance engagement and readability.
-- When switching between menus or between expense views, the screen is cleared to provice users with a cleaner display and improve readability and focus.
+- When switching between menus or between expense views, the screen is cleared to provide users with a cleaner display and improve readability and focus.
 - A menu header at the top of the terminal provides the user with guidance on which menu they are currently in.
 
 ### Program Start and Main Menu
@@ -151,8 +151,8 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 - Each detail is collected using a new prompt and validated before users can proceed to the next detail.
 -  Error messages inform users of incorrect inputs.
 - After all details have been completed, users are shown a summary of their expense details. 
-- Users can chose to confirm their inputs, saving them to the Google Sheet, or to re-enter them if they need to make any changes.
-- After an expense has been added, users can choose to add another expense, which will re-start the process from the first step, or to return to the main menu.
+- Users can choose to confirm their inputs and save them to the Google Sheet, or re-enter them if they need to make any changes.
+- After an expense has been added, users can choose to add another expense, which will restart the process from the first step, or to return to the main menu.
 
 <details>
 <summary>Add Expense Details</summary>
@@ -202,7 +202,7 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 - The months are marked in the left-most vertical column and are displayed in chronological order.
 - The categories are marked along the header row and are displayed in the same order as they were in the *Add Expenses* menu to maintain coherence.
 - A total row was added as the right-most vertical row to show totals per category per month.
-- Abbrviated versions of the category names were used in the header row to allow for for easier reading and to fit within the confines of a compact table layout
+- Abbreviated versions of the category names were used in the header row to allow for easier reading and to fit within the confines of a compact table layout
 
 <details>
 <summary>Month View</summary>
@@ -216,7 +216,7 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 - In case of invalid input, an error message is printed in red, and users are reminded of what input types are accepted.
 - After that, users will be able to provide input again.
 - This loop will repeat until the program receives valid input.
-- Where single letter inputs are required, both uppercase and lowecase letters will be accepted.
+- Where single letter inputs are required, both uppercase and lowercase letters will be accepted.
 - Inputs cannot be empty.
 - Dates are limited from 01-01-2024 to today and must be in DD-MM-YYYY format.
 - Amounts have to be entered as numbers.
@@ -247,8 +247,8 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 #### Personalization
 
 - In a new menu, users will be asked to define their own income and expense categories, rather than pick from a predefined list.
-- Users will be able to set monthly and / or category budgets.
-- An intro screen might be added to ask users to input their name, which could then be used to address them throughout the program.
+- Users will be able to set monthly and/or category budgets.
+- An intro screen might be added to ask users to input their names, which could then be used to address them throughout the program.
 
 #### GUI
 
@@ -257,9 +257,9 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 
 #### Google Sheets Functionality
 
-- Currently, Google Sheets is only used to store the expense details.
+- Currently, Google Sheets is only used to store expense details.
 - By adding simple functionality such as charts and tables to the sheet, users would be able to view their expense details in a more appealing and accessible format.
-- Google Sheets even allows for the possibility of interactive financial dashboards which would provide users with an engaging, easy to understand overview of their finances, based on their inputs into the expense and input tracker.
+- Google Sheets even allows for the possibility of interactive financial dashboards which would provide users with an engaging, easy-to-understand overview of their finances, based on their inputs into the expense and input tracker.
 
 ### Display Amounts
 
@@ -327,7 +327,7 @@ Provided as part of Code Institute's [Python Essentials template](https://github
 As a user, I want to be able to track and categorize my expenses.
 - Budget Buddy allows users to track their expenses.
 - Budget Buddy prompts users to provide several details about an expense to categorize it accordingly.
-- Budget buddy allows users to choose from a predefined list of categories for their expenses to help maintain consistency across entries.
+- Budget Buddy allows users to choose from a predefined list of categories for their expenses to help maintain consistency across entries.
 
 
 As a user, I want to be able to store my expense details in a Google Sheet for further processing.
@@ -341,7 +341,7 @@ As a user, I want to be able to view my expenses in a convenient format.
 - Expenses can be viewed by category, providing a breakdown of all expenses according to their category.
 - Expenses can be viewed by month and across categories. This is the most comprehensive view, allowing users to compare each month's total as well as individual categories.
 - Each view also lists the total expenses at the bottom.
-- Users are able to easily switch between views without having to return to the menu.
+- Users can easily switch between views without having to return to the menu.
 
 
 As a user, I want to be sure that my expense details are valid.
@@ -351,9 +351,9 @@ As a user, I want to be sure that my expense details are valid.
 
 
 As a user, I want the program to be pleasant and engaging.
-- ASCII art is used to create an aesthetic interface and imrpve the user experience.
+- ASCII art is used to create an aesthetic interface and improve the user experience.
 - Menus are kept concise and similar across different menus to improve readability and provide consistency.
-- With the exception of the expense views, especiall when a lot of data is being reviewed, no scrolling is necessary to engage with the program.
+- With the possible exception of the expense views, especially if they contain a lot of expenses, no scrolling is required on any of the screens.
 - The screen is cleared when navigating between menus or views to provide a clear distinction and improve readability.
 - When switching screens, a short delay is implemented to allow users to transition between tasks or views.
 - Typing effects are used to create the illusion of a dynamic interaction. 
@@ -362,11 +362,11 @@ As a user, I want the program to be pleasant and engaging.
 
 As a user, I want to receive feedback on my input.
 - All user inputs are validated.
-- Budget Buddy provides users with feedback for incorrect inputs and prompts again until valid inpits are received.
+- Budget Buddy provides users with feedback for incorrect inputs and prompts again until valid inputs are received.
 - Error messages are printed in red to draw attention.
 - After saving an expense to the linked Google Sheet, a success message is printed in green.
 - Each error message contains information on how to provide valid input.
-- Loading messages provide users with feedback of what is happening, such as what process is running in the background or which menu is being loaded.
+- Loading messages provide users with feedback about what is happening, such as what process is running in the background or which menu is being loaded.
 - Menu banners across the top of the terminal provide the user with guidance on which menu they are currently in.
 
 As a user, I want to understand the purpose of the program.
@@ -399,9 +399,9 @@ User input validation was carried out throughout the project.
 | View Expenses by Month | Yes | Invalid input: Please enter (m) to return to Main Menu or (d) to switch to Date View or (c) to switch to Category nth View. |
 | Add Expenses Date | Yes | Invalid input: Please enter date as DD-MM-YYYY. |
 | Add Expenses Date | Yes | Invalid input: Date must be between 01-01-2024 and today. |
-| Add Expenses Description | Yes | Invalid input: Description cannot be empty. |
+| Add Expenses Description | Yes | Invalid input: Please enter a description between 0 and 50 characters. |
 | Add Expenses Category | Yes | Invalid input: Please select one of the options (1-6). |
-| Add Expenses Amount | Yes | Invalid input: Please enter a number. |
+| Add Expenses Amount | Yes | Invalid input: Please enter a number between 0 and 10000. |
 | Confirm Expense Details | Yes | Invalid input: Please enter (c) to confirm or (r) to re-enter details. |
 | Add another Expense | Yes | Invalid input: Please enter (a) to add another expense or (m) to return to Main Menu. |
 
@@ -574,14 +574,14 @@ Device | Outcome | Pass/Fail
 MacBook Pro 13" | No issues with appearance or functionality. | Pass
 Acer Predator Helios 300 | No issues with appearance or functionality. | Pass
 
-Note: No further device testing was performed since assuring responsivenes  of  Code Institute's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template) was beyond the scope of this project.
+Note: No further device testing was performed since assuring responsiveness  of the Code Institute [Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template) was beyond the scope of this project.
 
 ### Bugs
 
 |Feature | Bug | Fix |
 |---|---|---|
 | Typing Effect | Typing effects displaying incorrectly when combined with Colorama | Updated typingPrint function to combine (color + character) and declared default color (color=Fore.WHITE). As a result, you can see a slight difference in the shade of white used by *typingPrint* outputs and regular *print* outputs. |
-
+| ASCII display | After updating the logo, the terminal would display a *SyntaxWarning: invalid escape sequence '\|'*. This did not cause any issues with running the program but it did show up on the Python Validator | Changed the string to a raw string by adding a *r* prefix. |
 
 After rigorous testing, there are no known bugs in the code.
 
@@ -655,17 +655,20 @@ All content was written by the developer.
 
 ### Code
 
-- The clearScreen and typingPrint funtions were adapted from [101 Computing](https://www.101computing.net/python-typing-text-effect/).
+- The clearScreen and typingPrint functions were adapted from [101 Computing](https://www.101computing.net/python-typing-text-effect/).
 
 - The tutorial for Colorama was found on [Linux Hint](https://linuxhint.com/colorama-python/).
 
 - [Real Python](https://realpython.com/sort-python-dictionary/) was consulted for the creation and sorting of Dictionaries.
 
-- [Python Documentation](https://docs.python.org/) was consulted on multiple occations, including for specifics about Datetime, Sorting, and Data Structures.
+- [Python Documentation](https://docs.python.org/) was consulted on multiple occasions, including for specifics about Datetime, Sorting, and Data Structures.
 
 - [W3schools](https://www.w3schools.com/) and [Stack Overflow](https://stackoverflow.com/) were consulted regularly.
 
 - The steps to set up and connect a Google Sheet were provided by [Code Institute's](https://codeinstitute.net/ie/) *Love Sandwiches* project.
+
+- A blog article by [Adam Johnson](https://adamj.eu/tech/2022/11/04/why-does-python-deprecationwarning-invalid-escape-sequence/) was consulted on how to fix the *SyntaxWarning: invalid escape sequence '\|'*.
+
 
 [Back to top ⇧](#budget-buddy)
 
