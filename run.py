@@ -137,8 +137,8 @@ def validate_expense_category():
     ]
 
     typingPrint("Please select a category (1-6).\n")
-        # Loop through each list item & print with corresponding index number
-        # +1 to display index as 1-6 rather than 0-5
+    # Loop through each list item & print with corresponding index number
+    # +1 to display index as 1-6 rather than 0-5
     for i, expense_category in enumerate(expense_categories):
         print(f"    {i+1}. {expense_category}")
 
@@ -166,8 +166,6 @@ def validate_expense_category():
                 "Invalid input: "
                 "Please enter one of the options (1-6).\n", Fore.RED)
 
-
-validate_expense_category()
 
 def validate_expense_description():
     """
@@ -233,7 +231,9 @@ def validate_expense_date():
 
         except ValueError:
             print()
-            typingPrint("Invalid input: Please enter a date between 01-01-2024 and today as DD-MM-YYYY.\n", Fore.RED)
+            typingPrint("Invalid input: "
+                        "Please enter a date between 01-01-2024 "
+                        "and today as DD-MM-YYYY.\n", Fore.RED)
 
 
 def confirm_input():
@@ -260,6 +260,7 @@ def confirm_input():
     print("         ══════════════════════════════════════════════════════")
     print()
     typingPrint("Conrifm expense details (c) or re-enter (r)?\n")
+    typingPrint("To return to Main Menu please enter (m).\n")
 
     # Loop repeats until valid input is received
     while True:
@@ -282,11 +283,14 @@ def confirm_input():
                     category_input,
                     amount_input
                 ]
-
                 print()
                 update_worksheet(entered_expense)
                 print()
                 break
+
+                # Return to Main Menu
+            elif user_input.lower() == "m":
+                return_to_main()
 
             # Invalid input raises error
             else:
@@ -296,7 +300,8 @@ def confirm_input():
             print()
             typingPrint(
                 "Invalid input: Please enter (c) to confirm "
-                "or (r) to re-enter details.\n", Fore.RED)
+                "or (r) to re-enter details "
+                "or (m) to return to Main Menu.\n", Fore.RED)
 
 
 def add_expenses():
@@ -685,19 +690,19 @@ def view_expenses():
     Runs the expense view menu.
     Allows the user to select how they want to view their expenses.
     """
+    print()
+    print(Fore.CYAN + "                  ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇"
+          "\n")
+    typingPrint("Please select one of the following options:\n")
+    print()
+    print("    1. View by Date")
+    print("    2. View by Category")
+    print("    3. View by Month")
+    print("    4. Return to Main Menu")
+    print()
+
     # Loop repeats until valid input is received
     while True:
-        print()
-        print(Fore.CYAN + "                  ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇"
-              "\n")
-        typingPrint("Please select one of the following options:\n")
-        print()
-        print("    1. View by Date")
-        print("    2. View by Category")
-        print("    3. View by Month")
-        print("    4. Return to Main Menu")
-        print()
-
         # Try... except for exception / error handling
         try:
             user_input = input("> ")
@@ -816,5 +821,5 @@ def return_to_main():
 
 
 # Run the main function
-#welcome_screen()
-#main_menu()
+welcome_screen()
+main_menu()

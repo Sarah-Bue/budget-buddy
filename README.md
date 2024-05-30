@@ -158,6 +158,7 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 -  Error messages inform users of incorrect inputs.
 - After all details have been completed, users are shown a summary of their expense details. 
 - Users can choose to confirm their inputs and save them to the Google Sheet, or re-enter them if they need to make any changes.
+- Alternatively, users can choose to return to the main menu without making any changes to the Google Sheet.
 - After an expense has been added, users can choose to add another expense, which will restart the process from the first step, or to return to the main menu.
 
 <details>
@@ -519,7 +520,7 @@ User input validation was carried out throughout the project.
 | Add Expenses Description | Yes | Invalid input: Please enter a description between 0 and 50 characters. |
 | Add Expenses Category | Yes | Invalid input: Please select one of the options (1-6). |
 | Add Expenses Amount | Yes | Invalid input: Please enter a number between 0 and 10000. |
-| Confirm Expense Details | Yes | Invalid input: Please enter (c) to confirm or (r) to re-enter details. |
+| Confirm Expense Details | Yes | Invalid input: Please enter (c) to confirm or (r) to re-enter details or (m) to return to Main Menu. |
 | Add another Expense | Yes | Invalid input: Please enter (a) to add another expense or (m) to return to Main Menu. |
  
 
