@@ -101,7 +101,7 @@ def validate_expense_amount():
     """
     typingPrint("Please enter an amount:\n")
 
-    # Loop repeats until valid inuput is received
+    # Loop repeats until valid input is received
     while True:
         # Try... except for exception / error handling
         try:
@@ -138,7 +138,7 @@ def validate_expense_category():
 
     typingPrint("Please select a category (1-6).\n")
 
-    # Loop repeats until valid inuput is received
+    # Loop repeats until valid input is received
     while True:
         # Loop through each list item & print with corresponding index number
         # +1 to display index as 1-6 rather than 0-5
@@ -175,7 +175,7 @@ def validate_expense_description():
     """
     typingPrint("Please enter a description.\n")
 
-    # Loop repeats until valid inuput is received
+    # Loop repeats until valid input is received
     while True:
         # Try... except for exception / error handling
         try:
@@ -203,11 +203,11 @@ def validate_expense_date():
     """
     Validates user's expense date input.
     While loop will repeatedly request data until it is valid.
-    This function accepts dates from 01.01.2024 to the current date.
+    This function accepts dates from 01-01-2024 to the current date.
     """
     typingPrint("Please enter date as DD-MM-YYYY.\n")
 
-    # Loop repeats until valid inuput is received
+    # Loop repeats until valid input is received
     while True:
         # Try... except for exception / error handling
         try:
@@ -228,16 +228,11 @@ def validate_expense_date():
 
             # Invalid input raises error
             else:
-                print()
-                typingPrint(
-                    "Invalid input: "
-                    "Date must be between 01-01-2024 and today."
-                    "\n", Fore.RED)
+                raise ValueError("")
 
         except ValueError:
             print()
-            typingPrint("Invalid input: "
-                        "Please enter date as DD-MM-YYYY.\n", Fore.RED)
+            typingPrint("Invalid input: Please enter a date between 01-01-2024 and today as DD-MM-YYYY.\n", Fore.RED)
 
 
 def confirm_input():
@@ -265,7 +260,7 @@ def confirm_input():
     print()
     typingPrint("Conrifm expense details (c) or re-enter (r)?\n")
 
-    # Loop repeats until valid inuput is received
+    # Loop repeats until valid input is received
     while True:
         # Try... except for exception / error handling
         try:
@@ -342,7 +337,7 @@ def update_worksheet(expense):
     typingPrint("Add another expense (a) or return to Main Menu (m)?\n")
     print()
 
-    # Loop repeats until valid inuput is received
+    # Loop repeats until valid input is received
     while True:
         # Try... except for exception / error handling
         try:
@@ -439,7 +434,7 @@ def view_by_category(data):
     typingPrint("To switch to Date View, please enter (d).\n")
     typingPrint("To switch to Month View, please enter (v).\n")
 
-    # Loop repeats until valid inuput is received
+    # Loop repeats until valid input is received
     while True:
         # Try... except for exception / error handling
         try:
@@ -523,7 +518,7 @@ def view_by_date():
     typingPrint("To switch to Category View, please enter (c).\n")
     typingPrint("To switch to Month View, please enter (v).\n")
 
-    # Loop repeats until valid inuput is received
+    # Loop repeats until valid input is received
     while True:
         # Try... except for exception / error handling
         try:
@@ -638,7 +633,7 @@ def view_by_month(data):
     typingPrint("To switch to Date View, please enter (d).\n")
     typingPrint("To switch to Category View, please enter (c).\n")
 
-    # Loop repeats until valid inuput is received
+    # Loop repeats until valid input is received
     while True:
 
         # Try... except for exception / error handling
@@ -689,7 +684,7 @@ def view_expenses():
     Runs the expense view menu.
     Allows the user to select how they want to view their expenses.
     """
-    # Loop repeats until valid inuput is received
+    # Loop repeats until valid input is received
     while True:
         print()
         print(Fore.CYAN + "                  ◇─◇──◇── VIEW EXPENSES ──◇──◇─◇"
@@ -758,7 +753,7 @@ def main_menu():
     Runs the main menu of the program.
     Allows the user to navigate to one of two sub-menus.
     """
-    # Loop repeats until valid inuput is received
+    # Loop repeats until valid input is received
     while True:
         print()
         print(Fore.CYAN + "                  ◇─◇──◇── MAIN MENU ──◇──◇─◇\n")
@@ -820,5 +815,6 @@ def return_to_main():
 
 
 # Run the main function
-welcome_screen()
-main_menu()
+#welcome_screen()
+#main_menu()
+validate_expense_date()
