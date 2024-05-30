@@ -68,13 +68,13 @@ A view-only version of the Google Sheet can be viewed [here](https://docs.google
 
 Since this program is purely focused on back-end programming, no additional styling or formatting was applied to the page that contains the terminal.
 
-[Colorama](https://pypi.org/project/colorama/) was used to apply color to the terminal text to enhance the user experience.
+[Colorama](https://pypi.org/project/colorama/) was used to apply color to the terminal text to enhance user experience.
 
 The following colors were used:
 
 - Error messages are displayed in red.
 
-- A successful feedback message about updating the Google Sheet displays in green.
+- A successful feedback message about updating Google Sheets is displayed in green.
 
 - Menu headers and the program logo are displayed in cyan.
 
@@ -90,7 +90,7 @@ All colors are displayed in the *normal* style on a *normal* background.
 
 #### Banners and Logo
 
-In order to improve the user's experience and enhance the visual appeal of the program, ASCII art was used to create a logo and header elements:
+In order to improve user experience and enhance the visual appeal of the program, ASCII art was used to create a logo and header elements:
 
 - [Many Tools](https://manytools.org/hacker-tools/ascii-banner/) was used to create the logo that displays when the program starts.
 
@@ -98,7 +98,7 @@ In order to improve the user's experience and enhance the visual appeal of the p
 
 #### Expense Display
 
-To allow users to easily review and compare their potentially large number of expenses, these are displayed in a variety of tables, depending on the option the user selects.
+To allow users to easily review and compare their potentially large number of expenses, these are displayed in a variety of tables, depending on the options users select.
 
 [Tabulate](https://pypi.org/project/tabulate/) was used to create the tables used to display the expense details.
 
@@ -115,7 +115,7 @@ Note: A view-only version of the full sheet can be viewed [here](https://docs.go
 
 ### Flowchart
 
-During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was used to create a flowchart for the program to ensure a clear path for the user when navigating the menu.
+During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was used to create a flowchart for the program to ensure a clear path for users when navigating the menu.
 
 <details>
 <summary> Flowchart </summary>
@@ -129,10 +129,10 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 
 ### General
 
-- A loading screen message provides users with feedback when switching between menus or accessing the Google Sheet.
+- A loading screen message provides users with feedback when switching between menus or accessing Google Sheets.
 - A typing effect was added to input requests, error messages, and menu overviews (but not the individual menu items) to simulate human interaction and enhance engagement and readability.
 - When switching between menus or between expense views, the screen is cleared to provide users with a cleaner display and improve readability and focus.
-- A menu header at the top of the terminal provides the user with guidance on which menu they are currently in.
+- A menu header at the top of the terminal provides users with guidance on which menu they are currently in.
 - Status and error messages are displayed in different colors to draw attention.
 
 ### Program Start and Main Menu
@@ -153,12 +153,12 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 
 ### Add Expenses
 
-- The program collects various details from the user for each new expense, namely date, description, category, and amount.
+- The program collects various details from users for each new expense, namely date, description, category, and amount.
 - Each detail is collected using a new prompt and validated before users can proceed to the next detail.
 -  Error messages inform users of incorrect inputs.
 - After all details have been completed, users are shown a summary of their expense details. 
-- Users can choose to confirm their inputs and save them to the Google Sheet, or re-enter them if they need to make any changes.
-- Alternatively, users can choose to return to the main menu without making any changes to the Google Sheet.
+- Users can choose to confirm their inputs and save them to Google Sheets, or re-enter them if they need to make any changes.
+- Alternatively, users can choose to return to the main menu without making any changes to Google Sheets.
 - After an expense has been added, users can choose to add another expense, which will restart the process from the first step, or to return to the main menu.
 
 <details>
@@ -268,7 +268,7 @@ Note: When longer lists are being displayed, users may have to scroll in order t
 #### GUI
 
 - Frameworks such as Tkinter and PyQt can be used to build graphical user interfaces for Python.
-- A GUI would allow for a more user-friendly and visually appealing display of the program, improving the user experience.
+- A GUI would allow for a more user-friendly and visually appealing display of the program, improving user experience.
 
 #### Google Sheets Functionality
 
@@ -366,7 +366,7 @@ As a user, I want to be sure that my expense details are valid.
 
 
 As a user, I want the program to be pleasant and engaging.
-- ASCII art is used to create an aesthetic interface and improve the user experience.
+- ASCII art is used to create an aesthetic interface and improve user experience.
 - Menus are kept concise and similar across different menus to improve readability and provide consistency.
 - With the possible exception of the expense views, especially if they contain a lot of expenses, no scrolling is required on any of the screens.
 - The screen is cleared when navigating between menus or views to provide a clear distinction and improve readability.
@@ -382,7 +382,7 @@ As a user, I want to receive feedback on my input.
 - After saving an expense to the linked Google Sheet, a success message is printed in green.
 - Each error message contains information on how to provide valid input.
 - Loading messages provide users with feedback about what is happening, such as what process is running in the background or which menu is being loaded.
-- Menu banners across the top of the terminal provide the user with guidance on which menu they are currently in.
+- Menu banners across the top of the terminal provide users with guidance on which menu they are currently in.
 
 As a user, I want to understand the purpose of the program.
 - Budget Buddy starts with a title screen that displays the name and logo.
@@ -577,7 +577,7 @@ The finished project was deployed in [Heroku](https://dashboard.heroku.com/login
 - This project required the use of Google Drive API and Google Sheets API, both enabled via [Google Cloud Platform](https://cloud.google.com).
 - A credentials file was generated through the Google Drive API and added to the workspace.
 - To ensure that the sensitive information contained in the credentials would not be pushed to the repository, the credentials file was added to *gitignore*.
-- The client_email address contained within the credentials file was added to the Google Sheet as an editor to enable access.
+- The client_email address contained within the credentials file was added to Google Sheets as an editor to enable access.
 - Variables and scope to access the worksheet were defined at the top of the *run.py* file.
 - Using the terminal, GSpread and OAuth packages were installed.
 
