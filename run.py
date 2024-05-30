@@ -673,7 +673,7 @@ def view_by_month(data):
                 typingPrint("                         "
                             "Loading Category View ... \n", Fore.YELLOW)
                 pause_and_clear()
-                view_by_category(expenses.get_all_values())
+                view_by_category(data)
                 break
 
             # Invalid input raises error
