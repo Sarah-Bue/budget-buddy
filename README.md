@@ -133,6 +133,7 @@ During the initial planning phase, [Lucidchart](https://www.lucidchart.com/) was
 - A typing effect was added to input requests, error messages, and menu overviews (but not the individual menu items) to simulate human interaction and enhance engagement and readability.
 - When switching between menus or between expense views, the screen is cleared to provide users with a cleaner display and improve readability and focus.
 - A menu header at the top of the terminal provides the user with guidance on which menu they are currently in.
+- Status and error messages are displayed in different colors to draw attention.
 
 ### Program Start and Main Menu
 
@@ -424,6 +425,12 @@ Note: No validation was performed on the *.html* and *.js* files that were provi
         <td><img src=assets/readme-files/menu-banner.png alt="Menu banner"></td>
         <td>Pass</td>
     </tr>
+    <tr>
+        <td>Status Message</td>
+        <td>Loading message when switching screens / menus </td>
+        <td><img src=assets/readme-files/loading-please-wait.png alt="Status message for loading screens"></td>
+        <td>Pass</td>
+    </tr>
 </table>
 
 #### Add Expenses
@@ -455,7 +462,7 @@ Note: No validation was performed on the *.html* and *.js* files that were provi
     </tr>
     <tr>
         <td>Save Expenses</td>
-        <td>Expenses are saved to Google Sheet and users can add additional expenses or return to Main Menu</td>
+        <td>Expenses are saved to Google Sheets and users can add additional expenses or return to Main Menu</td>
         <td><img src=assets/readme-files/save-expense-to-sheet.png alt="Expenses saved to google sheet"></td>
         <td>Pass</td>
     </tr>
@@ -508,8 +515,7 @@ User input validation was carried out throughout the project.
 | Switching away from Date View | Yes | Invalid input: Please enter (m) to return to Main Menu or (c) to switch to Category View or (v) to switch to Month View. |
 | Switching away from Category View | Yes | Invalid input: Please enter (m) to return to Main Menu or (d) to switch to Date View or (v) to switch to Month View. |
 | Switching away from Month View | Yes | Invalid input: Please enter (m) to return to Main Menu or (d) to switch to Date View or (c) to switch to Category nth View. |
-| Add Expenses Date | Yes | Invalid input: Please enter date as DD-MM-YYYY. |
-| Add Expenses Date | Yes | Invalid input: Date must be between 01-01-2024 and today. |
+| Add Expenses Date | Yes | Invalid input: Please enter a date between 01-01-2024 and today as DD-MM-YYYY. |
 | Add Expenses Description | Yes | Invalid input: Please enter a description between 0 and 50 characters. |
 | Add Expenses Category | Yes | Invalid input: Please select one of the options (1-6). |
 | Add Expenses Amount | Yes | Invalid input: Please enter a number between 0 and 10000. |
