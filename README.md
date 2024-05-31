@@ -4,7 +4,7 @@
 
 Budget Buddy is a Python command line interface (CLI) application designed to help users manage their finances. Users can input their expenses and choose from a variety of views to break down their spending habits.
 
-The program automatically syncs all inputs to a Google Sheet to ensure storage of and access to the expense details even outside of Budget Buddy.
+The program automatically syncs all inputs to Google Sheets to ensure storage of and access to the expense details even outside of Budget Buddy.
 
 Visit the deployed application [here](https://budget-buddy-expense-tracker-f207bb189dc1.herokuapp.com/).
 
@@ -55,7 +55,7 @@ A view-only version of the Google Sheet can be viewed [here](https://docs.google
 ### User Stories
 
 - As a user, I want to be able to track and categorize my expenses.
-- As a user, I want to be able to store my expense details in a Google Sheet for further processing.
+- As a user, I want to be able to store my expense details in Google Sheets for further processing.
 - As a user, I want to be able to view my expenses in a convenient format.
 - As a user, I want to be sure that my expense details are valid.
 - As a user, I want the program to be pleasant and engaging.
@@ -278,7 +278,7 @@ Note: When longer lists are being displayed, users may have to scroll in order t
 
 #### Display Amounts
 
-- One minor thing that could be added in the future is to display all amounts with two decimals, whether or not they were entered with decimals. 
+- One change that could be made in the future, would be to display all amounts with two decimals, whether or not they were entered with decimals (e.g., *10.00* for *10*). 
 - This would create a more consistent look, especially in the *View by Month* option.
 
 [Back to top ⇧](#budget-buddy)
@@ -289,7 +289,7 @@ Note: When longer lists are being displayed, users may have to scroll in order t
 
 - [Python3](https://en.wikipedia.org/wiki/Python_(programming_language))
 
-Provided as part of Code Institute's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template): 
+Provided as part of Code Institute's [Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template): 
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [Javascript](https://en.wikipedia.org/wiki/JavaScript)
 
@@ -345,8 +345,8 @@ As a user, I want to be able to track and categorize my expenses.
 - Budget Buddy allows users to choose from a predefined list of categories for their expenses to help maintain consistency across entries.
 
 
-As a user, I want to be able to store my expense details in a Google Sheet for further processing.
-- Budget Buddy is set up to store all user inputs in a Google Sheet.
+As a user, I want to be able to store my expense details in Google Sheets for further processing.
+- Budget Buddy is set up to store all user inputs in Google Sheets.
 - Further processing of the data was beyond the scope of this project, but could easily implemented in the future.
 
 
@@ -400,7 +400,7 @@ The code was validated using [Pep8 Linter](https://pep8ci.herokuapp.com/#). No e
 </details>
 <br>
 
-Note: No validation was performed on the *.html* and *.js* files that were provided as part of Code Institute's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template).
+Note: No validation was performed on the *.html* and *.js* files that were provided as part of Code Institute's [Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template).
 
 
 ### Feature Testing
@@ -534,7 +534,7 @@ Safari | Issues with appearance or functionality. | Fail
 Mozilla Firefox | No issues with appearance or functionality. | Pass
 Microsoft Edge | No issues with appearance or functionality. | Pass
 
-Note: The program starts on Safari but no user input is recognized. This seems to be a known issue of Code Institute's [Python Essentials template](https://github.com/Code-Institute-Org/python-essentials-template). 
+Note: The program starts on Safari but no user input is recognized. This seems to be a known issue of Code Institute's [Python Essentials Template](https://github.com/Code-Institute-Org/python-essentials-template). 
 
 #### Device Compatibility
 Device | Outcome | Pass/Fail
@@ -634,7 +634,7 @@ All content was written by the developer.
 
 - [W3schools](https://www.w3schools.com/) and [Stack Overflow](https://stackoverflow.com/) were consulted regularly.
 
-- The steps to set up and connect a Google Sheet were provided by [Code Institute's](https://codeinstitute.net/ie/) *Love Sandwiches* project.
+- The steps to set up and connect Google Sheets were provided by [Code Institute's](https://codeinstitute.net/ie/) *Love Sandwiches* project.
 
 - A blog article by [Adam Johnson](https://adamj.eu/tech/2022/11/04/why-does-python-deprecationwarning-invalid-escape-sequence/) was consulted on how to fix the *SyntaxWarning: invalid escape sequence '\|'*.
 
